@@ -1,21 +1,32 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import PropTypes from 'prop-types';
+import { StyleSheet, Text, View, ActivityIndicator, StatusBar, Button, Image, FlatList } from 'react-native';
+import { DrawerNavigator, TabNavigator } from 'react-navigation';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
+import Selection from "./Selection";
+import SettingsScreen from "./SettingsScreen";
+import DrawerNav from "./DrawerNav";
+import StackNav from "./StackNav"
+import App from "./App2"
+
+
+export default TabNavigator({
+  // Main: { screen: DrawerNav },
+  stackNav: { screen: StackNav }
+}, {
+  tabBarOptions: { 
+    activeTintColor: '#7567B1',
+    labelStyle: {
+      fontSize: 16,
+      fontWeight: '600'
+    },
+    style: {
+      // backgroundColor: 'grey',
+    },
+    tabStyle: {
+      paddingVertical: 14
+    }
   }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 });
+
+
