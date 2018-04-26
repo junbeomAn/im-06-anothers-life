@@ -1,50 +1,32 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Register from './register';
-import Login from './login';
+import PropTypes from 'prop-types';
+import { StyleSheet, Text, View, ActivityIndicator, StatusBar, Button, Image, FlatList } from 'react-native';
+import { DrawerNavigator, TabNavigator } from 'react-navigation';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: '',
-      token: ''
-    };
+import Selection from "./Selection";
+import SettingsScreen from "./SettingsScreen";
+import DrawerNav from "./DrawerNav";
+import StackNav from "./StackNav"
+import App from "./App2"
+
+
+export default TabNavigator({
+  // Main: { screen: DrawerNav },
+  stackNav: { screen: StackNav }
+}, {
+  tabBarOptions: { 
+    activeTintColor: '#7567B1',
+    labelStyle: {
+      fontSize: 16,
+      fontWeight: '600'
+    },
+    style: {
+      // backgroundColor: 'grey',
+    },
+    tabStyle: {
+      paddingVertical: 14
+    }
   }
-  componentDidMount() {
-    this._getData();
-  }
-
-  _tokenMaker(token){
-    this.setState({
-      token: token
-    })
-  }
-
-  _getData = () => {
-    fetch('http://127.0.0.1:3000/api/people/list')
-      .then(response => response.json())
-      .then(json => console.log('aaaa', json))
-      .catch(err => console.log(err))
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        {this.state.token ? <Text>토큰 있네</Text> : <Login makeToken={this._tokenMaker.bind(this)}/>}
-      </View>
-    );
-  }
-}
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 });
+
+
