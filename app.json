@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "younggun",
+    "name": "project1",
     "description": "This project is really great.",
-    "slug": "younggun",
+    "slug": "project1",
     "privacy": "public",
     "sdkVersion": "26.0.0",
     "platforms": ["ios", "android"],
