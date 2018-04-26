@@ -35,7 +35,7 @@ export default StackNav = StackNavigator({
     People: {
         screen: People,
         navigationOptions: (props) => ({
-          title: "People"
+          title: props.navigation.state.params.name
         })
     }
     

@@ -12,13 +12,15 @@ constructor(props){
   this.state = {
     username: '',
     password: '',
-    token: ''
+    token: '',
+    data: null
   };
 }
 
   static navigationOptions = {
     title: "Welcome"
   }
+
   componentDidMount() {
     this._getData();
   }
@@ -32,35 +34,22 @@ constructor(props){
   _getData = () => {
     fetch('http://127.0.0.1:3000/api/people/list')
       .then(response => response.json())
-      .then(json => console.log('aaaa', json))
-      .catch(err => console.log(err))
+      .then(json => this.setState({
+        data: json
+      }));
   }
 
   render() {
+    // this.state.data === null ? console.log('패싱') : console.log(this.state.data[0]);
     const { navigate } = this.props.navigation;
-    
-    return (         
+    return (
         <View style={styles.container}>
-          <TouchableHighlight
-            onPress={() => navigate("People")}
-            style={styles.button}>
-            <Selection />
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => navigate("People")}
-            style={styles.button}>
-            <Selection />
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => navigate("People")}
-            style={styles.button}>
-            <Selection />
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => navigate("People")}
-            style={styles.button}>
-            <Selection />
-          </TouchableHighlight>
+        {this.state.data === null ? <Text>Loading...</Text> : 
+          this.state.data.map((item, index) => <TouchableHighlight
+          onPress={() => navigate("People", item)}
+          style={styles.button}>
+          <Selection item={item} key={index}/>
+        </TouchableHighlight>)}
         </View>         
     );  
   }

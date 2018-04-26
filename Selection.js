@@ -2,13 +2,16 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
 export default class Selection extends React.Component {
+  constructor(props){
+    super(props)
+  }
 
   render() {
     return (
       <View >    
          <View style={styles.select}>
             <View style={{width: 130, height: 180}}>
-              <Image source={require('./assets/oprah-winfrey.jpg')} style={styles.photos}/>              
+              <Image source={{uri: this.props.item.img_one}} style={styles.photos}/>              
             </View>
           </View>                 
       </View>
