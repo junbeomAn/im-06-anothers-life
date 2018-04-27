@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, StatusBar, Button, Image, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Button, Image, FlatList, TouchableHighlight, ActivityIndicator } from 'react-native';
 import { DrawerNavigator, TabNavigator } from 'react-navigation';
 
 import Selection from "./Selection";
@@ -44,11 +44,11 @@ constructor(props){
     return (
         <View style={styles.container}>
         {this.state.data === null ? <ActivityIndicator size="large"/> : 
-          this.state.data.map((item, index) => <TouchableOpacity
+          this.state.data.map((item, index) => <TouchableHighlight
           onPress={() => navigate("People", item)}
           style={styles.button} key={index}>
           <Selection item={item} key={index}/>
-          </TouchableOpacity>)}
+          </TouchableHighlight>)}
         </View>
     );  
   }

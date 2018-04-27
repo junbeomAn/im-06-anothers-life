@@ -13,7 +13,7 @@ function People(props) {
         <ScrollView>
           <Text>
             {schedule.map(listItem => {
-              var result = `${listItem.time}   ${listItem.task}`;
+              var result = `${listItem.time} : ${listItem.task}\n`;
               return result;
             })}
           </Text>
