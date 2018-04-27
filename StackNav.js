@@ -6,9 +6,28 @@ import SettingsScreen from './SettingsScreen'
 import DrawerNav from "./DrawerNav";
 import App from "./App2"
 import People from "./People";
+import Login from "./Login";
+import Register from "./Register";
 
 
 export default StackNav = StackNavigator({
+    Login: {
+      screen: Login,
+      navigationOptions: ({ navigation }) => ({
+        title: "L O G I N",
+        headerLeft: (
+          <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
+            <Ionicons name="ios-menu" size={30} />
+          </TouchableOpacity>
+        ),
+        headerRight: (
+          <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
+            <Ionicons name="ios-settings" size={30} />
+          </TouchableOpacity>
+        ),
+        headerStyle: { paddingRight: 10, paddingLeft: 10 }
+      })
+    },
     Main: {
         screen: App,
         navigationOptions:({navigation}) => ({
@@ -37,6 +56,12 @@ export default StackNav = StackNavigator({
         navigationOptions: (props) => ({
           title: props.navigation.state.params.name
         })
-    }
+    },
+    Register: {
+      screen: Register,
+      navigationOptions: (props) => ({
+        title: "Register",
+      })
+  }
     
 })

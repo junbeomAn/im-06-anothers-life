@@ -9,23 +9,24 @@ import {
   Navigator,
   WebView,
 } from 'react-native';
-
-
+import Register from "./Register"
+import StackNav from "./StackNav"
 
 export default class Login extends React.Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = { 
       username: '', 
       password: '',
+      token: '',
     };
   }
+  
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.container}>{this.state.token ? this.props.navigation.navigate('Main'): 
         <View>
-          <Text>L O G I N</Text>
           <View>
             <TextInput 
             placeholder='아이디를 입력하세요'
@@ -43,10 +44,27 @@ export default class Login extends React.Component {
             <TouchableOpacity onPress={this.login}>
               <Text>Login</Text>
             </TouchableOpacity>
+            <TouchableOpacity onPress={this.register} style={styles.register}>
+              <Text>Register</Text>
+            </TouchableOpacity>
           </View>
         </View>
+      }
       </View>
     );
+  }
+
+  register = () => {
+    this.props.navigation.navigate('Register')
+  }
+
+  // 로컬스토리지에 토큰저장
+  _saveData = (username, token) => {
+    // const option = {
+    //   'name': username,
+    //   'token': token
+    // }
+    AsyncStorage.setItem('token', JSON.stringify(token));
   }
 
   login = () => {
@@ -68,13 +86,14 @@ export default class Login extends React.Component {
           var password = res.password;
         } 
         else {
+          alert(res.message);
           this.setState({
             username: '',
             password: '',
+            token: res.token
           })
-          alert(res.message);
-          console.log(res.token)
-          this.props.makeToken(res.token);
+          console.log("TOKEN : ", res.token)
+          // this._saveData(this.state.username, res.token);
         }
       })
       .done();

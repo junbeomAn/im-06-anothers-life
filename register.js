@@ -22,7 +22,7 @@ export default class Register extends React.Component {
     return (
       <View style={styles.container}>
         <View>
-          <Text>회원 가입</Text>
+          <Text>R E G I S T E R</Text>
           <View>
 
             <TextInput 
@@ -40,7 +40,7 @@ export default class Register extends React.Component {
           </View>
           <View>
             <TouchableOpacity onPress={this.register}>
-              <Text>가입 신청</Text>
+              <Text>Apply</Text>
             </TouchableOpacity>
 
           </View>
