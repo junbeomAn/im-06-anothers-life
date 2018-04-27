@@ -82,7 +82,7 @@ export default class Login extends React.Component {
       this.setState({
         hasToken : token
       })
-      alert(token);
+      // alert(token);
     } catch (error) {
       alert(error);
     }

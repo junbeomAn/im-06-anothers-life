@@ -49,18 +49,17 @@ constructor(props){
           style={styles.button} key={index}>
           <Selection item={item} key={index}/>
           </TouchableOpacity>)}
-        </View>         
+        </View>
     );  
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 2,
     backgroundColor: '#fff',
-    alignItems: 'stretch',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    flexDirection: 'row'
   },
+  button: {
+    flex: 1,
+  }
 });
