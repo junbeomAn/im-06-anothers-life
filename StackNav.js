@@ -60,7 +60,7 @@ export default StackNav = StackNavigator({
     Register: {
       screen: Register,
       navigationOptions: (props) => ({
-        title: "Register",
+        title: "R E G I S T E R",
       })
   }
     

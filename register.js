@@ -22,16 +22,16 @@ export default class Register extends React.Component {
     return (
       <View style={styles.container}>
         <View>
-          <Text>R E G I S T E R</Text>
           <View>
-
-            <TextInput 
+            <TextInput
+              style={styles.username} 
               placeholder='아이디를 입력하세요'
               value={this.state.username}
               onChangeText={(username) => this.setState({ username })}>
             </TextInput>
 
-            <TextInput 
+            <TextInput
+              style={styles.password} 
               placeholder='비밀번호를 입력하세요'
               value={this.state.password}
               onChangeText={(password) => this.setState({ password })}>
@@ -40,7 +40,7 @@ export default class Register extends React.Component {
           </View>
           <View>
             <TouchableOpacity onPress={this.register}>
-              <Text>Apply</Text>
+              <Text style={styles.apply}>Sign up</Text>
             </TouchableOpacity>
 
           </View>
@@ -50,7 +50,7 @@ export default class Register extends React.Component {
   }
 
   register = () => {
-    fetch('http://127.0.0.1:3000/api/auth/register', {
+    fetch('http://10.130.109.220:3000/api/auth/register', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -83,5 +83,28 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  username: {
+    padding: 3,
+    width: 250,
+    borderWidth: 1,
+    borderColor: 'darkgrey',
+    textAlign: 'center',
+  },
+  password: {
+    marginTop: 5,
+    padding: 3,
+    borderWidth: 1,
+    borderColor: 'darkgrey',
+    textAlign: 'center',
+  },
+  apply:{
+    width: 250,
+    padding: 5,
+    textAlign: 'center',
+    marginTop: 20,
+    backgroundColor: 'darkslategrey',
+    color: 'ghostwhite',
   }
 });

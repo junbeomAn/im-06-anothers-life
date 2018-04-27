@@ -13,6 +13,15 @@ import App2 from "./App2"
 
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      username: '',
+      password: '',
+      token: '',
+    };
+  }
+
   render() {
     return (
       <Navigation />
