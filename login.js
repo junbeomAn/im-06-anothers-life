@@ -8,6 +8,7 @@ import {
   AsyncStorage,
   Navigator,
   WebView,
+  KeyboardAvoidingView,
 } from 'react-native';
 import Register from "./Register"
 import StackNav from "./StackNav"
@@ -19,31 +20,37 @@ export default class Login extends React.Component {
     this.state = { 
       username: '', 
       password: '',
-      token: '',
+      hasToken: '',
     };
+  }
+
+  componentDidMount(){
+    this._fetchData();
   }
   
   render() {
     return (
-      <View style={styles.container}>{this.state.token ? this.props.navigation.navigate('Main'): 
+      <View style={styles.container}>{this.state.hasToken ? this.props.navigation.navigate('Main'): 
         <View>
-          <View>
-            <TextInput 
-              style={styles.username}
-              placeholder='아이디를 입력하세요'
-              keyboardType="email-address"
-              value={this.state.username}
-              onChangeText={(username) => this.setState({ username })}>
-            </TextInput>
+          <KeyboardAvoidingView behavior="padding">
+            <View>
+              <TextInput 
+                style={styles.username}
+                placeholder='아이디를 입력하세요'
+                keyboardType="email-address"
+                value={this.state.username}
+                onChangeText={(username) => this.setState({ username })}>
+              </TextInput>
 
-            <TextInput
-              style={styles.password}
-              placeholder='비밀번호를 입력하세요'
-              secureTextEntry='true'
-              value={this.state.password}
-              onChangeText={(password) => this.setState({ password })}>
-            </TextInput>
-          </View>
+              <TextInput
+                style={styles.password}
+                placeholder='비밀번호를 입력하세요'
+                secureTextEntry='true'
+                value={this.state.password}
+                onChangeText={(password) => this.setState({ password })}>
+              </TextInput>
+            </View>
+          </KeyboardAvoidingView>
           <View>
             <TouchableOpacity onPress={this.login}>
               <Text style={styles.login}>Login</Text>
@@ -67,6 +74,19 @@ export default class Login extends React.Component {
   // 로컬스토리지에 토큰저장
   _saveData = (token) => {
     AsyncStorage.setItem('token', token);
+  }
+
+  // 로컬스토리지에서 토큰 퓃칭
+  _fetchData = async () => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      this.setState({
+        hasToken : token
+      })
+      alert(token);
+    } catch (error) {
+      alert(error);
+    }
   }
 
   login = () => {
@@ -94,7 +114,7 @@ export default class Login extends React.Component {
             password: '',
             token: res.token
           })
-          console.log("TOKEN : ", res.token)
+          console.log("TOKEN : ", res.token);
           this._saveData(res.token);
         }
       })
