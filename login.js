@@ -82,14 +82,14 @@ export default class Login extends React.Component {
       this.setState({
         hasToken : token
       })
-      // alert(token);
+      alert(token);
     } catch (error) {
       alert(error);
     }
   }
 
   login = () => {
-    fetch('http://10.130.109.220:3000/api/auth/login', {
+    fetch('http://172.30.1.36:3000/api/auth/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

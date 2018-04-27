@@ -24,7 +24,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Navigation />
+      <Navigation/>
     );
   }
 }
@@ -43,25 +43,5 @@ const Navigation = TabNavigator({
       }
     }
 })
-
-
-// export default TabNavigator({
-//   // Main: { screen: DrawerNav },
-//   stackNav: { screen: StackNav }
-// }, {
-//   tabBarOptions: { 
-//     activeTintColor: '#7567B1',
-//     labelStyle: {
-//       fontSize: 16,
-//       fontWeight: '600'
-//     },
-//     style: {
-//       // backgroundColor: 'grey',
-//     },
-//     tabStyle: {
-//       paddingVertical: 14
-//     }
-//   }
-// });
 
 

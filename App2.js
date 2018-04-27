@@ -32,7 +32,7 @@ constructor(props){
   }
 
   _getData = () => {
-    fetch('http://10.130.109.220:3000/api/people/list')
+    fetch('http://172.30.1.36:3000/api/people/list')
       .then(response => response.json())
       .then(json => this.setState({
         data: json
