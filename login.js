@@ -30,27 +30,26 @@ export default class Login extends React.Component {
   
   render() {
     return (
-      <View style={styles.container}>{this.state.hasToken ? this.props.navigation.navigate('Main'): 
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
+      {this.state.hasToken ? this.props.navigation.navigate('Main'):
         <View>
-          <KeyboardAvoidingView behavior="padding">
-            <View>
-              <TextInput 
-                style={styles.username}
-                placeholder='아이디를 입력하세요'
-                keyboardType="email-address"
-                value={this.state.username}
-                onChangeText={(username) => this.setState({ username })}>
-              </TextInput>
+          <View>
+            <TextInput 
+              style={styles.username}
+              placeholder='아이디를 입력하세요'
+              keyboardType="email-address"
+              value={this.state.username}
+              onChangeText={(username) => this.setState({ username })}>
+            </TextInput>
 
-              <TextInput
-                style={styles.password}
-                placeholder='비밀번호를 입력하세요'
-                secureTextEntry='true'
-                value={this.state.password}
-                onChangeText={(password) => this.setState({ password })}>
-              </TextInput>
-            </View>
-          </KeyboardAvoidingView>
+            <TextInput
+              style={styles.password}
+              placeholder='비밀번호를 입력하세요'
+              secureTextEntry='true'
+              value={this.state.password}
+              onChangeText={(password) => this.setState({ password })}>
+            </TextInput>
+          </View>
           <View>
             <TouchableOpacity onPress={this.login}>
               <Text style={styles.login}>Login</Text>
@@ -63,10 +62,10 @@ export default class Login extends React.Component {
           </View>
         </View>
       }
-      </View>
-    );
-  }
-
+      </KeyboardAvoidingView>
+      );
+    }
+  
   register = () => {
     this.props.navigation.navigate('Register')
   }
@@ -112,7 +111,7 @@ export default class Login extends React.Component {
           this.setState({
             username: '',
             password: '',
-            token: res.token
+            hasToken: res.token
           })
           console.log("TOKEN : ", res.token);
           this._saveData(res.token);
@@ -158,5 +157,5 @@ const styles = StyleSheet.create({
     marginTop: 5,
     backgroundColor: 'darkslategrey',
     color: 'ghostwhite',
-  }
+  },
 })
