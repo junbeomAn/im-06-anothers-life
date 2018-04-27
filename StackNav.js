@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, TouchableHighlight } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { StackNavigator} from 'react-navigation'
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import SettingsScreen from './SettingsScreen'
-import DrawerNav from "./DrawerNav";
+// import DrawerNav from "./DrawerNav";
 import App from "./App2"
 import People from "./People";
 
@@ -15,7 +15,8 @@ export default StackNav = StackNavigator({
             title: "Home",
             headerLeft:(
               <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
-                <Ionicons name="ios-menu" size={30} />
+                {/* <Ionicons name="ios-menu" size={30} /> */}
+                <FontAwesome name="star" size={25  }/>
               </TouchableOpacity>
             ),
             headerRight:(
@@ -35,7 +36,7 @@ export default StackNav = StackNavigator({
     People: {
         screen: People,
         navigationOptions: (props) => ({
-          title: "People"
+          title: props.navigation.state.params.name
         })
     }
     
