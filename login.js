@@ -29,23 +29,29 @@ export default class Login extends React.Component {
         <View>
           <View>
             <TextInput 
-            placeholder='아이디를 입력하세요'
-            value={this.state.username}
-            onChangeText={(username) => this.setState({ username })}>
+              style={styles.username}
+              placeholder='아이디를 입력하세요'
+              keyboardType="email-address"
+              value={this.state.username}
+              onChangeText={(username) => this.setState({ username })}>
             </TextInput>
 
             <TextInput
+              style={styles.password}
               placeholder='비밀번호를 입력하세요'
+              secureTextEntry='true'
               value={this.state.password}
               onChangeText={(password) => this.setState({ password })}>
             </TextInput>
           </View>
           <View>
             <TouchableOpacity onPress={this.login}>
-              <Text>Login</Text>
+              <Text style={styles.login}>Login</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={this.register} style={styles.register}>
-              <Text>Register</Text>
+          </View>
+          <View>
+            <TouchableOpacity onPress={this.register}>
+              <Text style={styles.register}>Sign up</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -59,16 +65,12 @@ export default class Login extends React.Component {
   }
 
   // 로컬스토리지에 토큰저장
-  _saveData = (username, token) => {
-    // const option = {
-    //   'name': username,
-    //   'token': token
-    // }
-    AsyncStorage.setItem('token', JSON.stringify(token));
+  _saveData = (token) => {
+    AsyncStorage.setItem('token', token);
   }
 
   login = () => {
-    fetch('http://127.0.0.1:3000/api/auth/login', {
+    fetch('http://10.130.109.220:3000/api/auth/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -93,7 +95,7 @@ export default class Login extends React.Component {
             token: res.token
           })
           console.log("TOKEN : ", res.token)
-          // this._saveData(this.state.username, res.token);
+          this._saveData(res.token);
         }
       })
       .done();
@@ -105,5 +107,36 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 1,
+  },
+  username: {
+    padding: 3,
+    width: 250,
+    borderWidth: 1,
+    borderColor: 'darkgrey',
+    textAlign: 'center',
+    // fontFamily: ''
+  },
+  password: {
+    marginTop: 5,
+    padding: 3,
+    borderWidth: 1,
+    borderColor: 'darkgrey',
+    textAlign: 'center',
+  },
+  login:{
+    marginTop: 20,
+    padding: 5,
+    borderWidth: 1,
+    backgroundColor: 'darkslategrey',
+    color: 'ghostwhite',
+    textAlign: 'center',
+  },
+  register:{
+    padding: 5,
+    textAlign: 'center',
+    marginTop: 5,
+    backgroundColor: 'darkslategrey',
+    color: 'ghostwhite',
   }
 })
