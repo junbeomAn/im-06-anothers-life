@@ -63,5 +63,4 @@ export default StackNav = StackNavigator({
         title: "R E G I S T E R",
       })
   }
-    
 })
