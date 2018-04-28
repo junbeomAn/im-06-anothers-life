@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { View, TouchableOpacity, TouchableHighlight, AsyncStorage } from 'react-native';
 import { StackNavigator, TabNavigator} from 'react-navigation'
 import { Ionicons } from "@expo/vector-icons";
-import SettingsScreen from './SettingsScreen'
-import Main from "./Main"
+import SettingsScreen from './SettingsScreen';
+import Main from "./Main";
 import People from "./People";
 import Login from "./Login";
 import Register from "./Register";
 import MyPage from "./MyPage";
+import Search from "./Search";
 
 export default class App3 extends React.Component {
   constructor(props) {
@@ -38,7 +39,7 @@ const StackNav = StackNavigator({
         </TouchableOpacity>
       ),
       headerRight: (
-        <TouchableOpacity onPress={() => props.navigation.navigate("SettingsScreen")}>
+        <TouchableOpacity onPress={() => props.navigation.navigate("Search")}>
           <Ionicons name="ios-search" size={30} />
         </TouchableOpacity>
       ),
@@ -69,10 +70,10 @@ const StackNav = StackNavigator({
       title: "R E G I S T E R",
     })
   },
-  Register: {
-    screen: Register,
+  Search: {
+    screen: Search,
     navigationOptions: (props) => ({
-      title: "R E G I S T E R",
+      title: "S E A R C H",
     })
   },
 })

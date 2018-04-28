@@ -21,7 +21,7 @@ export default class Loading extends React.Component {
 
   componentDidMount(){
     this._getDb();
-    // this._fetchToken();
+    this._fetchToken();
   }
 
   // DB 자료 펫칭
@@ -60,12 +60,12 @@ export default class Loading extends React.Component {
     })
   }
 
+  // 로그 아웃
   _logOut() {
     AsyncStorage.removeItem('token');
     this.setState({
       token: ''
     })
-    console.log('logout', 111111111111);
   }
 
   render() {

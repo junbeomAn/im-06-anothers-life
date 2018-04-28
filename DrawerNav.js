@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, ActivityIndicator, StatusBar, Button, Image, FlatList } from 'react-native';
 import { DrawerNavigator, TabNavigator } from 'react-navigation';
-// import SettingsScreen from "./SettingsScreen";
-
 
 class MyHomeScreen extends React.Component {
   static navigationOptions = {

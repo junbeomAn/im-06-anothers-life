@@ -4,18 +4,8 @@ import { StyleSheet, Text, View, TouchableOpacity, AsyncStorage } from 'react-na
 export default class SettingsScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      token: true
-    }
+    this.state = {};
   }
-
-  // _logOut() {
-  //   AsyncStorage.removeItem('token');
-  //   this.setState({
-  //     token: false
-  //   })
-  // }
-
 
   render() {
     return (

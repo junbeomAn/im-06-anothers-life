@@ -10,8 +10,6 @@ import {
   WebView,
 } from 'react-native';
 
-
-
 export default class Register extends React.Component {
 
   constructor(props) {
@@ -22,6 +20,9 @@ export default class Register extends React.Component {
     return (
       <View style={styles.container}>
         <View>
+          <View style={styles.titleBox}>
+            <Text style={styles.title}>S I G N U P</Text>
+          </View>
           <View>
             <TextInput
               style={styles.username} 
@@ -42,7 +43,11 @@ export default class Register extends React.Component {
             <TouchableOpacity onPress={this.register}>
               <Text style={styles.apply}>Sign up</Text>
             </TouchableOpacity>
-
+          </View>
+          <View>
+            <TouchableOpacity onPress={this.props.register}>
+              <Text style={styles.back}>Go Back</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -73,7 +78,6 @@ export default class Register extends React.Component {
           password: ''
         })
       }
-
     })
     .done();
     this.props.register();
@@ -85,6 +89,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  titleBox: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 20,
   },
   username: {
     padding: 3,
@@ -100,12 +112,20 @@ const styles = StyleSheet.create({
     borderColor: 'darkgrey',
     textAlign: 'center',
   },
-  apply:{
+  apply: {
     width: 250,
     padding: 5,
     textAlign: 'center',
     marginTop: 20,
-    backgroundColor: 'darkslategrey',
+    backgroundColor: '#008B8B',
+    color: 'ghostwhite',
+  },
+  back : {
+    width: 250,
+    padding: 5,
+    marginTop: 5,
+    textAlign: 'center',
+    backgroundColor: '#F08080',
     color: 'ghostwhite',
   }
 });
