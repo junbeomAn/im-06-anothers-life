@@ -13,12 +13,13 @@ export default class Loading extends React.Component {
     this.state = { 
       data: '', 
       token: '',
+      signUp: false
     };
   }
 
   componentDidMount(){
     this._getDb();
-    this._fetchToken();
+    // this._fetchToken();
   }
 
   // DB 자료 펫칭
@@ -38,12 +39,15 @@ export default class Loading extends React.Component {
         token
       })
     } catch (error) {
-      // alert(error);
+      alert(error);
     }
   }
 
   // 로컬스토리지에 토큰저장
   _saveToken = (token) => {
+    this.setState({
+      token
+    })
     AsyncStorage.setItem('token', token);
   }
 

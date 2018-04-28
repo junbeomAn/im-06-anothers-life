@@ -16,9 +16,6 @@ export default class App3 extends React.Component {
     };
   }
 
-  componentDidMount() {  
-  }
-
   render() {
     return(
       <View style={{ flex: 1, width: "100%"}}>
@@ -52,18 +49,18 @@ const StackNav = StackNavigator({
       title: props.navigation.state.params.name
     })
   },
+  SettingsScreen: {
+    screen: SettingsScreen,
+    navigationOptions: (props) => ({
+      title: "R E G I S T E R",
+    })
+  },
   Register: {
     screen: Register,
     navigationOptions: (props) => ({
       title: "R E G I S T E R",
     })
   },
-  SettingsScreen: {
-    screen: SettingsScreen,
-    navigationOptions: (props) => ({
-      title: "R E G I S T E R",
-    })
-  }
 })
 
 // const TabNav = TabNavigator({
