@@ -9,18 +9,11 @@ export default class SettingsScreen extends React.Component {
     // }
   }
 
-  _logOut() {
-
-    AsyncStorage.removeItem('token');
-    this.props.navigation.navigate('Login');
-    console.log(11111);
-  }
-
-
   render() {
+    const { screenProps } = this.props;
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <TouchableOpacity onPress={()=>{ this._logOut() }}>
+        <TouchableOpacity onPress={() => { screenProps.method() }}>
           <Text>My Page, PRESS to LOGOUT!!</Text>         
         </TouchableOpacity>
       </View>

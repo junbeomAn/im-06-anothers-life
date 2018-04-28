@@ -25,7 +25,7 @@ exports.register = (req, res) => {
   // 클라이언트에게 응답
   var respond = (isAdmin) => {
       res.json({
-      message : '성공적으로 회원가입 되었습니다',
+      message : ' 님의 가입을 환영합니다.',
       admin: isAdmin ? true : false
       })
   };
