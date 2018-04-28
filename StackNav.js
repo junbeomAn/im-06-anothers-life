@@ -34,12 +34,12 @@ const StackNav = StackNavigator({
       title: "타인의 삶",
       headerLeft: (
         <TouchableOpacity onPress={() => props.navigation.navigate('MyPage')}>
-          <Ionicons name="ios-menu" size={30} />
+          <Ionicons name="md-person" size={30} />
         </TouchableOpacity>
       ),
       headerRight: (
         <TouchableOpacity onPress={() => props.navigation.navigate("SettingsScreen")}>
-          <Ionicons name="ios-settings" size={30} />
+          <Ionicons name="ios-search" size={30} />
         </TouchableOpacity>
       ),
       headerStyle: { paddingRight: 10, paddingLeft: 10 }
