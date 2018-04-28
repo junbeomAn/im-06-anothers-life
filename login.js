@@ -10,8 +10,9 @@ import {
   WebView,
   KeyboardAvoidingView,
 } from 'react-native';
-import Register from "./Register"
-import StackNav from "./StackNav"
+
+import Register from "./Register";
+import StackNav from "./StackNav";
 
 export default class Login extends React.Component {
 
@@ -22,32 +23,14 @@ export default class Login extends React.Component {
     };
   }
 
-  // componentDidMount(){
-    // this._fetchData()
-  // }
-
-  // 로컬스토리지에 토큰저장
-  // _saveData = (token) => {
-  //   AsyncStorage.setItem('token', token);
-  // }
-
-  // // 로컬스토리지에서 토큰 퓃칭
-  // _fetchData = async () => {
-  //   try {
-  //     const token = await AsyncStorage.getItem('token');
-  //     this.setState({
-  //       hasToken: token
-  //     })
-  //   } catch (error) {
-  //     alert(error);
-  //   }
-  // }
-
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         {this.state.hasToken ? this.props.navigation.navigate('Main'):
         <View>
+          <View style={styles.titleBox}>
+              <Text style={styles.title}>L O G I N</Text>
+          </View>
           <View>
             <TextInput 
               style={styles.username}
@@ -71,7 +54,7 @@ export default class Login extends React.Component {
             </TouchableOpacity>
           </View>
           <View>
-            <TouchableOpacity onPress={this.register}>
+            <TouchableOpacity onPress={this.props.register}>
               <Text style={styles.register}>Sign up</Text>
             </TouchableOpacity>
           </View>
@@ -80,10 +63,6 @@ export default class Login extends React.Component {
       </KeyboardAvoidingView>
       );
     }
-  
-  register = () => {
-    this.props.navigation.navigate('Register')
-  }
 
   login = () => {
     fetch('http://10.130.104.173:3000/api/auth/login', {
@@ -105,11 +84,12 @@ export default class Login extends React.Component {
         } 
         else {
           alert(res.message);
-          this.setState({
-            token: res.token
-          })
-          this.props.func(res.token);
-          // this.props.navigation.navigate('Main', {hasToken : res.token})
+          if(res.token){
+            this.setState({
+              token: res.token
+            })
+            this.props.setToken(res.token);
+          }s
         }
       })
       .done();
@@ -121,6 +101,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  titleBox:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  title:{
+    fontSize: 20,
   },
   username: {
     padding: 3,
