@@ -7,7 +7,7 @@ function People(props) {
     return (
       <View style={styles.container}>
           <ImageBackground style={styles.photo} source={{uri: img_one}}>
-            <LinearGradient colors={['transparent', 'rgba(0,0,0,0.8)']} style={styles.gradient}>
+          <LinearGradient colors={['transparent', 'rgba(0,0,0,0.6)', 'rgba(0,0,0,1)']} style={styles.gradient}>
               <View style={styles.opacity}>
             <View style={styles.topHalf}/>
             <View style={styles.description}>
@@ -65,15 +65,12 @@ const styles = StyleSheet.create({
   },
   bottom: {
     display: 'flex',
+    backgroundColor: '#f3f4f7',
     height: '70%',
   },
   scroll: {
     flex: 4,
-    backgroundColor: 'white',
     paddingBottom: 10
-  },
-  padding: {
-    paddingBottom: 30
   },
   schedule: {
     borderTopWidth: 1,
@@ -82,7 +79,8 @@ const styles = StyleSheet.create({
   },
   schFont: {
     fontFamily: 'BareunBatangM',
-    lineHeight: 20
+    lineHeight: 20,
+    fontSize: 13,
   }
 });
 
