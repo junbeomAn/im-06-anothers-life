@@ -57,6 +57,12 @@ const StackNav = StackNavigator({
     navigationOptions: (props) => ({
       title: "R E G I S T E R",
     })
+  },
+  SettingsScreen: {
+    screen: SettingsScreen,
+    navigationOptions: (props) => ({
+      title: "R E G I S T E R",
+    })
   }
 })
 
