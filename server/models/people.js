@@ -8,7 +8,7 @@ const Person = new Schema({
   description: String,
   img_one: String,
   img_two: String,
-  schedule: [{ time: Date, task: String }],
+  schedule: [{ time: String, task: String }],
 });
 
 module.exports = mongoose.model('Person', Person);

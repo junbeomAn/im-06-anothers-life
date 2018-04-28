@@ -1,77 +1,98 @@
 import React, { Component } from 'react';
-import { TouchableOpacity } from 'react-native';
-import { StackNavigator} from 'react-navigation'
-import { Ionicons, FontAwesome } from "@expo/vector-icons";
+import { View, TouchableOpacity, TouchableHighlight, AsyncStorage } from 'react-native';
+import { StackNavigator, TabNavigator} from 'react-navigation'
+import { Ionicons } from "@expo/vector-icons";
 import SettingsScreen from './SettingsScreen'
-// import DrawerNav from "./DrawerNav";
-import App from "./App2"
+import Main from "./Main"
 import People from "./People";
 import Login from "./Login";
 import Register from "./Register";
-import Authen from "./Authen";
+import MyPage from "./MyPage";
 
-export const SignedIn = StackNavigator({    // 로그인 된 상태의 페이지 모임
-    Main: {
-        screen: App,
-        navigationOptions:({navigation}) => ({
-            title: "Home",
-            headerLeft:(
-              <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
-                {/* <Ionicons name="ios-menu" size={30} /> */}
-                <FontAwesome name="star" size={25  }/>
-              </TouchableOpacity>
-            ),
-            headerRight:(
-              <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
-                <Ionicons name="ios-settings" size={30} />
-              </TouchableOpacity>
-            ),
-            headerStyle: { paddingRight: 10, paddingLeft: 10 }
-        })
-    },
-    Authen: {
-      screen: Authen,
-      navigationOptions: (props) => ({
-        title: "Authen",
-      })
-    },
-    Login: {
-      screen: Login,
-      navigationOptions: (props) => ({
-        title: "Login",
-      })
-    },
-    Settings: {
-        screen: SettingsScreen,
-        navigationOptions: (props) => ({
-            title: "Settings",
-        })
-    },
-    People: {
-        screen: People,
-        navigationOptions: (props) => ({
-          title: props.navigation.state.params.name
-        })
-    }    
-    
-}, {
-  initialRouteName: 'Main'
-})
+export default class App3 extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      token: '',
+    };
+  }
 
-export const SignedOut = StackNavigator({ // 로그인안된상태의 페이지모임. 필요없어보임
-  Login: {
-    screen: Login,
+  componentDidMount() {  
+  }
+
+  render() {
+    return(
+      <View style={{ flex: 1, width: "100%"}}>
+      <StackNav screenProps={this.props.data}/>
+      </View>
+    )
+  }
+}
+
+const StackNav = StackNavigator({
+  Main: {
+    screen: Main,
     navigationOptions: (props) => ({
-      title: "L O G I N"       
+      title: "타인의 삶",
+      headerLeft: (
+        <TouchableOpacity onPress={() => props.navigation.navigate('MyPage')}>
+          <Ionicons name="ios-menu" size={30} />
+        </TouchableOpacity>
+      ),
+      headerRight: (
+        <TouchableOpacity onPress={() => props.navigation.navigate("SettingsScreen")}>
+          <Ionicons name="ios-settings" size={30} />
+        </TouchableOpacity>
+      ),
+      headerStyle: { paddingRight: 10, paddingLeft: 10 }
     })
   },
-
+  MyPage: {
+    screen: MyPage,
+    navigaionOptions: (props) => ({
+      title: "My Page"
+    })
+  },
+  Login: {
+    screen: Login,
+    navigaionOptions: (props) => ({
+      title: "Login"
+    })
+  },
+  People: {
+    screen: People,
+    navigationOptions: (props) => ({
+      title: props.navigation.state.params.name
+    })
+  },
   Register: {
     screen: Register,
     navigationOptions: (props) => ({
-      title: "Register",
+      title: "R E G I S T E R",
+    })
+  },
+  SettingsScreen: {
+    screen: SettingsScreen,
+    navigationOptions: (props) => ({
+      title: "R E G I S T E R",
     })
   }
-}, {
-  initialRouteName: 'Login'
-});
+})
+
+// const TabNav = TabNavigator({
+//   HOME: { screen: SettingsScreen },
+//   // LOGIN: { screen: Login }
+// },
+//   {
+//     tabBarOptions: {
+//       activeTintColor: '#7567B1',
+//       labelStyle: {
+//         fontSize: 16,
+//         fontWeight: '600'
+//       },
+//       tabStyle: {
+//         paddingVertical: 14
+//       }
+//     }
+//   })
+

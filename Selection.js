@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
 
 export default class Selection extends React.Component {
   constructor(props){
@@ -9,41 +9,48 @@ export default class Selection extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.inner}>
-          <Image source={{uri: this.props.item.img_one}} style={styles.photos}/>              
-        </View>
-      </View>         
+        <ImageBackground source={{uri: this.props.item.img_two}} style={styles.photos}>
+          <Text style={styles.text}>{this.props.item.name}</Text>
+        </ImageBackground>
+        <View style={styles.overlay}/>            
+      </View>
     );
   };
 }
 
 const styles = StyleSheet.create({
   container:{
-    // flex: 1,
-    flexWrap: 'wrap',
-    justifyContent: 'center'
-  },
-  inner:{
     // flexDirection: 'row',
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    flexWrap: 'wrap',
   },
   photos:{
-    width: 130,
-    height: 170
+    flex: 1,
+    flexWrap: 'wrap',
+    flexDirection: "row",
+    backgroundColor: 'transparent',
+    opacity: 0.79,
+    justifyContent:'center',
+    alignItems: 'center'
   },
-  // selection: {
-  //   height: 450, 
-  //   flexDirection: 'row', 
-  //   flexWrap: 'wrap',
-  //   backgroundColor: 'transparent'
-  // },
-  // select: {
-  //   width:130, 
-  //   height: 180,
-  //   flexDirection: 'row', 
-  //   borderWidth: 1,
-  //   borderColor: '#FF6E40',
-  //   marginLeft: 15,
-  //   marginTop: 30,
-  //   borderRadius: 10
-  // },
+  text:{
+    color: 'ghostwhite',
+    fontSize: 20,
+    fontWeight: '900',
+    paddingTop: 70,
+    textShadowColor: 'white',
+    textShadowRadius: 100,
+    textShadowOffset: {width: 100, height: 100}
+  },
+  overlay:{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "black",
+    opacity: 0.4,
+  }
 });

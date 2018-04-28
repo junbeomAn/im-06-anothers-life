@@ -5,7 +5,7 @@ function People(props) {
   var {name, description, img_one, img_two, schedule} = props.navigation.state.params;
     return (
       <View style={styles.container}>
-        <Image style={styles.photo} source={{ uri: img_two}}/>
+        <Image style={styles.photo} source={{uri: img_two}}/>
         <View style={styles.description}>
           <Text>{description}</Text>
         </View>
@@ -13,7 +13,7 @@ function People(props) {
         <ScrollView>
           <Text>
             {schedule.map(listItem => {
-              var result = `${listItem.time}   ${listItem.task}`;
+              var result = `${listItem.time} : ${listItem.task}\n`;
               return result;
             })}
           </Text>
