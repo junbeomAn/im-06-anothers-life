@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, AsyncStorage, Image, ActivityIndicator } from 'react-native';
-
+import { Font } from 'expo';
 import Main from "./Main";
 import StackNav from "./StackNav";
 import People from "./People";
@@ -22,11 +22,14 @@ export default class Loading extends React.Component {
   componentDidMount(){
     this._getDb();
     this._fetchToken();
+    Font.loadAsync({
+      BareunBatangM: require('./assets/BareunBatangM.ttf')
+    });
   }
-
-  // DB 자료 펫칭
+ 
+  // DB  자료 펫칭
   _getDb = () => {
-    fetch('http://10.130.104.154:3000/api/people/list')
+    fetch('http://10.130.104.144:3000/api/people/list')
       .then(response => response.json())
       .then(json => this.setState({
         data: json

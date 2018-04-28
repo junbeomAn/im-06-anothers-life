@@ -8,65 +8,54 @@ import {
   AsyncStorage,
   Navigator,
   WebView,
-  KeyboardAvoidingView,
 } from 'react-native';
 
-import Register from "./Register";
-import StackNav from "./StackNav";
-
-export default class Login extends React.Component {
+export default class Register extends React.Component {
 
   constructor(props) {
-    super(props)
-    this.state = {
-      hasToken: 0,
-    };
+    super(props);
+    this.state = { username: '', password: '' };
   }
-
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding">
-        {this.state.hasToken ? this.props.navigation.navigate('Main'):
+      <View style={styles.container}>
         <View>
           <View style={styles.titleBox}>
-              <Text style={styles.title}>L O G I N</Text>
+            <Text style={styles.title}>S I G N U P</Text>
           </View>
           <View>
-         
-            <TextInput 
-              style={styles.username}
+            <TextInput
+              style={styles.username} 
               placeholder='아이디를 입력하세요'
-              keyboardType="email-address"
               value={this.state.username}
               onChangeText={(username) => this.setState({ username })}>
             </TextInput>
 
             <TextInput
-              style={styles.password}
+              style={styles.password} 
               placeholder='비밀번호를 입력하세요'
-              secureTextEntry='true'
               value={this.state.password}
               onChangeText={(password) => this.setState({ password })}>
             </TextInput>
+            
           </View>
           <View>
-            <TouchableOpacity onPress={this._login}>
-              <Text style={styles.login}>Login</Text>
+            <TouchableOpacity onPress={this.register}>
+              <Text style={styles.apply}>Sign up</Text>
             </TouchableOpacity>
           </View>
           <View>
             <TouchableOpacity onPress={this.props.register}>
-              <Text style={styles.register}>Sign up</Text>
+              <Text style={styles.back}>Go Back</Text>
             </TouchableOpacity>
           </View>
         </View>
-        }
-      </KeyboardAvoidingView>
-      );
-    }
+      </View>
+    );
+  }
 
-  _login = () => {
-    fetch('http://10.130.104.173:3000/api/auth/login', {
+  register = () => {
+    fetch('http://10.130.104.154:3000/api/auth/register', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -77,23 +66,21 @@ export default class Login extends React.Component {
         password: this.state.password
       })
     })
-      .then(response => response.json())
-      .then(res => {
-        if (res.success === true) {
-          var username = res.username;
-          var password = res.password;
-        } 
-        else {
-          alert(this.state.username + res.message);
-          if(res.token){
-            this.setState({
-              token: res.token
-            })
-            this.props.setToken(res.token);
-          }
-        }
-      })
-      .done();
+    .then((response) => response.json())
+    .then((res) => {
+      if (res.success === true) {
+        var username = res.id;
+        var password = res.pw;
+      } else {
+        alert(this.state.username + res.message);
+        this.setState({
+          username: '',
+          password: ''
+        })
+      }
+    })
+    .done();
+    this.props.register();
   }
 }
 
@@ -103,12 +90,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  titleBox:{
+  titleBox: {
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
   },
-  title:{
+  title: {
     fontSize: 20,
   },
   username: {
@@ -125,18 +112,20 @@ const styles = StyleSheet.create({
     borderColor: 'darkgrey',
     textAlign: 'center',
   },
-  login:{
+  apply: {
+    width: 250,
+    padding: 5,
+    textAlign: 'center',
     marginTop: 20,
-    padding: 5,
     backgroundColor: '#008B8B',
     color: 'ghostwhite',
-    textAlign: 'center',
   },
-  register:{
+  back : {
+    width: 250,
     padding: 5,
-    textAlign: 'center',
     marginTop: 5,
-    backgroundColor: '#008B8B',
+    textAlign: 'center',
+    backgroundColor: '#F08080',
     color: 'ghostwhite',
-  },
-})
+  }
+});
