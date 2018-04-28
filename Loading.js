@@ -51,11 +51,19 @@ export default class Loading extends React.Component {
     AsyncStorage.setItem('token', token);
   }
 
+  // 회원 가입 화면으로
+  _register = () => {
+    this.setState({
+      signUp : !this.state.signUp
+    })
+  }
+
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         {!this.state.data ? <Text>Loading!!</Text> : 
-            this.state.token ? <StackNav data={this.state.data}/> : <Login func={this._saveToken.bind(this)} token={this.state.token} />}
+            this.state.token ? <StackNav data={this.state.data}/> : 
+            this.state.signUp ? <Register register={this._register.bind(this)}/> : <Login setToken={this._saveToken.bind(this)} register={this._register.bind(this)} />}
       </View>
     );
   }

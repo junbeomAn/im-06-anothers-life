@@ -54,7 +54,7 @@ export default class Login extends React.Component {
             </TouchableOpacity>
           </View>
           <View>
-            <TouchableOpacity onPress={this.register}>
+            <TouchableOpacity onPress={this.props.register}>
               <Text style={styles.register}>Sign up</Text>
             </TouchableOpacity>
           </View>
@@ -63,10 +63,6 @@ export default class Login extends React.Component {
       </KeyboardAvoidingView>
       );
     }
-  
-  register = () => {
-    this.props.navigation.navigate('Register')
-  }
 
   login = () => {
     fetch('http://10.130.104.173:3000/api/auth/login', {
@@ -88,10 +84,12 @@ export default class Login extends React.Component {
         } 
         else {
           alert(res.message);
-          this.setState({
-            token: res.token
-          })
-          this.props.func(res.token);
+          if(res.token){
+            this.setState({
+              token: res.token
+            })
+            this.props.setToken(res.token);
+          }s
         }
       })
       .done();

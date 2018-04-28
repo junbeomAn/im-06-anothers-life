@@ -67,7 +67,7 @@ export default class Register extends React.Component {
         var username = res.id;
         var password = res.pw;
       } else {
-        alert(res.message);
+        alert(this.state.username + res.message);
         this.setState({
           username: '',
           password: ''
@@ -76,6 +76,7 @@ export default class Register extends React.Component {
 
     })
     .done();
+    this.props.register();
   }
 }
 
