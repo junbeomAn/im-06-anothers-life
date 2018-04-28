@@ -26,8 +26,8 @@ export default class Loading extends React.Component {
       BareunBatangM: require('./assets/BareunBatangM.ttf')
     });
   }
-
-  // DB 자료 펫칭
+ 
+  // DB  자료 펫칭
   _getDb = () => {
     fetch('http://10.130.104.144:3000/api/people/list')
       .then(response => response.json())
