@@ -81,7 +81,7 @@ exports.login = (req, res) => {
   // 토큰 응답
   var respond = (token) => {
     res.json({
-      message: '성공적으로 로그인 되었습니다.',
+      message: ' 님 환영합니다.',
       token
     })
   }

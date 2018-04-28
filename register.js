@@ -22,6 +22,9 @@ export default class Register extends React.Component {
     return (
       <View style={styles.container}>
         <View>
+          <View style={styles.titleBox}>
+            <Text style={styles.title}>L O G I N</Text>
+          </View>
           <View>
             <TextInput
               style={styles.username} 
@@ -85,6 +88,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  titleBox: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 20,
   },
   username: {
     padding: 3,

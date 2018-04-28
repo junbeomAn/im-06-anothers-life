@@ -19,7 +19,7 @@ export default class Loading extends React.Component {
 
   componentDidMount(){
     this._getDb();
-    // this._fetchToken();
+    this._fetchToken();
   }
 
   // DB 자료 펫칭

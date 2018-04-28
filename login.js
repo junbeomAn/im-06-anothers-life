@@ -49,7 +49,7 @@ export default class Login extends React.Component {
             </TextInput>
           </View>
           <View>
-            <TouchableOpacity onPress={this.login}>
+            <TouchableOpacity onPress={this._login}>
               <Text style={styles.login}>Login</Text>
             </TouchableOpacity>
           </View>
@@ -64,7 +64,7 @@ export default class Login extends React.Component {
       );
     }
 
-  login = () => {
+  _login = () => {
     fetch('http://10.130.104.173:3000/api/auth/login', {
       method: 'POST',
       headers: {
@@ -83,13 +83,13 @@ export default class Login extends React.Component {
           var password = res.password;
         } 
         else {
-          alert(res.message);
+          alert(this.state.username + res.message);
           if(res.token){
             this.setState({
               token: res.token
             })
             this.props.setToken(res.token);
-          }s
+          }
         }
       })
       .done();
