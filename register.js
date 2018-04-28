@@ -10,8 +10,6 @@ import {
   WebView,
 } from 'react-native';
 
-
-
 export default class Register extends React.Component {
 
   constructor(props) {
@@ -23,7 +21,7 @@ export default class Register extends React.Component {
       <View style={styles.container}>
         <View>
           <View style={styles.titleBox}>
-            <Text style={styles.title}>L O G I N</Text>
+            <Text style={styles.title}>S I G N U P</Text>
           </View>
           <View>
             <TextInput
@@ -45,7 +43,11 @@ export default class Register extends React.Component {
             <TouchableOpacity onPress={this.register}>
               <Text style={styles.apply}>Sign up</Text>
             </TouchableOpacity>
-
+          </View>
+          <View>
+            <TouchableOpacity onPress={this.props.register}>
+              <Text style={styles.back}>Go Back</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -76,7 +78,6 @@ export default class Register extends React.Component {
           password: ''
         })
       }
-
     })
     .done();
     this.props.register();
@@ -111,12 +112,20 @@ const styles = StyleSheet.create({
     borderColor: 'darkgrey',
     textAlign: 'center',
   },
-  apply:{
+  apply: {
     width: 250,
     padding: 5,
     textAlign: 'center',
     marginTop: 20,
-    backgroundColor: 'darkslategrey',
+    backgroundColor: '#008B8B',
+    color: 'ghostwhite',
+  },
+  back : {
+    width: 250,
+    padding: 5,
+    marginTop: 5,
+    textAlign: 'center',
+    backgroundColor: '#F08080',
     color: 'ghostwhite',
   }
 });

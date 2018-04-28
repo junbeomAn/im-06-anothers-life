@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default class App3 extends React.Component {
+export default class Search extends React.Component {
   constructor(props) {
     super(props)
     this.state = {};
@@ -10,7 +10,7 @@ export default class App3 extends React.Component {
   render() {
     return (
       <View>
-        <StackNav screenProps={this.props.data} />
+        <Text>Search !!!!!!</Text>
       </View>
     )
   }
