@@ -17,21 +17,36 @@ export default class Login extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { 
-      username: '', 
-      password: '',
-      hasToken: '',
+    this.state = {
+      hasToken: 0,
     };
   }
 
-  componentDidMount(){
-    this._fetchData();
-  }
-  
+  // componentDidMount(){
+    // this._fetchData()
+  // }
+
+  // 로컬스토리지에 토큰저장
+  // _saveData = (token) => {
+  //   AsyncStorage.setItem('token', token);
+  // }
+
+  // // 로컬스토리지에서 토큰 퓃칭
+  // _fetchData = async () => {
+  //   try {
+  //     const token = await AsyncStorage.getItem('token');
+  //     this.setState({
+  //       hasToken: token
+  //     })
+  //   } catch (error) {
+  //     alert(error);
+  //   }
+  // }
+
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
-      {this.state.hasToken ? this.props.navigation.navigate('Main'):
+        {this.state.hasToken ? this.props.navigation.navigate('Main'):
         <View>
           <View>
             <TextInput 
@@ -61,7 +76,7 @@ export default class Login extends React.Component {
             </TouchableOpacity>
           </View>
         </View>
-      }
+        }
       </KeyboardAvoidingView>
       );
     }
@@ -70,26 +85,8 @@ export default class Login extends React.Component {
     this.props.navigation.navigate('Register')
   }
 
-  // 로컬스토리지에 토큰저장
-  _saveData = (token) => {
-    AsyncStorage.setItem('token', token);
-  }
-
-  // 로컬스토리지에서 토큰 퓃칭
-  _fetchData = async () => {
-    try {
-      const token = await AsyncStorage.getItem('token');
-      this.setState({
-        hasToken : token
-      })
-      // alert(token);
-    } catch (error) {
-      alert(error);
-    }
-  }
-
   login = () => {
-    fetch('http://10.130.109.220:3000/api/auth/login', {
+    fetch('http://10.130.104.173:3000/api/auth/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -109,12 +106,10 @@ export default class Login extends React.Component {
         else {
           alert(res.message);
           this.setState({
-            username: '',
-            password: '',
-            hasToken: res.token
+            token: res.token
           })
-          console.log("TOKEN : ", res.token);
-          this._saveData(res.token);
+          this.props.func(res.token);
+          // this.props.navigation.navigate('Main', {hasToken : res.token})
         }
       })
       .done();
@@ -126,7 +121,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
   },
   username: {
     padding: 3,
@@ -134,7 +128,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'darkgrey',
     textAlign: 'center',
-    // fontFamily: ''
   },
   password: {
     marginTop: 5,
