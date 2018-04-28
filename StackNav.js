@@ -46,22 +46,16 @@ const StackNav = StackNavigator({
       headerStyle: { paddingRight: 10, paddingLeft: 10 }
     })
   },
-  MyPage: {
-    screen: MyPage,
-    navigaionOptions: (props) => ({
-      title: "My Page"
-    })
-  },
-  Login: {
-    screen: Login,
-    navigaionOptions: (props) => ({
-      title: "Login"
-    })
-  },
   People: {
     screen: People,
     navigationOptions: (props) => ({
       title: props.navigation.state.params.name
+    })
+  },
+  MyPage: {
+    screen: MyPage,
+    navigaionOptions: (props) => ({
+      title: "M Y P A G E"
     })
   },
   SettingsScreen: {

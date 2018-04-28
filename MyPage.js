@@ -20,12 +20,12 @@ export default class SettingsScreen extends React.Component {
         </View>
         <View>
           <TouchableOpacity onPress={() => { screenProps.method() }}>
-            <Text style={styles.text}>로 그 아 웃</Text>
+            <Text style={styles.text}>알 림 설 정</Text>
           </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity onPress={() => { screenProps.method() }}>
-            <Text style={styles.text}>계 정 탈 퇴</Text>
+            <Text style={styles.text}>로 그 아 웃</Text>
           </TouchableOpacity>
         </View>
         <View>
