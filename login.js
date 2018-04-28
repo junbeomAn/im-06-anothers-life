@@ -32,6 +32,7 @@ export default class Login extends React.Component {
               <Text style={styles.title}>L O G I N</Text>
           </View>
           <View>
+         
             <TextInput 
               style={styles.username}
               placeholder='아이디를 입력하세요'
@@ -65,7 +66,7 @@ export default class Login extends React.Component {
     }
 
   login = () => {
-    fetch('http://10.130.104.173:3000/api/auth/login', {
+    fetch('http://10.130.104.154:3000/api/auth/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -89,7 +90,7 @@ export default class Login extends React.Component {
               token: res.token
             })
             this.props.setToken(res.token);
-          }s
+          }
         }
       })
       .done();

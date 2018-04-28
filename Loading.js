@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, AsyncStorage, } from 'react-native';
+import { StyleSheet, Text, View, AsyncStorage, Image, ActivityIndicator } from 'react-native';
 
 import Main from "./Main";
 import StackNav from "./StackNav";
 import People from "./People";
 import Login from "./Login";
 import Register from "./Register";
+import MyPage from "./MyPage";
 
 export default class Loading extends React.Component {
   constructor(props) {
@@ -13,7 +14,8 @@ export default class Loading extends React.Component {
     this.state = { 
       data: '', 
       token: '',
-      signUp: false
+      signUp: false,
+      signedIn: false
     };
   }
 
@@ -24,7 +26,7 @@ export default class Loading extends React.Component {
 
   // DB 자료 펫칭
   _getDb = () => {
-    fetch('http://10.130.104.173:3000/api/people/list')
+    fetch('http://10.130.104.154:3000/api/people/list')
       .then(response => response.json())
       .then(json => this.setState({
         data: json
@@ -58,11 +60,19 @@ export default class Loading extends React.Component {
     })
   }
 
+  _logOut() {
+    AsyncStorage.removeItem('token');
+    this.setState({
+      token: ''
+    })
+    console.log('logout', 111111111111);
+  }
+
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        {!this.state.data ? <Text>Loading!!</Text> : 
-            this.state.token ? <StackNav data={this.state.data}/> : 
+        {!this.state.data ? <View><ActivityIndicator size="large" /></View> : 
+            this.state.token ? <StackNav data={this.state.data} checkSigned={this._logOut.bind(this)}/> : 
             this.state.signUp ? <Register register={this._register.bind(this)}/> : <Login setToken={this._saveToken.bind(this)} register={this._register.bind(this)} />}
       </View>
     );
