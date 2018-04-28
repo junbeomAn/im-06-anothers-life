@@ -10,11 +10,10 @@ import Selection from "./Selection";
 import SettingsScreen from "./SettingsScreen";
 import DrawerNav from "./DrawerNav";
 import StackNav from "./StackNav";
-import Login from "./Login";
 import People from "./People";
 import Register from "./Register";
 import Main from "./Main";
-
+import Login from './Login';
 
 export default class App extends React.Component {
   constructor(props) {

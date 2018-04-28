@@ -32,6 +32,7 @@ export default class Login extends React.Component {
               <Text style={styles.title}>L O G I N</Text>
           </View>
           <View>
+         
             <TextInput 
               style={styles.username}
               placeholder='아이디를 입력하세요'

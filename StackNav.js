@@ -5,7 +5,10 @@ import { Ionicons } from "@expo/vector-icons";
 import SettingsScreen from './SettingsScreen';
 import Main from "./Main";
 import People from "./People";
-import Search from "./Search"
+import Login from "./Login";
+import Register from "./Register";
+import MyPage from "./MyPage";
+import Search from "./Search";
 
 export default class App3 extends React.Component {
   constructor(props) {
@@ -16,9 +19,10 @@ export default class App3 extends React.Component {
   }
 
   render() {
-    return(
+    this.props.data.method = this.props.checkSigned;
+    return(      
       <View style={{ flex: 1, width: "100%"}}>
-      <StackNav screenProps={this.props.data}/>
+        <StackNav screenProps={this.props.data}/> 
       </View>
     )
   }
@@ -30,7 +34,7 @@ const StackNav = StackNavigator({
     navigationOptions: (props) => ({
       title: "타인의 삶",
       headerLeft: (
-        <TouchableOpacity onPress={() => props.navigation.navigate('DrawerOpen')}>
+        <TouchableOpacity onPress={() => props.navigation.navigate('MyPage')}>
           <Ionicons name="md-person" size={30} />
         </TouchableOpacity>
       ),
@@ -40,6 +44,18 @@ const StackNav = StackNavigator({
         </TouchableOpacity>
       ),
       headerStyle: { paddingRight: 10, paddingLeft: 10 }
+    })
+  },
+  MyPage: {
+    screen: MyPage,
+    navigaionOptions: (props) => ({
+      title: "My Page"
+    })
+  },
+  Login: {
+    screen: Login,
+    navigaionOptions: (props) => ({
+      title: "Login"
     })
   },
   People: {
