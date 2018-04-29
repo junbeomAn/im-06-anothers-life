@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity, TouchableHighlight, AsyncStorage } from 'react-native';
+import { View, TouchableOpacity, TouchableHighlight, AsyncStorage, TextInput } from 'react-native';
 import { StackNavigator, TabNavigator} from 'react-navigation'
 import { Ionicons } from "@expo/vector-icons";
 import SettingsScreen from './SettingsScreen';
@@ -40,6 +40,7 @@ const StackNav = StackNavigator({
       ),
       headerRight: (
         <TouchableOpacity onPress={() => props.navigation.navigate("Search")}>
+          <TextInput style={{height: 30}} placeholder="SearchBar"></TextInput>
           <Ionicons name="ios-search" size={30} />
         </TouchableOpacity>
       ),
@@ -49,7 +50,8 @@ const StackNav = StackNavigator({
   MyPage: {
     screen: MyPage,
     navigaionOptions: (props) => ({
-      title: "My Page"
+      title: "My Page",
+      headerTitle: "My Page"
     })
   },
   Login: {
@@ -76,7 +78,18 @@ const StackNav = StackNavigator({
       title: "S E A R C H",
     })
   },
-})
+}, {
+  headerMode: 'screen',
+  mode: 'modal',
+  navigationOptions:{
+    headerBackTitle: 'back',
+    gesturesEnabled: true,
+   
+  },
+  
+  
+  
+});
 
 // const TabNav = TabNavigator({
 //   HOME: { screen: SettingsScreen },

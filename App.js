@@ -25,27 +25,47 @@ export default class App extends React.Component {
     };
   }
 
+ // _pushNotification() { // 푸쉬 관련. . . 
+  //   const localNotification = {
+  //     title: '',
+  //     body: '', 
+  //     ios: { 
+  //       sound: true
+  //     },
+  //     android: { 
+  //       sound: true,
+  //       priority: 'high', 
+  //       sticky: false,
+  //       vibrate: true    
+  //     }
+  //   };
+    
+  //   let time = new Date();
+  //   time.setSeconds(time.getSeconds() + 10);
+    
+  //   const scheduleOptions = {
+  //     time: time,
+  //     repeat: repeat
+  //   }
+
+  //   Notifications.scheduleLocalNotificationAsync(localNotification, scheduleOptions);        
+  // }
+
+  // componentDidMount() {
+  //   this._pushNotification();
+  //   let result = await;
+  //   Permissions.askAsync(Permissions.NOTIFICATIONS);
+  //   if(Constants.lisDevice && result.status === 'granted'){
+  //     console.log('Notification pemissions granted');      
+  //   }
+  // }
+
   render() {
     return (
         <Loading />
     );
   }
 }
-// const Navigation = TabNavigator({
-//   HOME: { screen: StackNav },
-//   // LOGIN: { screen: Login }
-//   },
-//   {
-//     tabBarOptions: {
-//       activeTintColor: '#7567B1',
-//       labelStyle: {
-//         fontSize: 16,
-//         fontWeight: '600'
-//     },
-//     tabStyle: {
-//       paddingVertical: 14
-//     }
-//   }
-// })
+
 
 
