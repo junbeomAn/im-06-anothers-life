@@ -40,7 +40,6 @@ const StackNav = StackNavigator({
       ),
       headerRight: (
         <TouchableOpacity onPress={() => props.navigation.navigate("Search")}>
-          <TextInput style={{height: 30}} placeholder="SearchBar"></TextInput>
           <Ionicons name="ios-search" size={30} />
         </TouchableOpacity>
       ),
@@ -51,31 +50,73 @@ const StackNav = StackNavigator({
     screen: MyPage,
     navigaionOptions: (props) => ({
       title: "My Page",
-      headerTitle: "My Page"
+      headerTitle: "My Page",
+      headerLeft: (
+        <TouchableOpacity onPress={() => props.navigation.goBack()}>
+          <Ionicons name="ios-arrow-down" size={30} />
+        </TouchableOpacity>
+      ),
+      headerStyle: { paddingRight: 10, paddingLeft: 10 }
     })
   },
   Login: {
     screen: Login,
     navigaionOptions: (props) => ({
-      title: "Login"
+      title: "Login",
+      headerLeft: (
+        <TouchableOpacity onPress={() => props.navigation.goBack()}>
+          <Ionicons name="ios-arrow-down" size={30} />
+        </TouchableOpacity>
+      ),
+      headerStyle: { paddingRight: 10, paddingLeft: 10 }
     })
   },
   People: {
     screen: People,
     navigationOptions: (props) => ({
-      title: props.navigation.state.params.name
+      title: props.navigation.state.params.name,
+      headerLeft: (
+        <TouchableOpacity onPress={() => props.navigation.goBack()}>
+          <Ionicons name="ios-arrow-down" size={30} />
+        </TouchableOpacity>
+      ),
+      headerStyle: { paddingRight: 10, paddingLeft: 10 }
+    })
+  },
+  MyPage: {
+    screen: MyPage,
+    navigaionOptions: (props) => ({
+      title: "M Y P A G E",
+      headerLeft: (
+        <TouchableOpacity onPress={() => props.navigation.goBack()}>
+          <Ionicons name="ios-arrow-down" size={30} />
+        </TouchableOpacity>
+      ),
+      headerStyle: { paddingRight: 10, paddingLeft: 10 }
     })
   },
   SettingsScreen: {
     screen: SettingsScreen,
     navigationOptions: (props) => ({
       title: "R E G I S T E R",
+      headerLeft: (
+        <TouchableOpacity onPress={() => props.navigation.goBack()}>
+          <Ionicons name="ios-arrow-down" size={30} />
+        </TouchableOpacity>
+      ),
+      headerStyle: { paddingRight: 10, paddingLeft: 10 }
     })
   },
   Search: {
     screen: Search,
     navigationOptions: (props) => ({
       title: "S E A R C H",
+      headerLeft: (
+        <TouchableOpacity onPress={() => props.navigation.navigate.goBack()}>
+          <Ionicons name="ios-arrow-down" size={30} />
+        </TouchableOpacity>
+      ),
+      headerStyle: { paddingRight: 10, paddingLeft: 10 }
     })
   },
 }, {
@@ -83,7 +124,7 @@ const StackNav = StackNavigator({
   mode: 'modal',
   navigationOptions:{
     headerBackTitle: 'back',
-    gesturesEnabled: true,
+    gesturesEnabled: true,    
    
   },
   

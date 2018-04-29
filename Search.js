@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider, StyleSheet, Text, View, TextInput, Modal } from 'react-native';
+import { ThemeProvider, StyleSheet, Text, View, TextInput} from 'react-native';
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -13,7 +13,6 @@ export default class Search extends React.Component {
     return (
       <View>
         <TextInput placeholder="입력">1111</TextInput>
-        <ThemeProvider ><Toolbar leftElement="menu" centerElement="Searchable" searchable={{ autoFocus: true, placeholder: 'Search', }} /></ThemeProvider> 
       </View>
     )
   }

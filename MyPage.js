@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, AsyncStorage } from 'react-native';
 import Login from './Login';
-export default class SettingsScreen extends React.Component {
+export default class MyPage extends React.Component {
   constructor(props) {
     super(props);
     // this.state = {
@@ -20,12 +20,12 @@ export default class SettingsScreen extends React.Component {
         </View>
         <View>
           <TouchableOpacity onPress={() => { screenProps.method() }}>
-            <Text style={styles.text}>로 그 아 웃</Text>
+            <Text style={styles.text}>알 림 설 정</Text>
           </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity onPress={() => { screenProps.method() }}>
-            <Text style={styles.text}>계 정 탈 퇴</Text>
+            <Text style={styles.text}>로 그 아 웃</Text>
           </TouchableOpacity>
         </View>
         <View>
