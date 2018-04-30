@@ -17,7 +17,7 @@ constructor(props){
 }
 
   static navigationOptions = {
-    title: "Welcome"
+    title: "HOME"
   }
 
   render() {

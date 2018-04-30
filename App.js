@@ -18,11 +18,7 @@ import Login from './Login';
 export default class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      username: '',
-      password: '',
-      token: '',
-    };
+    this.state = {};
   }
 
   //  _pushNotification() { // 푸쉬 관련. . . 
