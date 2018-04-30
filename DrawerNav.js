@@ -15,16 +15,19 @@ const styles = StyleSheet.create({
 });
 
 export default DrawerNav = DrawerNavigator({
-  Home: {
+  HOME : {
     screen: Main,
   },
-  Logout: {
+  LOGOUT : {
     screen: Logout //(props) => <Logout screenProps={props.screenProps}/>  
   },
-  Settings: {
+  SETTINGS : {
     screen: MyPage
   }
-});
+}, {
+    drawerWidth: 220
+  }
+);
 
 // export default class Drawer extends React.Component {
 //   constructor(props) {
