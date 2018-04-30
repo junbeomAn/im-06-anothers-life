@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, ActivityIndicator, StatusBar, Button, Image, FlatList } from 'react-native';
 import { DrawerNavigator, TabNavigator } from 'react-navigation';
+import Main from './Main';
+import SettingsScreen from './SettingsScreen';
 
 class MyHomeScreen extends React.Component {
   static navigationOptions = {
@@ -45,26 +47,26 @@ class MyNotificationsScreen extends React.Component {
   }
 }
 
-class SettingsScreen extends React.Component {
-  static navigationOptions = {
-    drawerLabel: 'Settings',
-    drawerIcon: ({ tintColor }) => (
-      <Image
-        source={require('./assets/icon.png')}
-        style={[styles.icon, {tintColor: tintColor}]}
-      />
-    ),
-  };
+// class SettingsScreen extends React.Component {
+//   static navigationOptions = {
+//     drawerLabel: 'Settings',
+//     drawerIcon: ({ tintColor }) => (
+//       <Image
+//         source={require('./assets/icon.png')}
+//         style={[styles.icon, {tintColor: tintColor}]}
+//       />
+//     ),
+//   };
 
-  render() {
-    return (
-      <Button
-        onPress={() => this.props.navigation.goBack()}
-        title="Now Settings!"
-      />
-    );
-  }
-}
+//   render() {
+//     return (
+//       <Button
+//         onPress={() => this.props.navigation.goBack()}
+//         title="Now Settings!"
+//       />
+//     );
+//   }
+// }
 
 const styles = StyleSheet.create({
   icon: {
@@ -75,7 +77,7 @@ const styles = StyleSheet.create({
 
 export default DrawerNav = DrawerNavigator({
   Home: {
-    screen: MyHomeScreen,
+    screen: Main,
   },
   Notifications: {
     screen: MyNotificationsScreen,
