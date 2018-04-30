@@ -1,8 +1,8 @@
 {
-  "expoServerPort": 19000,
-  "packagerPort": 19002,
-  "packagerPid": 42393,
-  "expoServerNgrokUrl": "https://sp-4sh.cicada1992.im-06-1st-prj-younggun.exp.direct",
-  "packagerNgrokUrl": "https://packager.sp-4sh.cicada1992.im-06-1st-prj-younggun.exp.direct",
-  "ngrokPid": 42407
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
