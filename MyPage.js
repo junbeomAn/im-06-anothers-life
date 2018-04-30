@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, AsyncStorage } from 'react-native';
 import Login from './Login';
-export default class SettingsScreen extends React.Component {
+
+export default class Mypage extends React.Component {
   constructor(props) {
     super(props);
     // this.state = {

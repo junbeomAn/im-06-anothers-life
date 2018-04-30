@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, TouchableOpacity, TouchableHighlight, AsyncStorage } from 'react-native';
 import { StackNavigator, TabNavigator} from 'react-navigation'
 import { Ionicons } from "@expo/vector-icons";
@@ -11,16 +11,15 @@ import MyPage from "./MyPage";
 import Search from "./Search";
 import DrawerNav from "./DrawerNav";
 
-export default class App3 extends React.Component {
+export default class Stack extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      token: '',
-    };
+    this.state = {};
   }
 
   render() {
     this.props.data.method = this.props.checkSigned;
+    // console.log('STack this.props : ', this.props.data.method);
     return(      
       <View style={{ flex: 1, width: "100%"}}>
         <StackNav screenProps={this.props.data}/> 
@@ -51,18 +50,6 @@ const StackNav = StackNavigator({
     screen: People,
     navigationOptions: (props) => ({
       title: props.navigation.state.params.name,
-      headerLeft: (
-        <TouchableOpacity onPress={() => props.navigation.goBack()}>
-          <Ionicons name="ios-arrow-down" size={30} />
-        </TouchableOpacity>
-      ),
-      headerStyle: { paddingRight: 10, paddingLeft: 10 }
-    })
-  },
-  MyPage: {
-    screen: MyPage,
-    navigaionOptions: (props) => ({
-      title: "M Y P A G E",
       headerLeft: (
         <TouchableOpacity onPress={() => props.navigation.goBack()}>
           <Ionicons name="ios-arrow-down" size={30} />

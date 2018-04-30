@@ -15,7 +15,6 @@ export default class Loading extends React.Component {
       data: '', 
       token: '',
       signUp: false,
-      signedIn: false
     };
   }
 
