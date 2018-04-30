@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, TouchableOpacity, TouchableHighlight, AsyncStorage } from 'react-native';
 import { StackNavigator, TabNavigator} from 'react-navigation'
 import { Ionicons } from "@expo/vector-icons";
-import SettingsScreen from './SettingsScreen';
+import Logout from './Logout';
 import Main from "./Main";
 import People from "./People";
 import Login from "./Login";
@@ -20,7 +20,7 @@ export default class App3 extends React.Component {
   }
 
   render() {
-    this.props.data.method = this.props.checkSigned;
+    this.props.data.method = this.props.checkSigned; // stack nav의 모든 screen 에서 쓸 수 있음.
     return(      
       <View style={{ flex: 1, width: "100%"}}>
         <StackNav screenProps={this.props.data}/> 
@@ -36,7 +36,7 @@ const StackNav = StackNavigator({
       title: "타인의 삶",
       headerLeft: (
         <TouchableOpacity onPress={() => props.navigation.navigate('DrawerOpen')}>
-          <Ionicons name="md-person" size={30} />
+          <Ionicons name="ios-menu" size={30} />
         </TouchableOpacity>
       ),
       headerRight: (
@@ -53,7 +53,7 @@ const StackNav = StackNavigator({
       title: props.navigation.state.params.name,
       headerLeft: (
         <TouchableOpacity onPress={() => props.navigation.goBack()}>
-          <Ionicons name="ios-arrow-left" size={30} />
+          <Ionicons name="ios-arrow-down" size={30} />
         </TouchableOpacity>
       ),
       headerStyle: { paddingRight: 10, paddingLeft: 10 }
@@ -65,19 +65,19 @@ const StackNav = StackNavigator({
       title: "M Y P A G E",
       headerLeft: (
         <TouchableOpacity onPress={() => props.navigation.goBack()}>
-          <Ionicons name="ios-arrow-left" size={30} />
+          <Ionicons name="ios-arrow-down" size={30} />
         </TouchableOpacity>
       ),
       headerStyle: { paddingRight: 10, paddingLeft: 10 }
     })
   },
-  SettingsScreen: {
-    screen: SettingsScreen,
+  Logout: {
+    screen: Logout,
     navigationOptions: (props) => ({
       title: "R E G I S T E R",
       headerLeft: (
         <TouchableOpacity onPress={() => props.navigation.goBack()}>
-          <Ionicons name="ios-arrow-left" size={30} />
+          <Ionicons name="ios-arrow-down" size={30} />
         </TouchableOpacity>
       ),
       headerStyle: { paddingRight: 10, paddingLeft: 10 }
@@ -108,7 +108,7 @@ const StackNav = StackNavigator({
 })
 
 // const TabNav = TabNavigator({
-//   HOME: { screen: SettingsScreen },
+//   HOME: { screen: Logout },
 //   // LOGIN: { screen: Login }
 // },
 //   {

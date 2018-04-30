@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, ActivityIndicator, StatusBar, Button, Image, FlatList } from 'react-native';
 import { DrawerNavigator, TabNavigator } from 'react-navigation';
 import Main from './Main';
-import SettingsScreen from './SettingsScreen';
+import Logout from './Logout';
 
 class MyHomeScreen extends React.Component {
   static navigationOptions = {
@@ -47,7 +47,7 @@ class MyNotificationsScreen extends React.Component {
   }
 }
 
-// class SettingsScreen extends React.Component {
+// class Logout extends React.Component {
 //   static navigationOptions = {
 //     drawerLabel: 'Settings',
 //     drawerIcon: ({ tintColor }) => (
@@ -79,10 +79,10 @@ export default DrawerNav = DrawerNavigator({
   Home: {
     screen: Main,
   },
-  Notifications: {
-    screen: MyNotificationsScreen,
-  },
+  Logout: {
+    screen: Logout //(props) => <Logout screenProps={props.screenProps}/>  
+},
   Settings: {
-    screen: SettingsScreen
+    screen: Logout
   }
 });
