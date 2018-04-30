@@ -8,9 +8,8 @@ import { Notifications, Permissions, Constants, } from 'expo';
 
 import Loading from './Loading';
 import Selection from "./Selection";
-import SettingsScreen from "./SettingsScreen";
-import Drawer from "./DrawerNav";
-import Stack from "./StackNav";
+import DrawerNav from "./DrawerNav";
+import StackNav from "./StackNav";
 import People from "./People";
 import Register from "./Register";
 import Main from "./Main";

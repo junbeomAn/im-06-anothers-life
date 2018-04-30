@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, TouchableHighlight, AsyncStorage } from 'react-native';
 import { StackNavigator, TabNavigator} from 'react-navigation'
 import { Ionicons } from "@expo/vector-icons";
-import SettingsScreen from './SettingsScreen';
+import Logout from './Logout';
 import Main from "./Main";
 import People from "./People";
 import Login from "./Login";
@@ -18,8 +18,7 @@ export default class Stack extends React.Component {
   }
 
   render() {
-    this.props.data.method = this.props.checkSigned;
-    // console.log('STack this.props : ', this.props.data.method);
+    this.props.data.method = this.props.checkSigned; // stack nav의 모든 screen 에서 쓸 수 있음.
     return(      
       <View style={{ flex: 1, width: "100%"}}>
         <StackNav screenProps={this.props.data}/> 
@@ -58,8 +57,20 @@ const StackNav = StackNavigator({
       headerStyle: { paddingRight: 10, paddingLeft: 10 }
     })
   },
-  SettingsScreen: {
-    screen: SettingsScreen,
+  MyPage: {
+    screen: MyPage,
+    navigaionOptions: (props) => ({
+      title: "M Y P A G E",
+      headerLeft: (
+        <TouchableOpacity onPress={() => props.navigation.goBack()}>
+          <Ionicons name="ios-arrow-down" size={30} />
+        </TouchableOpacity>
+      ),
+      headerStyle: { paddingRight: 10, paddingLeft: 10 }
+    })
+  },
+  Logout: {
+    screen: Logout,
     navigationOptions: (props) => ({
       title: "R E G I S T E R",
       headerLeft: (
@@ -95,7 +106,7 @@ const StackNav = StackNavigator({
 })
 
 // const TabNav = TabNavigator({
-//   HOME: { screen: SettingsScreen },
+//   HOME: { screen: Logout },
 //   // LOGIN: { screen: Login }
 // },
 //   {
