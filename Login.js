@@ -44,7 +44,7 @@ export default class Login extends React.Component {
             <TextInput
               style={styles.password}
               placeholder='비밀번호를 입력하세요'
-              secureTextEntry='true'
+              secureTextEntry={true}
               value={this.state.password}
               onChangeText={(password) => this.setState({ password })}>
             </TextInput>
@@ -66,7 +66,7 @@ export default class Login extends React.Component {
     }
 
   _login = () => {
-    fetch('http://10.130.109.109:3000/api/auth/login', {
+    fetch('http://10.130.110.40:3000/api/auth/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

@@ -106,20 +106,3 @@ const StackNav = StackNavigator({
     },
 })
 
-// const TabNav = TabNavigator({
-//   HOME: { screen: Logout },
-//   // LOGIN: { screen: Login }
-// },
-//   {
-//     tabBarOptions: {
-//       activeTintColor: '#7567B1',
-//       labelStyle: {
-//         fontSize: 16,
-//         fontWeight: '600'
-//       },
-//       tabStyle: {
-//         paddingVertical: 14
-//       }
-//     }
-//   })
-
