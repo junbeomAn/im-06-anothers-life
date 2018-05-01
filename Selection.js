@@ -20,7 +20,6 @@ export default class Selection extends React.Component {
 
 const styles = StyleSheet.create({
   container:{
-    // flexDirection: 'row',
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
@@ -30,19 +29,15 @@ const styles = StyleSheet.create({
     flex: 1,
     flexWrap: 'wrap',
     flexDirection: "row",
-    backgroundColor: 'transparent',
-    opacity: 0.79,
     justifyContent:'center',
     alignItems: 'center'
   },
   text:{
-    color: 'ghostwhite',
+    color: 'white',
     fontSize: 20,
-    fontWeight: '900',
     paddingTop: 70,
-    textShadowColor: 'white',
-    textShadowRadius: 100,
-    textShadowOffset: {width: 100, height: 100}
+    fontFamily: 'DaehanB'
+    
   },
   overlay:{
     position: 'absolute',
@@ -50,7 +45,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "black",
-    opacity: 0.4,
+    backgroundColor: "rgba(88, 88, 88, 0.4)"
   }
 });

@@ -14,24 +14,26 @@ import DrawerNav from "./DrawerNav";
 export default class Stack extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {};
+    this.state = {
+    };
   }
 
   render() {
-    this.props.data.method = this.props.checkSigned; // stack nav의 모든 screen 에서 쓸 수 있음.
-    this.props.data.method2 = this.props.getDb;
+    this.props.data.method = this.props.logOut; // stack nav의 모든 screen 에서 쓸 수 있음.
+    this.props.data.method2 = this.props.pick;
     return(      
       <View style={{ flex: 1, width: "100%"}}>
         <StackNav screenProps={this.props.data}/> 
       </View>
     )
   }
-}
+} 
 
 const StackNav = StackNavigator({
   Main: {
     screen: DrawerNav,
-    navigationOptions: (props) => ({
+    navigationOptions: (props) => (
+      {
       title: "타인의 삶",
       headerLeft: (
         <TouchableOpacity onPress={() => props.navigation.navigate('DrawerOpen')}>
@@ -53,6 +55,11 @@ const StackNav = StackNavigator({
       headerLeft: (
         <TouchableOpacity onPress={() => props.navigation.goBack()}>
           <Ionicons name="ios-arrow-down" size={30} />
+        </TouchableOpacity>
+      ),
+      headerRight: (
+        <TouchableOpacity onPress={props.screenProps.method2(props.navigation.state.params)}>
+          <Ionicons name="md-person-add" size={30} />
         </TouchableOpacity>
       ),
       headerStyle: { paddingRight: 10, paddingLeft: 10 }
@@ -93,7 +100,7 @@ const StackNav = StackNavigator({
       ),
       headerStyle: { paddingRight: 10, paddingLeft: 10 }
     })
-  },
+  }
 }, {  
     headerMode: 'float',
     mode: 'modal',
@@ -102,6 +109,10 @@ const StackNav = StackNavigator({
       gesturesEnabled: true, 
       gestureResponseDistance: {
         vertical: 300
+      },
+      headerTitleStyle: {
+        fontFamily: 'DaehanB',
+        fontWeight: undefined
       }
     },
 })
