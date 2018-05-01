@@ -82,7 +82,7 @@ export default DrawerNav = DrawerNavigator({
   Logout: {
     screen: Logout //(props) => <Logout screenProps={props.screenProps}/>  
 },
-  Settings: {
+  About: {
     screen: Logout
   }
 });

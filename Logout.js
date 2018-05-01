@@ -9,6 +9,7 @@ export default class Logout extends React.Component {
 
   componentWillMount(){
     // console.log(this.props.screenProps);
+    // console.log(this.props.navigation.state.key) // state.key 로 무슨 스크린 클릭했는지 볼 수 있다.
     this.props.screenProps.method();//maybe logout method.....
   }
 

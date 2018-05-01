@@ -20,7 +20,7 @@ export default class App3 extends React.Component {
   }
 
   render() {
-    this.props.data.method = this.props.checkSigned; // stack nav의 모든 screen 에서 쓸 수 있음.
+    this.props.data.method = this.props.logOut; // stack nav의 모든 screen 에서 쓸 수 있음.
     return(      
       <View style={{ flex: 1, width: "100%"}}>
         <StackNav screenProps={this.props.data}/> 

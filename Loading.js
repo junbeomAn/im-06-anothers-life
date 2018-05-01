@@ -29,7 +29,7 @@ export default class Loading extends React.Component {
  
   // DB  자료 펫칭
   _getDb = () => {
-    fetch('http://10.130.106.36:3000/api/people/list')
+    fetch('http://10.130.109.247:3000/api/people/list')
       .then(response => response.json())
       .then(json => this.setState({
         data: json
@@ -75,7 +75,7 @@ export default class Loading extends React.Component {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         {!this.state.data ? <View><ActivityIndicator size="large" /></View> : 
-            this.state.token ? <StackNav data={this.state.data} checkSigned={this._logOut.bind(this)}/> : 
+            this.state.token ? <StackNav data={this.state.data} logOut={this._logOut.bind(this)}/> : 
             this.state.signUp ? <Register register={this._register.bind(this)}/> : <Login setToken={this._saveToken.bind(this)} register={this._register.bind(this)} />}
       </View>
     );
