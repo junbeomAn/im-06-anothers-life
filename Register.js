@@ -55,7 +55,7 @@ export default class Register extends React.Component {
   }
 
   register = () => {
-    fetch('http://10.130.109.109:3000/api/auth/register', {
+    fetch('http://10.130.104.144:3000/api/auth/register', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

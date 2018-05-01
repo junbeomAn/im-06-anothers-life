@@ -102,6 +102,10 @@ const StackNav = StackNavigator({
       gesturesEnabled: true, 
       gestureResponseDistance: {
         vertical: 300
+      },
+      headerTitleStyle: {
+        fontFamily: 'DaehanB',
+        fontWeight: undefined
       }
     },
 })
