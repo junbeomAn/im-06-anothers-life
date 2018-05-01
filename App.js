@@ -21,7 +21,7 @@ async function register(){
   );
 
   if (status !== 'granted') {
-    alert("셋팅에서 알림 설정을 허용해 주세요");
+    // alert("셋팅에서 알림 설정을 허용해 주세요");
     return;
   }
   const notiToken = await Expo.Notifications.getExpoPushTokenAsync();
