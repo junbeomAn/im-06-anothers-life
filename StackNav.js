@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, TouchableOpacity, TouchableHighlight, AsyncStorage } from 'react-native';
 import { StackNavigator, TabNavigator} from 'react-navigation'
 import { Ionicons } from "@expo/vector-icons";
@@ -11,16 +11,15 @@ import MyPage from "./MyPage";
 import Search from "./Search";
 import DrawerNav from "./DrawerNav";
 
-export default class App3 extends React.Component {
+export default class Stack extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      token: '',
-    };
+    this.state = {};
   }
 
   render() {
     this.props.data.method = this.props.logOut; // stack nav의 모든 screen 에서 쓸 수 있음.
+    this.props.data.method2 = this.props.getDb;
     return(      
       <View style={{ flex: 1, width: "100%"}}>
         <StackNav screenProps={this.props.data}/> 
@@ -103,6 +102,10 @@ const StackNav = StackNavigator({
       gesturesEnabled: true, 
       gestureResponseDistance: {
         vertical: 300
+      },
+      headerTitleStyle: {
+        fontFamily: 'DaehanB',
+        fontWeight: undefined
       }
     },
 })

@@ -34,6 +34,7 @@ export default class Register extends React.Component {
             <TextInput
               style={styles.password} 
               placeholder='비밀번호를 입력하세요'
+              secureTextEntry={true}
               value={this.state.password}
               onChangeText={(password) => this.setState({ password })}>
             </TextInput>

@@ -18,46 +18,42 @@ import Login from './Login';
 export default class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      username: '',
-      password: '',
-      token: '',
-    };
+    this.state = {};
   }
 
-   _pushNotification() { // 푸쉬 관련. . . 
-    const localNotification = {
-      title: 'hi there',
-      body: 'fucking push notification', 
-      ios: { 
-        sound: true
-      },
-      android: { 
-        sound: true,
-        priority: 'high', 
-        sticky: true,
-        vibrate: true    
-      }
-    };
+  //  _pushNotification() { // 푸쉬 관련. . . 
+  //   const localNotification = {
+  //     title: 'hi there',
+  //     body: 'fucking push notification', 
+  //     ios: { 
+  //       sound: true
+  //     },
+  //     android: { 
+  //       sound: true,
+  //       priority: 'high', 
+  //       sticky: true,
+  //       vibrate: true    
+  //     }
+  //   };
     
-    let time = new Date();
-    time.setSeconds(time.getSeconds() + 30);
+  //   let time = new Date();
+  //   time.setSeconds(time.getSeconds() + 30);
     
-    const scheduleOptions = {
-      time: time,
-    }
+  //   const scheduleOptions = {
+  //     time: time,
+  //   }
 
-    Notifications.scheduleLocalNotificationAsync(localNotification, scheduleOptions);        
-  }
+  //   Notifications.scheduleLocalNotificationAsync(localNotification, scheduleOptions);        
+  // }
 
-  async componentDidMount() {    
-    let result = await
-    Permissions.askAsync(Permissions.NOTIFICATIONS);
-    if(Constants.lisDevice && result.status === 'granted'){
-      console.log('Notification pemissions granted');         
-    }
-    this._pushNotification();
-  }
+  // async componentDidMount() {    
+  //   let result = await
+  //   Permissions.askAsync(Permissions.NOTIFICATIONS);
+  //   if(Constants.lisDevice && result.status === 'granted'){
+  //     console.log('Notification pemissions granted');         
+  //   }
+  //   this._pushNotification();
+  // }
 
   render() {
     return (

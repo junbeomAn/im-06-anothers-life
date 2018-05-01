@@ -44,7 +44,7 @@ export default class Login extends React.Component {
             <TextInput
               style={styles.password}
               placeholder='비밀번호를 입력하세요'
-              secureTextEntry='true'
+              secureTextEntry={true}
               value={this.state.password}
               onChangeText={(password) => this.setState({ password })}>
             </TextInput>
@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
   },
   title:{
     fontSize: 20,
+    fontFamily: 'BareunBatangM'
   },
   username: {
     padding: 3,
