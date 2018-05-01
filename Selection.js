@@ -36,13 +36,15 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   text:{
-    color: 'ghostwhite',
+    color: 'white',
     fontSize: 20,
-    fontWeight: '900',
+    // fontWeight: '900',
     paddingTop: 70,
-    textShadowColor: 'white',
-    textShadowRadius: 100,
-    textShadowOffset: {width: 100, height: 100}
+    // textShadowColor: 'white',
+    // textShadowRadius: 100,
+    // textShadowOffset: {width: 100, height: 100},
+    fontFamily: 'DaehanB'
+    
   },
   overlay:{
     position: 'absolute',

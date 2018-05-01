@@ -22,9 +22,11 @@ export default class App extends React.Component {
     this.state = {
       username: '',
       password: '',
-      token: '',
+      token: ''
     };
-  }
+  };
+
+
 
   //  _pushNotification() { // 푸쉬 관련. . . 
 //     const localNotification = {

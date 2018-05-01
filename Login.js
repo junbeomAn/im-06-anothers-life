@@ -66,7 +66,7 @@ export default class Login extends React.Component {
     }
 
   _login = () => {
-    fetch('http://10.130.106.36:3000/api/auth/login', {
+    fetch('http://10.130.104.144:3000/api/auth/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
   },
   title:{
     fontSize: 20,
+    fontFamily: 'BareunBatangM'
   },
   username: {
     padding: 3,

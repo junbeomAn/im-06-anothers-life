@@ -36,7 +36,7 @@ const StackNav = StackNavigator({
       title: "타인의 삶",
       headerLeft: (
         <TouchableOpacity onPress={() => props.navigation.navigate('DrawerOpen')}>
-          <Ionicons name="md-person" size={30} />
+          <Ionicons name="ios-menu" size={30} />
         </TouchableOpacity>
       ),
       headerRight: (
@@ -53,7 +53,7 @@ const StackNav = StackNavigator({
       title: props.navigation.state.params.name,
       headerLeft: (
         <TouchableOpacity onPress={() => props.navigation.goBack()}>
-          <Ionicons name="ios-arrow-left" size={30} />
+          <Ionicons name="ios-arrow-down" size={30} />
         </TouchableOpacity>
       ),
       headerStyle: { paddingRight: 10, paddingLeft: 10 }
@@ -65,7 +65,7 @@ const StackNav = StackNavigator({
       title: "M Y P A G E",
       headerLeft: (
         <TouchableOpacity onPress={() => props.navigation.goBack()}>
-          <Ionicons name="ios-arrow-left" size={30} />
+          <Ionicons name="ios-arrow-down" size={30} />
         </TouchableOpacity>
       ),
       headerStyle: { paddingRight: 10, paddingLeft: 10 }
@@ -77,7 +77,7 @@ const StackNav = StackNavigator({
       title: "R E G I S T E R",
       headerLeft: (
         <TouchableOpacity onPress={() => props.navigation.goBack()}>
-          <Ionicons name="ios-arrow-left" size={30} />
+          <Ionicons name="ios-arrow-down" size={30} />
         </TouchableOpacity>
       ),
       headerStyle: { paddingRight: 10, paddingLeft: 10 }
@@ -103,6 +103,10 @@ const StackNav = StackNavigator({
       gesturesEnabled: true, 
       gestureResponseDistance: {
         vertical: 300
+      },
+      headerTitleStyle: {
+        fontFamily: 'DaehanB',
+        fontWeight: undefined
       }
     },
 })
