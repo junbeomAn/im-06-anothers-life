@@ -22,7 +22,6 @@ export default class Search extends React.Component {
   }
 
   render() {
-    console.log(this.state.text);
     return (
       <View style={styles.containerSearch}>
         <View>

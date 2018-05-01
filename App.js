@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, ActivityIndicator, StatusBar, Button, Image, Fl
 import { DrawerNavigator, TabNavigator, StackNavigator } from 'react-navigation';
 import { TouchableOpacity, TouchableHighlight, AsyncStorage } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
-import { Notifications, Permissions, Constants, } from 'expo';
+import Expo, { Font, Notifications, Permissions, Constants } from 'expo';
 
 import Loading from './Loading';
 import Selection from "./Selection";
@@ -20,40 +20,40 @@ export default class App extends React.Component {
     super(props)
     this.state = {};
   }
+  _notiPush() { // 푸쉬 관련. . . 
+    const localNotification = {
+      title: 'hi there',
+      body: 'fucking push notification',
+      ios: {
+        sound: true
+      },
+      android: {
+        sound: true,
+        priority: 'high',
+        sticky: true,
+        vibrate: true
+      }
+    };
 
-  //  _pushNotification() { // 푸쉬 관련. . . 
-  //   const localNotification = {
-  //     title: 'hi there',
-  //     body: 'fucking push notification', 
-  //     ios: { 
-  //       sound: true
-  //     },
-  //     android: { 
-  //       sound: true,
-  //       priority: 'high', 
-  //       sticky: true,
-  //       vibrate: true    
-  //     }
-  //   };
-    
-  //   let time = new Date();
-  //   time.setSeconds(time.getSeconds() + 30);
-    
-  //   const scheduleOptions = {
-  //     time: time,
-  //   }
+    let time = new Date(); // GMT 시간 === MM/DD/YYYY 형식
+    time.setSeconds(time.getSeconds() + 10); // UTC 1520482918 === 1970.01.01 부터의 
+    //second로 환산한 시간을 30초 더한 GMT 시간으로 바꿔줌
 
-  //   Notifications.scheduleLocalNotificationAsync(localNotification, scheduleOptions);        
-  // }
+    const scheduleOptions = {
+      time: time, // time 은 다시 GMT 로 돌아옴
+    }
 
-  // async componentDidMount() {    
-  //   let result = await
-  //   Permissions.askAsync(Permissions.NOTIFICATIONS);
-  //   if(Constants.lisDevice && result.status === 'granted'){
-  //     console.log('Notification pemissions granted');         
-  //   }
-  //   this._pushNotification();
-  // }
+    Notifications.scheduleLocalNotificationAsync(localNotification, scheduleOptions);
+  }
+
+  async componentDidMount() {
+    let result = await
+      Permissions.askAsync(Permissions.NOTIFICATIONS); // 알림 허용 alert
+    if (Constants.lisDevice && result.status === 'granted') {
+      console.log('Notification pemissions granted');
+    }
+    this._notiPush();
+  }
 
   render() {
     return (
@@ -63,23 +63,4 @@ export default class App extends React.Component {
 }
 
 // Expo.registerRootComponent(App);
-
-
-// const Navigation = TabNavigator({
-//   HOME: { screen: StackNav },
-//   // LOGIN: { screen: Login }
-//   },
-//   {
-//     tabBarOptions: {
-//       activeTintColor: '#7567B1',
-//       labelStyle: {
-//         fontSize: 16,
-//         fontWeight: '600'
-//     },
-//     tabStyle: {
-//       paddingVertical: 14
-//     }
-//   }
-// })
-
 
