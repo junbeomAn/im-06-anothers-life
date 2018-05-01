@@ -34,6 +34,7 @@ export default class Register extends React.Component {
             <TextInput
               style={styles.password} 
               placeholder='비밀번호를 입력하세요'
+              secureTextEntry={true}
               value={this.state.password}
               onChangeText={(password) => this.setState({ password })}>
             </TextInput>
@@ -55,7 +56,7 @@ export default class Register extends React.Component {
   }
 
   register = () => {
-    fetch('http://10.130.104.144:3000/api/auth/register', {
+    fetch('http://10.130.109.247:3000/api/auth/register', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
