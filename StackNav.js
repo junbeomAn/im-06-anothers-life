@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, TouchableOpacity, TouchableHighlight, AsyncStorage } from 'react-native';
 import { StackNavigator, TabNavigator} from 'react-navigation'
 import { Ionicons } from "@expo/vector-icons";
-import SettingsScreen from './SettingsScreen';
+import Logout from './Logout';
 import Main from "./Main";
 import People from "./People";
 import Login from "./Login";
@@ -11,16 +11,15 @@ import MyPage from "./MyPage";
 import Search from "./Search";
 import DrawerNav from "./DrawerNav";
 
-export default class App3 extends React.Component {
+export default class Stack extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      token: '',
-    };
+    this.state = {};
   }
 
   render() {
-    this.props.data.method = this.props.checkSigned;
+    this.props.data.method = this.props.checkSigned; // stack nav의 모든 screen 에서 쓸 수 있음.
+    this.props.data.method2 = this.props.getDb;
     return(      
       <View style={{ flex: 1, width: "100%"}}>
         <StackNav screenProps={this.props.data}/> 
@@ -71,8 +70,8 @@ const StackNav = StackNavigator({
       headerStyle: { paddingRight: 10, paddingLeft: 10 }
     })
   },
-  SettingsScreen: {
-    screen: SettingsScreen,
+  Logout: {
+    screen: Logout,
     navigationOptions: (props) => ({
       title: "R E G I S T E R",
       headerLeft: (
@@ -112,7 +111,7 @@ const StackNav = StackNavigator({
 })
 
 // const TabNav = TabNavigator({
-//   HOME: { screen: SettingsScreen },
+//   HOME: { screen: Logout },
 //   // LOGIN: { screen: Login }
 // },
 //   {

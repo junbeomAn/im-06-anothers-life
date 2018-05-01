@@ -8,7 +8,6 @@ import { Notifications, Permissions, Constants, } from 'expo';
 
 import Loading from './Loading';
 import Selection from "./Selection";
-import SettingsScreen from "./SettingsScreen";
 import DrawerNav from "./DrawerNav";
 import StackNav from "./StackNav";
 import People from "./People";
@@ -19,14 +18,8 @@ import Login from './Login';
 export default class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      username: '',
-      password: '',
-      token: ''
-    };
-  };
-
-
+    this.state = {};
+  }
 
   //  _pushNotification() { // 푸쉬 관련. . . 
 //     const localNotification = {

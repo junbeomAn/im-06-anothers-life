@@ -4,7 +4,6 @@ import { StyleSheet, Text, View, StatusBar, Button, Image, FlatList, TouchableHi
 import { DrawerNavigator, TabNavigator } from 'react-navigation';
 
 import Selection from "./Selection";
-import SettingsScreen from "./SettingsScreen";
 
 export default class Main extends React.Component {
 constructor(props){
@@ -18,7 +17,7 @@ constructor(props){
 }
 
   static navigationOptions = {
-    title: "Welcome"
+    title: "HOME"
   }
 
   render() {

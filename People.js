@@ -8,7 +8,7 @@ function People(props) {
       <View style={styles.container}>
           <ImageBackground style={styles.photo} source={{uri: img_one}}>
           <LinearGradient colors={['transparent', 'rgba(0,0,0,0.6)', 'rgba(0,0,0,1)']} style={styles.gradient}>
-              <View style={styles.opacity}>
+            <View style={styles.opacity}>
             <View style={styles.topHalf}/>
             <View style={styles.description}>
                   <Text style={styles.desText}>{description}</Text>
