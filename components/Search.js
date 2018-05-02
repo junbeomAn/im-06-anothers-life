@@ -7,9 +7,9 @@ export default class Search extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      text : '',
+      text: '',
       data: this.props.screenProps,
-      specific: ''
+      specific: '',
     };
   }
   
@@ -47,9 +47,9 @@ export default class Search extends React.Component {
             <View style={styles.bottom}>
               <ScrollView style={styles.scroll}>
                 <View style={styles.padding}>
-                  {this.state.specific.schedule.map(listItem => {
+                  {this.state.specific.schedule.map((listItem, index)=> {
                     var result = `${listItem.time}     ${listItem.task}\n`;
-                    return <View style={styles.schedule}><Text style={styles.schFont}>{result}</Text></View>;
+                    return <View style={styles.schedule} key={index}><Text style={styles.schFont}>{result}</Text></View>;
                   })}
                 </View>
               </ScrollView>

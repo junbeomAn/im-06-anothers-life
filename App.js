@@ -6,14 +6,14 @@ import { TouchableOpacity, TouchableHighlight, AsyncStorage } from 'react-native
 import { Ionicons } from "@expo/vector-icons";
 import Expo, { Font, Notifications, Permissions, Constants } from 'expo';
 
-import Loading from './Loading';
-import Selection from "./Selection";
-import DrawerNav from "./DrawerNav";
-import StackNav from "./StackNav";
-import People from "./People";
-import Register from "./Register";
-import Main from "./Main";
-import Login from './Login';
+import Loading from './components/Loading';
+import Selection from "./components/Selection";
+import DrawerNav from "./components/DrawerNav";
+import StackNav from "./components/StackNav";
+import People from "./components/People";
+import Register from "./components/Register";
+import Main from "./components/Main";
+import Login from './components/Login';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -52,7 +52,7 @@ export default class App extends React.Component {
     if (Constants.lisDevice && result.status === 'granted') {
       console.log('Notification pemissions granted');
     }
-    this._notiPush();
+    // this._notiPush();
   }
 
   render() {
