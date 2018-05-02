@@ -59,7 +59,10 @@ const StackNav = StackNavigator({
         </TouchableOpacity>
       ),
       headerRight: (
-        <TouchableOpacity onPress={props.screenProps.method2(props.navigation.state.params)}>
+        <TouchableOpacity onPress={() => {
+            props.screenProps.method2(props.navigation.state.params)
+            alert(`${props.navigation.state.params.name}의 삶의 추적을 시작합니다`)
+          }}>
           <Ionicons name="md-person-add" size={30} />
         </TouchableOpacity>
       ),
