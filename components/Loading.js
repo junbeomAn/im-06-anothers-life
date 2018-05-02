@@ -34,9 +34,9 @@ export default class Loading extends React.Component {
     this._getDb();
     this._fetchToken();
     Font.loadAsync({
-      BareunBatangM: require('./assets/BareunBatangM.ttf'),
-      JungGothic170: require('./assets/JungGothic170.ttf'),
-      DaehanB: require('./assets/DaehanB.ttf')
+      BareunBatangM: require('../assets/BareunBatangM.ttf'),
+      JungGothic170: require('../assets/JungGothic170.ttf'),
+      DaehanB: require('../assets/DaehanB.ttf')
     }).then(() => {
       setCustomText(customTextProps);
       this.setState({fontLoaded: true});
@@ -116,7 +116,6 @@ export default class Loading extends React.Component {
   }
 
   render() {
-    console.log('target : ', this.state.target);
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         {!this.state.data ? <View><ActivityIndicator size="large" /></View> : 
