@@ -16,12 +16,12 @@ export default class Mypage extends React.Component {
       <View style={styles.container}>
         <View>
           <TouchableOpacity onPress={() => { screenProps.method() }}>
-            <Text style={styles.text}>즐 겨 찾 기</Text>
+            <Text style={styles.text}>비 밀 번 호 변 경</Text>
           </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity onPress={() => { screenProps.method() }}>
-            <Text style={styles.text}>알 림 설 정</Text>
+            <Text style={styles.text}>계 정 탈 퇴</Text>
           </TouchableOpacity>
         </View>
         <View>
@@ -31,7 +31,7 @@ export default class Mypage extends React.Component {
         </View>
         <View>
           <TouchableOpacity onPress={() => { screenProps.method() }}>
-            <Text style={styles.text}>비 밀 번 호 변 경</Text>
+            <Text style={styles.text}>개 발 자 정 보</Text>
           </TouchableOpacity>
         </View>
       </View>
