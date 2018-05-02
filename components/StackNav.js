@@ -19,7 +19,8 @@ export default class Stack extends React.Component {
   }
 
   render() {
-    this.props.data.method = this.props.logOut; // stack nav의 모든 screen 에서 쓸 수 있음.
+    // stack nav의 모든 screen 에서 쓸 수 있음.
+    this.props.data.method = this.props.logOut; 
     this.props.data.method2 = this.props.pick;
     return(      
       <View style={{ flex: 1, width: "100%"}}>

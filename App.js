@@ -6,37 +6,37 @@ import { TouchableOpacity, TouchableHighlight, AsyncStorage } from 'react-native
 import { Ionicons } from "@expo/vector-icons";
 import Expo, { Font, Notifications, Permissions, Constants } from 'expo';
 
-import Loading from './Loading';
-import Selection from "./Selection";
-import DrawerNav from "./DrawerNav";
-import StackNav from "./StackNav";
-import People from "./People";
-import Register from "./Register";
-import Main from "./Main";
-import Login from './Login';
+import Loading from './components/Loading';
+import Selection from "./components/Selection";
+import DrawerNav from "./components/DrawerNav";
+import StackNav from "./components/StackNav";
+import People from "./components/People";
+import Register from "./components/Register";
+import Main from "./components/Main";
+import Login from './components/Login';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {};
   }
-  _notiPush() { // 푸쉬 관련. . . 
+  _notiPush(task) { // 푸쉬 관련. . . 
     const localNotification = {
-      title: 'hi there',
-      body: 'fucking push notification',
+      title: 'Your idol',
+      body: task,
       ios: {
         sound: true
       },
       android: {
         sound: true,
         priority: 'high',
-        sticky: true,
+        // sticky: true,
         vibrate: true
       }
     };
 
     let time = new Date(); // GMT 시간 === MM/DD/YYYY 형식
-    time.setSeconds(time.getSeconds() + 10); // UTC 1520482918 === 1970.01.01 부터의 
+    time.setSeconds(time.getSeconds() + 2); // UTC 1520482918 === 1970.01.01 부터의 
     //second로 환산한 시간을 30초 더한 GMT 시간으로 바꿔줌
 
     const scheduleOptions = {
@@ -52,12 +52,11 @@ export default class App extends React.Component {
     if (Constants.lisDevice && result.status === 'granted') {           
       console.log('Notification pemissions granted');
     }
-    setInterval(this._notiPush, 2000);
-    
+    // this._notiPush();
   }
   render() {
     return (
-        <Loading />
+        <Loading notiPush={this._notiPush.bind(this)}/>
     );
   }
 }
