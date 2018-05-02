@@ -19,9 +19,9 @@ function People(props) {
           <View style={styles.bottom}>
               <ScrollView style={styles.scroll}>
                 <View style={styles.padding}>
-                  {schedule.map(listItem => {
+                  {schedule.map((listItem, index) => {
                     var result = `${listItem.time}     ${listItem.task}\n`;
-                    return <View style={styles.schedule}><Text style={styles.schFont}>{result}</Text></View>;
+                    return <View style={styles.schedule} key={index}><Text style={styles.schFont}>{result}</Text></View>;
                   })}
                 </View>
               </ScrollView>
