@@ -52,7 +52,7 @@ export default class App extends React.Component {
     if (Constants.lisDevice && result.status === 'granted') {
       console.log('Notification pemissions granted');
     }
-    this._notiPush();
+    // this._notiPush();
   }
 
   render() {
