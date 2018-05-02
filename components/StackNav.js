@@ -53,7 +53,7 @@ const StackNav = StackNavigator({
     screen: People,
     navigationOptions: (props) => ({
       title: props.navigation.state.params.name,
-      headerLeft: (
+      headerLeft: ( 
         <TouchableOpacity onPress={() => props.navigation.goBack()}>
           <Ionicons name="ios-arrow-down" size={30} />
         </TouchableOpacity>

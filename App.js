@@ -20,23 +20,24 @@ export default class App extends React.Component {
     super(props)
     this.state = {};
   }
-  _notiPush() { // 푸쉬 관련. . . 
+  
+  _notiPush(task) { // 푸쉬 관련. . . 
     const localNotification = {
-      title: 'hi there',
-      body: 'fucking push notification',
+      title: 'Your idol',
+      body: task,
       ios: {
         sound: true
       },
       android: {
         sound: true,
         priority: 'high',
-        sticky: true,
+        // sticky: true,
         vibrate: true
       }
     };
 
     let time = new Date(); // GMT 시간 === MM/DD/YYYY 형식
-    time.setSeconds(time.getSeconds() + 10); // UTC 1520482918 === 1970.01.01 부터의 
+    time.setSeconds(time.getSeconds() + 2); // UTC 1520482918 === 1970.01.01 부터의 
     //second로 환산한 시간을 30초 더한 GMT 시간으로 바꿔줌
 
     const scheduleOptions = {
@@ -49,18 +50,17 @@ export default class App extends React.Component {
   async componentDidMount() {
     let result = await
       Permissions.askAsync(Permissions.NOTIFICATIONS); // 알림 허용 alert
-    if (Constants.lisDevice && result.status === 'granted') {
+    if (Constants.lisDevice && result.status === 'granted') {           
       console.log('Notification pemissions granted');
     }
     // this._notiPush();
   }
-
+  
   render() {
     return (
-        <Loading />
+        <Loading notiPush={this._notiPush.bind(this)}/>
     );
   }
 }
 
-// Expo.registerRootComponent(App);
 

@@ -9,6 +9,7 @@ import Register from "./Register";
 import MyPage from "./MyPage";
 import {setCustomText} from 'react-native-global-props';
 
+
 const customTextProps = {
   style: {
     fontFamily: 'BareunBatangM'
@@ -26,11 +27,8 @@ export default class Loading extends React.Component {
       target: ''
     };
   }
-  // componentWillMount(){
-  //   this._notiPush();
-  // }
 
-  componentDidMount(){
+  componentDidMount() {
     this._getDb();
     this._fetchToken();
     Font.loadAsync({
@@ -112,8 +110,24 @@ export default class Loading extends React.Component {
   _pickPerson(target) {
     this.setState({
       target
-    })
+    });
+    // this._setPushSchedule(target);
   }
+
+  
+  // _setPushSchedule() { // worker
+
+  // }
+  // var hours = new Date().getHours();
+  // var minutes = new Date().getMinutes();
+  // var parsedTime = (hours <= 12 ? '0' : '') + hours + '-' +  (minutes < 10 ? '0' : '') + minutes;
+  // console.log(parsedTime);
+  
+  // for(var i = 0; i < target.schedule.length; i++){
+  //   if(target.schedule[i]['time'] === parsedTime){
+  //     this.props.notiPush(target.schedule[i].task);
+  //   }
+  // }
 
   render() {
     return (
