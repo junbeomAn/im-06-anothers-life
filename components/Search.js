@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    width: '100%',
   },
   photo: {
     display: 'flex',
@@ -98,7 +97,6 @@ const styles = StyleSheet.create({
   },
   desText: {
     color: 'rgb(229,229,229)',
-    fontFamily: 'BareunBatangM',
     fontSize: 20,
     lineHeight: 30,
     padding: 8,
@@ -108,7 +106,7 @@ const styles = StyleSheet.create({
   bottom: {
     display: 'flex',
     backgroundColor: '#f3f4f7',
-    height: '70%',
+    height: '50%',
   },
   scroll: {
     flex: 4,
@@ -120,7 +118,6 @@ const styles = StyleSheet.create({
     padding: 5
   },
   schFont: {
-    fontFamily: 'BareunBatangM',
     lineHeight: 20,
     fontSize: 13,
   }
