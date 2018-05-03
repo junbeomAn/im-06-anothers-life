@@ -7,6 +7,7 @@ import People from "./People";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import MyPage from "./mypage/MyPage";
+import Admin from "./admin/Admin";
 import {setCustomText} from 'react-native-global-props';
 import decode from 'jwt-decode';
 
@@ -23,7 +24,6 @@ export default class Loading extends React.Component {
       data: '', 
       token: '',
       signUp: false,
-      // signedIn: false,
       fontLoaded: false,
       target: '',
       isLogined: false,
@@ -45,7 +45,7 @@ export default class Loading extends React.Component {
       setCustomText(customTextProps);
       this.setState({fontLoaded: true});
     });
-  } 
+  }
 
   // username setting
   _setUsername = (username) => {
@@ -92,6 +92,13 @@ export default class Loading extends React.Component {
     })
   }
 
+  // Admin -> User 화면으로
+  _toggleSight = () => {
+    this.setState({
+      isAdmin: !this.state.isAdmin
+    })
+  }
+
   // 로그 아웃
   _logOut() {
     AsyncStorage.removeItem('token');
@@ -120,7 +127,6 @@ export default class Loading extends React.Component {
   _isTokenExpired(token) {
     try {
       const decoded = decode(token);
-      console.log(decoded);
       if(decoded.admin){
         this.setState({ isAdmin : true })
       }
@@ -141,12 +147,12 @@ export default class Loading extends React.Component {
   }
 
   render() {
-    console.log(this.state.isAdmin);
-    const { data, fontLoaded, isLogined, token, signUp } = this.state;
+    const { data, fontLoaded, isLogined, token, signUp, isAdmin } = this.state;
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         {!data ? <View><ActivityIndicator size="large" /></View> : 
-            !fontLoaded ? <View><ActivityIndicator size="large" /></View> :
+          !fontLoaded ? <View><ActivityIndicator size="large" /></View> :
+            isAdmin ? <Admin token={token} toggle={this._toggleSight.bind(this)}/> : 
               isLogined ? <StackNav data={data} token={token} pick={this._pickPerson.bind(this)} logOut={this._logOut.bind(this)}/> : 
                 signUp ? <Register register={this._register.bind(this)} /> : <Login setToken={this._saveToken.bind(this)} register={this._register.bind(this)} />}
       </View>
