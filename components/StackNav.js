@@ -9,11 +9,11 @@ import Main from "./Main";
 import People from "./People";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
-import MyPage from "./MyPage/MyPage";
+import MyPage from "./mypage/MyPage";
 import Search from "./Search";
 import DrawerNav from "./DrawerNav";
-import Exit from "./MyPage/Exit";
-import Update from "./MyPage/Update";
+import Exit from "./mypage/Exit";
+import Update from "./mypage/Update";
 
 export default class Stack extends React.Component {
   constructor(props) {
@@ -46,7 +46,7 @@ export default class Stack extends React.Component {
     this.props.data.username = this.props.username;
     this.props.data.target = this.props.target;
     this.props.data.notiState = this.state.notiState;
-    
+     
     return(      
       <View style={{ flex: 1, width: "100%"}}>
         <StackNav screenProps={this.props.data}/> 

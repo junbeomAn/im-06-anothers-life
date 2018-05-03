@@ -1,8 +1,8 @@
 {
-  "expoServerPort": 19001,
-  "packagerPort": 19002,
-  "packagerPid": 19720,
-  "expoServerNgrokUrl": "https://z7-6hx.charliejunbeom.im-06-1st-prj-younggun.exp.direct",
-  "packagerNgrokUrl": "https://packager.z7-6hx.charliejunbeom.im-06-1st-prj-younggun.exp.direct",
-  "ngrokPid": 9844
+  "expoServerPort": 19002,
+  "packagerPort": 19003,
+  "packagerPid": 12744,
+  "expoServerNgrokUrl": "https://n3-smg.charliejunbeom.im-06-1st-prj-younggun.exp.direct",
+  "packagerNgrokUrl": "https://packager.n3-smg.charliejunbeom.im-06-1st-prj-younggun.exp.direct",
+  "ngrokPid": 25352
 }
