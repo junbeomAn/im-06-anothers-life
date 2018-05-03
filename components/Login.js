@@ -10,6 +10,7 @@ import {
   WebView,
   KeyboardAvoidingView,
 } from 'react-native';
+import Expo from 'expo';
 
 import Register from "./Register";
 import StackNav from "./StackNav";
@@ -19,14 +20,42 @@ export default class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      hasToken: 0,
+
     };
+  }
+
+  onLoginPress = async () => {
+    const result = await this.signInWithGoogleAsync()
+    // if there is no result.error or result.cancelled, the user is logged in
+    // do something with the result    
+    alert(result.user.name + ' 님 환영합니다');
+    this.props.setToken(result.idToken);   
+  }
+
+  signInWithGoogleAsync = async () => {
+    try {
+      const result = await Expo.Google.logInAsync({
+        iosClientId: '352786345538-s5kufrrr9dr0c2g2h16kqa0l10l09jjg.apps.googleusercontent.com',
+        androidClientId: '352786345538-kuumm9fk3hsjllrh4ecjhen9ut9o52qm.apps.googleusercontent.com',
+        scopes: ['profile', 'email'],
+      })
+
+      console.log(result);
+
+      if (result.type === 'success') {
+        return result
+      }
+      return { cancelled: true }
+    } catch (e) {
+      console.log(e);
+      return { error: e }
+    }
   }
 
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
-        {this.state.hasToken ? this.props.navigation.navigate('Main'):
+    
         <View>
           <View style={styles.titleBox}>
               <Text style={styles.title}>L O G I N</Text>
@@ -59,6 +88,11 @@ export default class Login extends React.Component {
               <Text style={styles.register}>Sign up</Text>
             </TouchableOpacity>
           </View>
+          <View>
+            <TouchableOpacity onPress={this.onLoginPress}>
+              <Text style={styles.login}>Login with google</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         }
       </KeyboardAvoidingView>
@@ -85,10 +119,7 @@ export default class Login extends React.Component {
         } 
         else {
           alert(this.state.username + res.message);
-          if(res.token){
-            this.setState({
-              token: res.token
-            })
+          if(res.token){            
             this.props.setToken(res.token);
           }
         }

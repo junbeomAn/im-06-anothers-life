@@ -8,7 +8,6 @@ import Login from "./Login";
 import Register from "./Register";
 import MyPage from "./MyPage";
 import {setCustomText} from 'react-native-global-props';
-var cron = require('node-cron');
 
 const customTextProps = {
   style: {
@@ -118,24 +117,17 @@ export default class Loading extends React.Component {
   }
 
   _setPushSchedule(target) { // worker
-    if(!target){
-      console.log(11111111111111111111)
-      return;
-    }
 
-    cron.schedule('1-59 * * * *', function(){
-      // console.log('crons is working!!!!!!!!!!!!');
-      // var hours = new Date().getHours();
-      // var minutes = new Date().getMinutes();
-      // var parsedTime = (hours <= 12 ? '0' : '') + hours + '-' +  (minutes < 10 ? '0' : '') + minutes;
-      // console.log(parsedTime);
+      var hours = new Date().getHours();
+      var minutes = new Date().getMinutes();
+      var parsedTime = (hours <= 12 ? '0' : '') + hours + '-' +  (minutes < 10 ? '0' : '') + minutes;
+      console.log(parsedTime);
       
-      // for(var i = 0; i < target.schedule.length; i++){
-      //   if(target.schedule[i]['time'] === parsedTime){
-      //     this.props.notiPush(target.schedule[i].task);
-      //   }
-      // }
-    });
+      for(var i = 0; i < target.schedule.length; i++){
+        if(target.schedule[i]['time'] === parsedTime){
+          this.props.notiPush(target.schedule[i].task);
+        }
+      }
       
     // setInterval(() => {
       
