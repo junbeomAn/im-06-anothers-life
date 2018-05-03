@@ -24,9 +24,8 @@ User.statics.create = function(username, password) {
   return user.save();
 }
 
-// 해당 유저 계정 삭제
+// 회원 탈퇴
 User.statics.findOneAndRemove = function(username, res) {
-  // return this.findOneAndRemove({ username })
   this.remove({ username }, (err) => {
     if (err) throw err;
     else {
@@ -37,6 +36,30 @@ User.statics.findOneAndRemove = function(username, res) {
     }
   })
 }
+
+// 비밀번호 변경
+User.statics.updatePassword = function (username, password, res) {
+
+  var encrypted = crypto.createHmac('sha1', config.secret)
+    .update(password)
+    .digest('base64');
+
+  var conditions = { username };
+  var update = { $set: { password: encrypted } };
+  var options = { multi: false };
+  
+  this.update(conditions, update, options, (err) => {
+    if (err) throw err;
+    else {
+      const response = {
+        message: '비밀번호가 정상적으로 변경되었습니다'
+      };
+      return res.status(200).send(response);
+    }
+  })
+}
+
+
 
 // 해당 계정 유저 찾기
 User.statics.findOneByUsername = function(username) {

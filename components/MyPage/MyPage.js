@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, AsyncStorage } from 'react-native';
-import Login from './Login';
 
 export default class Mypage extends React.Component {
   constructor(props) {
@@ -15,7 +14,7 @@ export default class Mypage extends React.Component {
     return (
       <View style={styles.container}>
         <View>
-          <TouchableOpacity onPress={() => { screenProps.method() }}>
+          <TouchableOpacity onPress={() => { this.props.navigation.navigate("Update") }}>
             <Text style={styles.text}>비 밀 번 호 변 경</Text>
           </TouchableOpacity>
         </View>

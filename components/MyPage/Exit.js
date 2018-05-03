@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import decode from 'jwt-decode';
 
-export default class Logout extends React.Component {
+export default class Exit extends React.Component {
   constructor(props) {
     super(props);
     this.state = { username: '' };

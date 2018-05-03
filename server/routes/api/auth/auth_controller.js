@@ -108,6 +108,10 @@ exports.check = (req, res) => {
 
 exports.remove = (req, res) => {
   var { username } = req.body;
-
   User.findOneAndRemove(username, res)
+}
+
+exports.update = (req, res) => {
+  var { username, password } = req.body;
+  User.updatePassword(username, password, res)
 }
