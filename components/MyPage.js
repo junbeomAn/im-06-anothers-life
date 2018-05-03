@@ -20,8 +20,8 @@ export default class Mypage extends React.Component {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity onPress={() => { screenProps.method() }}>
-            <Text style={styles.text}>계 정 탈 퇴</Text>
+          <TouchableOpacity onPress={() => { this.props.navigation.navigate("Exit")} }>
+            <Text style={styles.text}>계 정 삭 제</Text>
           </TouchableOpacity>
         </View>
         <View>

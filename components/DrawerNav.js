@@ -25,7 +25,7 @@ export default DrawerNav = DrawerNavigator({
     screen: MyPage
   }
 }, {
-    drawerWidth: 220
+    drawerWidth: 220,
   }
 );
 

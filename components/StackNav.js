@@ -10,6 +10,8 @@ import Register from "./Register";
 import MyPage from "./MyPage";
 import Search from "./Search";
 import DrawerNav from "./DrawerNav";
+import Exit from "./Exit";
+import Update from "./Update";
 
 export default class Stack extends React.Component {
   constructor(props) {
@@ -20,8 +22,11 @@ export default class Stack extends React.Component {
 
   render() {
     // stack nav의 모든 screen 에서 쓸 수 있음.
-    this.props.data.method = this.props.logOut; 
+    this.props.data.method = this.props.logOut;
     this.props.data.method2 = this.props.pick;
+    this.props.data.token = this.props.token;
+    this.props.data.username = this.props.username;
+
     return(      
       <View style={{ flex: 1, width: "100%"}}>
         <StackNav screenProps={this.props.data}/> 
@@ -97,6 +102,30 @@ const StackNav = StackNavigator({
     screen: Search,
     navigationOptions: (props) => ({
       title: "S E A R C H",
+      headerLeft: (
+        <TouchableOpacity onPress={() => props.navigation.goBack()}>
+          <Ionicons name="ios-arrow-down" size={30} />
+        </TouchableOpacity>
+      ),
+      headerStyle: { paddingRight: 10, paddingLeft: 10 }
+    })
+  },
+  Exit: {
+    screen: Exit,
+    navigationOptions: (props) => ({
+      title: "계 정 삭 제",
+      headerLeft: (
+        <TouchableOpacity onPress={() => props.navigation.goBack()}>
+          <Ionicons name="ios-arrow-down" size={30} />
+        </TouchableOpacity>
+      ),
+      headerStyle: { paddingRight: 10, paddingLeft: 10 }
+    })
+  },
+  Update: {
+    screen: Update,
+    navigationOptions: (props) => ({
+      title: "비 밀 번 호 변 경",
       headerLeft: (
         <TouchableOpacity onPress={() => props.navigation.goBack()}>
           <Ionicons name="ios-arrow-down" size={30} />

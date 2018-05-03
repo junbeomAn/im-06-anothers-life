@@ -24,11 +24,23 @@ User.statics.create = function(username, password) {
   return user.save();
 }
 
+// 해당 유저 계정 삭제
+User.statics.findOneAndRemove = function(username, res) {
+  // return this.findOneAndRemove({ username })
+  this.remove({ username }, (err) => {
+    if (err) throw err;
+    else {
+      const response = {
+        message: username + '님 그동안 이용해주셔서 감사합니다'
+      };
+      return res.status(200).send(response);
+    }
+  })
+}
+
 // 해당 계정 유저 찾기
 User.statics.findOneByUsername = function(username) {
-  return this.findOne({
-    username
-  }).exec();
+  return this.findOne({ username }).exec();
 }
 
 // 패스워드 검증

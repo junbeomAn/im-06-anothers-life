@@ -66,7 +66,6 @@ exports.login = (req, res) => {
           secret,
           {
             expiresIn: '7d',
-            // issure: 'velopert.com',
             subject: 'userinfo'
           }, (err, token) => {
             if(err) reject(err);
@@ -105,4 +104,10 @@ exports.check = (req, res) => {
     success: true,
     info: req.decoded
   })
+}
+
+exports.remove = (req, res) => {
+  var { username } = req.body;
+
+  User.findOneAndRemove(username, res)
 }
