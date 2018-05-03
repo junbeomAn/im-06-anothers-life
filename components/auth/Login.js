@@ -12,6 +12,7 @@ import {
   ImageBackground
 } from 'react-native';
 import Expo from 'expo';
+import {iosClientId, androidClientId} from './GoogleAuthKey';
 
 import Register from "./Register";
 import StackNav from "../StackNav";
@@ -23,32 +24,79 @@ export default class Login extends React.Component {
     this.state = { username: '', password: '' };
   }
 
-  onLoginPress = async () => {
-    const result = await this.signInWithGoogleAsync()
+  _login = () => { // 일반 로그인
+    fetch('http://10.130.109.247:3000/api/auth/login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password
+      })
+    })
+      .then(response => response.json())
+      .then(res => {
+        if (res.success === true) {
+          var username = res.username;
+          var password = res.password;
+        } 
+        else {
+          alert(this.state.username + res.message);
+          if(res.token){            
+            this.props.setToken(res.token);
+          }
+        }
+      })
+      .done();
+  }
+
+
+  _onLoginPress = async () => { // 구글 연동 로그인
+    const result = await this._signInWithGoogleAsync()
     // if there is no result.error or result.cancelled, the user is logged in
     // do something with the result    
     alert(result.user.name + ' 님 환영합니다');
     this.props.setToken(result.idToken);   
   }
 
-  signInWithGoogleAsync = async () => {
+  _signInWithGoogleAsync = async () => { // 구글 연동 로그인
     try {
       const result = await Expo.Google.logInAsync({
-        iosClientId: '352786345538-s5kufrrr9dr0c2g2h16kqa0l10l09jjg.apps.googleusercontent.com',
-        androidClientId: '352786345538-kuumm9fk3hsjllrh4ecjhen9ut9o52qm.apps.googleusercontent.com',
+        iosClientId: iosClientId,
+        androidClientId: androidClientId,
         scopes: ['profile', 'email'],
       })
 
       console.log(result);
 
       if (result.type === 'success') {
-        return result
+        return result;
       }
       return { cancelled: true }
     } catch (e) {
       console.log(e);
-      return { error: e }
+      return { error: e };
     }
+  }
+
+   _fingerPrintLogin = async () => {
+    if(Expo.Fingerprint.hasHardwareAsync() && Expo.Fingerprint.isEnrolledAsync()){
+      var result = await Expo.Fingerprint.authenticateAsync('sign in');
+      if(result.success){
+        alert('Welcome')
+        this.props.setFingerPrint();        
+      } else {
+        if(result.error !== 'user_cancel'){
+          alert(result.error);
+        }         
+      }
+    }
+  }
+
+  async componentDidMount() {
+    await this._fingerPrintLogin();
   }
 
   render() {
@@ -61,7 +109,7 @@ export default class Login extends React.Component {
           </View>
           <View>
          
-            <TextInput 
+            <TextInput
               style={styles.username}
               placeholder='아이디를 입력하세요'
               keyboardType="email-address"
@@ -89,7 +137,7 @@ export default class Login extends React.Component {
           </View>
           <View>
             <ImageBackground style={styles.photo} source={{ uri: 'http://www.kthotelsgate.com/assets/theme_dark/images/sign-in-button.png' }}>
-              <TouchableOpacity onPress={this.onLoginPress}>
+              <TouchableOpacity onPress={this._onLoginPress}>
                 <Text style={styles.google}> </Text>
               </TouchableOpacity>
             </ImageBackground>
@@ -98,34 +146,6 @@ export default class Login extends React.Component {
       </KeyboardAvoidingView>
       );
     }
-
-  _login = () => {
-    fetch('http://10.130.110.213:3000/api/auth/login', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password
-      })
-    })
-      .then(response => response.json())
-      .then(res => {
-        if (res.success === true) {
-          var username = res.username;
-          var password = res.password;
-        } 
-        else {
-          alert(this.state.username + res.message);
-          if(res.token){            
-            this.props.setToken(res.token);
-          }
-        }
-      })
-      .done();
-  }
 }
 
 const styles = StyleSheet.create({
