@@ -8,29 +8,33 @@ export default class Selection extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <ImageBackground source={{uri: this.props.item.img_two}} style={styles.photos}>
-          <Text style={styles.text}>{this.props.item.name}</Text>
-        </ImageBackground>
-        <View style={styles.overlay}/>            
+      <View style={styles.eachPersonBox}>
+        <View style={styles.eachPerson}>
+          <ImageBackground source={{uri: this.props.item.img_two}} style={styles.photos}>
+            <Text style={styles.text}>{this.props.item.name}</Text>
+          </ImageBackground>
+          <View style={styles.overlay}/>
+        </View>     
       </View>
     );
   };
 }
 
 const styles = StyleSheet.create({
-  container:{
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-around",
-    flexWrap: 'wrap',
+  eachPersonBox:{
+  },
+  eachPerson: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 160,
   },
   photos:{
     flex: 1,
     flexWrap: 'wrap',
     flexDirection: "row",
     justifyContent:'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    width: '100%'
   },
   text:{
     color: 'white',
