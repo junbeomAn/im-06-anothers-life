@@ -95,13 +95,12 @@ export default class Login extends React.Component {
             </ImageBackground>
           </View>
         </View>
-        }
       </KeyboardAvoidingView>
       );
     }
 
   _login = () => {
-    fetch('http://10.130.110.213:3000/api/auth/login', {
+    fetch('http://10.130.110.214:3000/api/auth/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
