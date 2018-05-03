@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { DrawerNavigator, TabNavigator } from 'react-navigation';
 import Main from './Main';
 import Logout from './auth/Logout';
-import MyPage from './mypage/MyPage';
+import MyPage from './MyPage/MyPage';
 
 
 const styles = StyleSheet.create({
