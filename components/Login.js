@@ -95,7 +95,6 @@ export default class Login extends React.Component {
             </ImageBackground>
           </View>
         </View>
-        }
       </KeyboardAvoidingView>
       );
     }
