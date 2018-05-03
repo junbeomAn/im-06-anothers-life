@@ -4,9 +4,9 @@ import Expo, { Font } from 'expo';
 import Main from "./Main";
 import StackNav from "./StackNav";
 import People from "./People";
-import Login from "./Login";
-import Register from "./Register";
-import MyPage from "./MyPage/MyPage";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
+import MyPage from "./mypage/MyPage";
 import {setCustomText} from 'react-native-global-props';
 import decode from 'jwt-decode';
 
@@ -55,7 +55,7 @@ export default class Loading extends React.Component {
  
   // DB 자료 펫칭
   _getDb = () => {
-    fetch('http://10.130.110.214:3000/api/people/list')
+    fetch('http://10.130.110.213:3000/api/people/list')
       .then(response => response.json())
       .then(json => this.setState({
         data: json

@@ -14,7 +14,7 @@ import {
 import Expo from 'expo';
 
 import Register from "./Register";
-import StackNav from "./StackNav";
+import StackNav from "../StackNav";
 
 export default class Login extends React.Component {
 
@@ -100,7 +100,7 @@ export default class Login extends React.Component {
     }
 
   _login = () => {
-    fetch('http://10.130.110.214:3000/api/auth/login', {
+    fetch('http://10.130.110.213:3000/api/auth/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
