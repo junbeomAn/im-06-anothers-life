@@ -59,7 +59,7 @@ const StackNav = StackNavigator({
         </TouchableOpacity>
       ),
       headerRight: (
-        <TouchableOpacity onPress={props.screenProps.method2(props.navigation.state.params)}>
+        <TouchableOpacity onPress={() => {props.screenProps.method2(props.navigation.state.params)}}>
           <Ionicons name="md-person-add" size={30} />
         </TouchableOpacity>
       ),

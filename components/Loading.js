@@ -21,7 +21,7 @@ export default class Loading extends React.Component {
       data: '', 
       token: '',
       signUp: false,
-      signedIn: false,
+      fprintSignIn: false,
       fontLoaded: false,
       target: ''
     };
@@ -100,6 +100,13 @@ export default class Loading extends React.Component {
     })
   }
 
+  // 지문인식 로그인
+  _fPrintLogin(fprintSignIn) {
+    this.setState({
+      fprintSignIn
+    })
+  }
+
   // 로그 아웃
   _logOut() {
     AsyncStorage.removeItem('token');
@@ -113,35 +120,23 @@ export default class Loading extends React.Component {
     this.setState({
       target
     });
+    // console.log(target)
     this._setPushSchedule(target)
   }
 
-  _setPushSchedule(target) { // worker
-
-      var hours = new Date().getHours();
-      var minutes = new Date().getMinutes();
-      var parsedTime = (hours <= 12 ? '0' : '') + hours + '-' +  (minutes < 10 ? '0' : '') + minutes;
-      console.log(parsedTime);
-      
-      for(var i = 0; i < target.schedule.length; i++){
-        if(target.schedule[i]['time'] === parsedTime){
-          this.props.notiPush(target.schedule[i].task);
-        }
-      }
-      
-    // setInterval(() => {
-      
-    // }, 10000)
-    
-  }
+  _setPushSchedule({ schedule }) { // worker     
+   for(var i = 0; i < schedule.length; i++){
+    this.props.notiPush(schedule[i]);
+    }         
+  }  
 
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         {!this.state.data ? <View><ActivityIndicator size="large" /></View> : 
             !this.state.fontLoaded ? <View><ActivityIndicator size="large" /></View> :
-            this.state.token ? <StackNav data={this.state.data} pick={this._pickPerson.bind(this)} logOut={this._logOut.bind(this)}/> : 
-            this.state.signUp ? <Register register={this._register.bind(this)}/> : <Login setToken={this._saveToken.bind(this)} register={this._register.bind(this)} />}
+            (this.state.token || this.state.fprintSignIn) ? <StackNav data={this.state.data} pick={this._pickPerson.bind(this)} logOut={this._logOut.bind(this)}/> : 
+            this.state.signUp ? <Register register={this._register.bind(this)}/> : <Login setFingerPrint={this._fPrintLogin.bind(this)} setToken={this._saveToken.bind(this)} register={this._register.bind(this)} />}
       </View>
     );
   }
