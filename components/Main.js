@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, StatusBar, Button, Image, FlatList, TouchableHi
 import { DrawerNavigator, TabNavigator } from 'react-navigation';
 
 import Selection from "./Selection";
+import TouchableDebounce from './TouchableDebounce';
 
 export default class Main extends React.Component {
 constructor(props){
@@ -25,11 +26,13 @@ constructor(props){
     return (
         <View style={styles.container}>
         {screenProps === null ? <ActivityIndicator size="large"/> : 
-          screenProps.map((item, index) => <TouchableHighlight
-          onPress={() => navigation.navigate("People", item)}
+          screenProps.map((item, index) => <TouchableDebounce
+          onPress={() =>{
+            navigation.navigate("People", item);
+            }}
           style={styles.button} key={index}>
           <Selection item={item} key={index}/>
-          </TouchableHighlight>)}
+          </TouchableDebounce>)}
         </View>
     );  
   }
