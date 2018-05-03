@@ -20,6 +20,7 @@ export default class App extends React.Component {
     super(props)
     this.state = {};
   }
+  
   _notiPush(task) { // 푸쉬 관련. . . 
     const localNotification = {
       title: 'Your idol',
@@ -54,6 +55,7 @@ export default class App extends React.Component {
     }
     // this._notiPush();
   }
+  
   render() {
     return (
         <Loading notiPush={this._notiPush.bind(this)}/>

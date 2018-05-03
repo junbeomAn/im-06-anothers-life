@@ -1,8 +1,8 @@
 {
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 15768,
-  "expoServerNgrokUrl": "https://i8-xbp.sudaseul.im-06-1st-prj-younggun.exp.direct",
-  "packagerNgrokUrl": "https://packager.i8-xbp.sudaseul.im-06-1st-prj-younggun.exp.direct",
-  "ngrokPid": 19192
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
