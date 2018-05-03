@@ -9,19 +9,19 @@ import {
   Navigator,
   WebView,
   KeyboardAvoidingView,
+  ImageBackground
 } from 'react-native';
 import Expo from 'expo';
+import {iosClientId, androidClientId} from './GoogleAuthKey';
 
 import Register from "./Register";
-import StackNav from "./StackNav";
+import StackNav from "../StackNav";
 
 export default class Login extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-
-    };
+    this.state = { username: '', password: '' };
   }
 
   _login = () => { // 일반 로그인
@@ -53,7 +53,7 @@ export default class Login extends React.Component {
   }
 
 
-  async _onLoginPress () { // 구글 연동 로그인
+  _onLoginPress = async () => { // 구글 연동 로그인
     const result = await this._signInWithGoogleAsync()
     // if there is no result.error or result.cancelled, the user is logged in
     // do something with the result    
@@ -61,11 +61,11 @@ export default class Login extends React.Component {
     this.props.setToken(result.idToken);   
   }
 
-  async _signInWithGoogleAsync () { // 구글 연동 로그인
+  _signInWithGoogleAsync = async () => { // 구글 연동 로그인
     try {
       const result = await Expo.Google.logInAsync({
-        iosClientId: '352786345538-s5kufrrr9dr0c2g2h16kqa0l10l09jjg.apps.googleusercontent.com',
-        androidClientId: '352786345538-kuumm9fk3hsjllrh4ecjhen9ut9o52qm.apps.googleusercontent.com',
+        iosClientId: iosClientId,
+        androidClientId: androidClientId,
         scopes: ['profile', 'email'],
       })
 
@@ -81,13 +81,16 @@ export default class Login extends React.Component {
     }
   }
 
-  async _fingerPrintLogin() {
+   _fingerPrintLogin = async () => {
     if(Expo.Fingerprint.hasHardwareAsync() && Expo.Fingerprint.isEnrolledAsync()){
-      var result = await Expo.Fingerprint.authenticateAsync('hello');
+      var result = await Expo.Fingerprint.authenticateAsync('sign in');
       if(result.success){
-        this.props.setFingerPrint(true);
+        alert('Welcome')
+        this.props.setFingerPrint();        
       } else {
-        alert(result.error);
+        if(result.error !== 'user_cancel'){
+          alert(result.error);
+        }         
       }
     }
   }
@@ -111,7 +114,7 @@ export default class Login extends React.Component {
               placeholder='아이디를 입력하세요'
               keyboardType="email-address"
               value={this.state.username}
-              onChangeText={(username) => this.setState({ username })}>
+              onChangeText={(username) => { this.setState({ username })}}>
             </TextInput>
 
             <TextInput
@@ -133,17 +136,16 @@ export default class Login extends React.Component {
             </TouchableOpacity>
           </View>
           <View>
-            <TouchableOpacity onPress={this._onLoginPress}>
-              <Text style={styles.login}>Login with google</Text>
-            </TouchableOpacity>
+            <ImageBackground style={styles.photo} source={{ uri: 'http://www.kthotelsgate.com/assets/theme_dark/images/sign-in-button.png' }}>
+              <TouchableOpacity onPress={this._onLoginPress}>
+                <Text style={styles.google}> </Text>
+              </TouchableOpacity>
+            </ImageBackground>
           </View>
         </View>
-        }
       </KeyboardAvoidingView>
       );
     }
-
-
 }
 
 const styles = StyleSheet.create({
@@ -188,5 +190,16 @@ const styles = StyleSheet.create({
     marginTop: 5,
     backgroundColor: '#008B8B',
     color: 'ghostwhite',
+  },
+  google: {
+    marginTop: 20,
+    padding: 5,
+    // backgroundColor: '#F08080',
+    color: 'ghostwhite',
+    textAlign: 'center',
+  },
+  photo: {
+    marginTop: 20,
+    width: 250
   },
 })

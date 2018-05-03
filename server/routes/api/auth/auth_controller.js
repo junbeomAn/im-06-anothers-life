@@ -66,7 +66,6 @@ exports.login = (req, res) => {
           secret,
           {
             expiresIn: '7d',
-            // issure: 'velopert.com',
             subject: 'userinfo'
           }, (err, token) => {
             if(err) reject(err);
@@ -75,7 +74,7 @@ exports.login = (req, res) => {
       })
       return p;
     }
-    else throw new Error('비밀번호를 확인하세요');
+    else throw new Error(' 님 비밀번호를 확인하세요');
   }
 
   // 토큰 응답
@@ -105,4 +104,14 @@ exports.check = (req, res) => {
     success: true,
     info: req.decoded
   })
+}
+
+exports.remove = (req, res) => {
+  var { username } = req.body;
+  User.findOneAndRemove(username, res)
+}
+
+exports.update = (req, res) => {
+  var { username, password } = req.body;
+  User.updatePassword(username, password, res)
 }

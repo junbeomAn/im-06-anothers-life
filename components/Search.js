@@ -1,5 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView, ImageBackground } from 'react-native';
+import { 
+  StyleSheet, Text, View, TextInput, 
+  TouchableOpacity, Image, ScrollView, 
+  ImageBackground, ActivityIndicator} from 'react-native';
 import { Font, AppLoading } from 'expo';
 import { LinearGradient } from 'expo';
 
@@ -54,7 +57,7 @@ export default class Search extends React.Component {
                 </View>
               </ScrollView>
             </View>
-          </View> : <Text>Nothing</Text>}
+          </View> : <View style={styles.indicator}><ActivityIndicator size="large" /></View>}
       </View>
     )
   }
@@ -67,7 +70,7 @@ const styles = StyleSheet.create({
   },
   searchBar:{
     padding: 3,
-    width: 250,
+    width: 300,
     borderWidth: 1,
     borderColor: 'darkgrey',
     textAlign: 'center',
@@ -75,7 +78,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    width: '100%',
   },
   photo: {
     display: 'flex',
@@ -98,7 +100,6 @@ const styles = StyleSheet.create({
   },
   desText: {
     color: 'rgb(229,229,229)',
-    fontFamily: 'BareunBatangM',
     fontSize: 20,
     lineHeight: 30,
     padding: 8,
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
   bottom: {
     display: 'flex',
     backgroundColor: '#f3f4f7',
-    height: '70%',
+    height: '50%',
   },
   scroll: {
     flex: 4,
@@ -120,8 +121,11 @@ const styles = StyleSheet.create({
     padding: 5
   },
   schFont: {
-    fontFamily: 'BareunBatangM',
     lineHeight: 20,
     fontSize: 13,
+  },
+  indicator: {
+    flex: 1,
+    justifyContent: 'center',
   }
 });

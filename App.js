@@ -11,9 +11,9 @@ import Selection from "./components/Selection";
 import DrawerNav from "./components/DrawerNav";
 import StackNav from "./components/StackNav";
 import People from "./components/People";
-import Register from "./components/Register";
+import Register from "./components/auth/Register";
 import Main from "./components/Main";
-import Login from './components/Login';
+import Login from './components/auth/Login';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -70,6 +70,7 @@ export default class App extends React.Component {
       console.log('Notification pemissions granted');
     }
   }
+  
   render() {
     return (
         <Loading notiPush={this._notiPush.bind(this)}/>

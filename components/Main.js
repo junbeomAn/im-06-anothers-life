@@ -26,7 +26,7 @@ constructor(props){
         <View style={styles.container}>
         {screenProps === null ? <ActivityIndicator size="large"/> : 
           screenProps.map((item, index) => <TouchableHighlight
-          onPress={() => navigation.navigate("People", item)}
+          onPress={() => navigation.navigate({routeName: 'People', params: item, key: item._id})}
           style={styles.button} key={index}>
           <Selection item={item} key={index}/>
           </TouchableHighlight>)}
