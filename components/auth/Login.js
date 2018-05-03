@@ -14,7 +14,7 @@ import {
 import Expo from 'expo';
 
 import Register from "./Register";
-import StackNav from "./StackNav";
+import StackNav from "../StackNav";
 
 export default class Login extends React.Component {
 

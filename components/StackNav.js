@@ -2,16 +2,16 @@ import React from 'react';
 import { View, TouchableOpacity, TouchableHighlight, AsyncStorage } from 'react-native';
 import { StackNavigator, TabNavigator} from 'react-navigation'
 import { Ionicons } from "@expo/vector-icons";
-import Logout from './Logout';
+import Logout from './auth/Logout';
 import Main from "./Main";
 import People from "./People";
-import Login from "./Login";
-import Register from "./Register";
-import MyPage from "./MyPage/MyPage";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
+import MyPage from "./mypage/MyPage";
 import Search from "./Search";
 import DrawerNav from "./DrawerNav";
-import Exit from "./MyPage/Exit";
-import Update from "./MyPage/Update";
+import Exit from "./mypage/Exit";
+import Update from "./mypage/Update";
 
 export default class Stack extends React.Component {
   constructor(props) {
