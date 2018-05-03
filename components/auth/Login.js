@@ -23,6 +23,7 @@ export default class Login extends React.Component {
     this.state = { username: '', password: '' };
   }
 
+  // 구글 연동로그인
   onLoginPress = async () => {
     const result = await this.signInWithGoogleAsync()
     // if there is no result.error or result.cancelled, the user is logged in
@@ -79,12 +80,17 @@ export default class Login extends React.Component {
           </View>
           <View>
             <TouchableOpacity onPress={this._login}>
-              <Text style={styles.login}>Login</Text>
+              <Text style={styles.login}>Log in</Text>
             </TouchableOpacity>
           </View>
           <View>
             <TouchableOpacity onPress={this.props.register}>
               <Text style={styles.register}>Sign up</Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity>
+              <Text style={styles.forgot}>Forgot your password?</Text>
             </TouchableOpacity>
           </View>
           <View>
@@ -181,5 +187,12 @@ const styles = StyleSheet.create({
   photo: {
     marginTop: 20,
     width: 250
+  },
+  forgot: {
+    padding: 5,
+    textAlign: 'center',
+    marginTop: 5,
+    backgroundColor: '#F08080',
+    color: 'ghostwhite',
   },
 })

@@ -27,6 +27,7 @@ export default class Loading extends React.Component {
       fontLoaded: false,
       target: '',
       isLogined: false,
+      isAdmin: false,
     };
   }
 
@@ -44,7 +45,7 @@ export default class Loading extends React.Component {
       setCustomText(customTextProps);
       this.setState({fontLoaded: true});
     });
-} 
+  } 
 
   // username setting
   _setUsername = (username) => {
@@ -119,7 +120,10 @@ export default class Loading extends React.Component {
   _isTokenExpired(token) {
     try {
       const decoded = decode(token);
-      // console.log(decoded);
+      console.log(decoded);
+      if(decoded.admin){
+        this.setState({ isAdmin : true })
+      }
       // console.log(Date.now() / 1000);
       if(decoded.exp < (Date.now() / 1000)) { // Checking if token is expired. N
         alert('토큰이 만료 되었습니다. 다시 로그인 해주세요.');
@@ -137,7 +141,8 @@ export default class Loading extends React.Component {
   }
 
   render() {
-    const {data, fontLoaded, isLogined, token, signUp} = this.state;
+    console.log(this.state.isAdmin);
+    const { data, fontLoaded, isLogined, token, signUp } = this.state;
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         {!data ? <View><ActivityIndicator size="large" /></View> : 
