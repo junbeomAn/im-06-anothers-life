@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, AsyncStorage } from 'react-native';
-import Login from './Login';
 
 export default class Mypage extends React.Component {
   constructor(props) {
@@ -15,13 +14,13 @@ export default class Mypage extends React.Component {
     return (
       <View style={styles.container}>
         <View>
-          <TouchableOpacity onPress={() => { screenProps.method() }}>
-            <Text style={styles.text}>즐 겨 찾 기</Text>
+          <TouchableOpacity onPress={() => { this.props.navigation.navigate("Update") }}>
+            <Text style={styles.text}>비 밀 번 호 변 경</Text>
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity onPress={() => { screenProps.method() }}>
-            <Text style={styles.text}>알 림 설 정</Text>
+          <TouchableOpacity onPress={() => { this.props.navigation.navigate("Exit")} }>
+            <Text style={styles.text}>계 정 삭 제</Text>
           </TouchableOpacity>
         </View>
         <View>
@@ -31,7 +30,7 @@ export default class Mypage extends React.Component {
         </View>
         <View>
           <TouchableOpacity onPress={() => { screenProps.method() }}>
-            <Text style={styles.text}>비 밀 번 호 변 경</Text>
+            <Text style={styles.text}>개 발 자 정 보</Text>
           </TouchableOpacity>
         </View>
       </View>

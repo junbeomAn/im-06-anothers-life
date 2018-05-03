@@ -9,6 +9,7 @@ import {
   Navigator,
   WebView,
   KeyboardAvoidingView,
+  ImageBackground
 } from 'react-native';
 import Expo from 'expo';
 
@@ -19,9 +20,7 @@ export default class Login extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-
-    };
+    this.state = { username: '', password: '' };
   }
 
   onLoginPress = async () => {
@@ -67,7 +66,7 @@ export default class Login extends React.Component {
               placeholder='아이디를 입력하세요'
               keyboardType="email-address"
               value={this.state.username}
-              onChangeText={(username) => this.setState({ username })}>
+              onChangeText={(username) => { this.setState({ username })}}>
             </TextInput>
 
             <TextInput
@@ -89,9 +88,11 @@ export default class Login extends React.Component {
             </TouchableOpacity>
           </View>
           <View>
-            <TouchableOpacity onPress={this.onLoginPress}>
-              <Text style={styles.login}>Login with google</Text>
-            </TouchableOpacity>
+            <ImageBackground style={styles.photo} source={{ uri: 'http://www.kthotelsgate.com/assets/theme_dark/images/sign-in-button.png' }}>
+              <TouchableOpacity onPress={this.onLoginPress}>
+                <Text style={styles.google}> </Text>
+              </TouchableOpacity>
+            </ImageBackground>
           </View>
         </View>
         }
@@ -100,7 +101,7 @@ export default class Login extends React.Component {
     }
 
   _login = () => {
-    fetch('http://10.130.109.247:3000/api/auth/login', {
+    fetch('http://10.130.110.213:3000/api/auth/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -170,5 +171,16 @@ const styles = StyleSheet.create({
     marginTop: 5,
     backgroundColor: '#008B8B',
     color: 'ghostwhite',
+  },
+  google: {
+    marginTop: 20,
+    padding: 5,
+    // backgroundColor: '#F08080',
+    color: 'ghostwhite',
+    textAlign: 'center',
+  },
+  photo: {
+    marginTop: 20,
+    width: 250
   },
 })

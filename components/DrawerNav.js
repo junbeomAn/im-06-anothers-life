@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { DrawerNavigator, TabNavigator } from 'react-navigation';
 import Main from './Main';
 import Logout from './Logout';
-import MyPage from './MyPage';
+import MyPage from './MyPage/MyPage';
 
 
 const styles = StyleSheet.create({
@@ -25,7 +25,7 @@ export default DrawerNav = DrawerNavigator({
     screen: MyPage
   }
 }, {
-    drawerWidth: 220
+    drawerWidth: 220,
   }
 );
 
