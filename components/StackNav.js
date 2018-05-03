@@ -2,6 +2,8 @@ import React from 'react';
 import { View, TouchableOpacity, TouchableHighlight, AsyncStorage } from 'react-native';
 import { StackNavigator, TabNavigator} from 'react-navigation'
 import { Ionicons } from "@expo/vector-icons";
+import Expo, { Notifications } from 'expo';
+
 import Logout from './auth/Logout';
 import Main from "./Main";
 import People from "./People";
@@ -17,16 +19,34 @@ export default class Stack extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      notiState: 'md-person-add'
     };
+  }
+
+  _activateNotiIcon() {
+    this.setState({
+      notiState: 'md-person-add'
+    });
+  }
+
+  _inActivateNotiIcon() {
+    this.setState({
+      notiState: 'ios-close'
+    });
   }
 
   render() {
     // stack nav의 모든 screen 에서 쓸 수 있음.
     this.props.data.method = this.props.logOut;
     this.props.data.method2 = this.props.pick;
+    this.props.data.reject = this.props.reject;
+    this.props.data.activate = this._activateNotiIcon.bind(this);
+    this.props.data.inactivate = this._inActivateNotiIcon.bind(this); // 함수
     this.props.data.token = this.props.token;
     this.props.data.username = this.props.username;
-
+    this.props.data.target = this.props.target;
+    this.props.data.notiState = this.state.notiState;
+     
     return(      
       <View style={{ flex: 1, width: "100%"}}>
         <StackNav screenProps={this.props.data}/> 
@@ -64,11 +84,19 @@ const StackNav = StackNavigator({
         </TouchableOpacity>
       ),
       headerRight: (
-        <TouchableOpacity onPress={() => {
-            props.screenProps.method2(props.navigation.state.params)
-            alert(`${props.navigation.state.params.name}의 삶의 추적을 시작합니다`)
-          }}>
-          <Ionicons name="md-person-add" size={30} />
+        <TouchableOpacity onPress={() => {//screenProps.target.name === props.navigation.state.params.name ? <Ionicons name="ios-close" size={30} />, Expo.Notifications.cancelAllScheduledNotificationsAsync()  : mdperson
+            if(props.screenProps.target.name === props.navigation.state.params.name){
+              props.screenProps.reject();
+              props.screenProps.activate();
+              alert(`${props.navigation.state.params.name}의 삶의 추적을 stop합니다`);
+            } else {
+              props.screenProps.method2(props.navigation.state.params);
+              props.screenProps.inactivate();
+              alert(`${props.navigation.state.params.name}의 삶의 추적을 시작합니다`);
+            }           
+          }}>          
+          <Ionicons name={props.screenProps.notiState} size={30} />}
+          {/* <Ionicons name="md-person-add" size={30} /> */}
         </TouchableOpacity>
       ),
       headerStyle: { paddingRight: 10, paddingLeft: 10 }

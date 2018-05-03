@@ -120,8 +120,16 @@ export default class Loading extends React.Component {
     this.setState({
       target
     });
-    // console.log(target)
+    console.log(target)
     this._setPushSchedule(target)
+  }
+
+  _rejectPerson() {
+    this.setState({
+      target: {}
+    })
+    console.log('empty target');
+    Expo.Notifications.cancelAllScheduledNotificationsAsync();
   }
 
   _setPushSchedule({ schedule }) { // worker     
@@ -160,13 +168,13 @@ export default class Loading extends React.Component {
   }
 
   render() {
-    const {data, fontLoaded, isLogined, token, signUp, isAdmin, fprintSignIn} = this.state;
+    const {data, fontLoaded, isLogined, token, signUp, fprintSignIn, target, isAdmin} = this.state;
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         {!data ? <View><ActivityIndicator size="large" /></View> : 
-          !fontLoaded ? <View><ActivityIndicator size="large" /></View> :
-            isAdmin ? <Admin token={token} toggle={this._toggleSight.bind(this)}/> : 
-              isLogined ? <StackNav data={data} token={token} pick={this._pickPerson.bind(this)} logOut={this._logOut.bind(this)}/> : 
+            !fontLoaded ? <View><ActivityIndicator size="large" /></View> :
+            isAdmin ? <Admin token={token} toggle={this._toggleSight.bind(this)}/> :
+              isLogined ? <StackNav target={target} data={data} token={token} reject={this._rejectPerson.bind(this)} pick={this._pickPerson.bind(this)} logOut={this._logOut.bind(this)}/> : 
                 signUp ? <Register register={this._register.bind(this)} /> : 
                 <Login setFingerPrint={this._fPrintLogin.bind(this)} setToken={this._saveToken.bind(this)} register={this._register.bind(this)} />}
       </View>
