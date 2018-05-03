@@ -96,7 +96,9 @@ export default class Loading extends React.Component {
   _toggleSight = () => {
     this.setState({
       isAdmin: !this.state.isAdmin
-
+    })
+  
+  }
   // 지문인식 로그인
   _fPrintLogin() {
     this.setState({
