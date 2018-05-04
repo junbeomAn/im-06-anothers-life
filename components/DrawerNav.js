@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text, View } from 'react-native';
 import { DrawerNavigator, TabNavigator } from 'react-navigation';
 import Main from './Main';
-import Logout from './Logout';
-import MyPage from './MyPage/MyPage';
+import Logout from './auth/Logout';
+import MyPage from './mypage/MyPage';
+
 
 
 const styles = StyleSheet.create({

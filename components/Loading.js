@@ -4,9 +4,9 @@ import Expo, { Font } from 'expo';
 import Main from "./Main";
 import StackNav from "./StackNav";
 import People from "./People";
-import Login from "./Login";
-import Register from "./Register";
-import MyPage from "./MyPage/MyPage";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
+import MyPage from "./mypage/MyPage";
 import {setCustomText} from 'react-native-global-props';
 import decode from 'jwt-decode';
 

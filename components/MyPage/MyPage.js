@@ -29,7 +29,7 @@ export default class Mypage extends React.Component {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity onPress={() => { screenProps.method() }}>
+          <TouchableOpacity onPress={() => { this.props.navigation.navigate("Developers")}}>
             <Text style={styles.text}>개 발 자 정 보</Text>
           </TouchableOpacity>
         </View>

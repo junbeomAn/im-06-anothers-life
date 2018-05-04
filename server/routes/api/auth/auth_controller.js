@@ -74,7 +74,7 @@ exports.login = (req, res) => {
       })
       return p;
     }
-    else throw new Error('비밀번호를 확인하세요');
+    else throw new Error(' 님 비밀번호를 확인하세요');
   }
 
   // 토큰 응답
