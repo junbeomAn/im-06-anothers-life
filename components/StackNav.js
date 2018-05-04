@@ -19,33 +19,32 @@ export default class Stack extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      notiState: 'notifications-active'
+      // notiState: 'notifications-active'
     };
   }
 
-  _activateNotiIcon() {
-    this.setState({
-      notiState: 'notifications-active'
-    });
-  }
+  // _activateNotiIcon() {
+  //   this.setState({
+  //     notiState: 'notifications-active'
+  //   });
+  // }
 
-  _inActivateNotiIcon() {
-    this.setState({
-      notiState: 'notifications-off'
-    });
-  }
+  // _inActivateNotiIcon() {
+  //   this.setState({
+  //     notiState: 'notifications-off'
+  //   });
+  // }
 
   render() {
     // stack nav의 모든 screen 에서 쓸 수 있음.
     this.props.data.method = this.props.logOut;
     this.props.data.method2 = this.props.pick;
     this.props.data.reject = this.props.reject;
-    this.props.data.activateIcon = this._activateNotiIcon.bind(this);
-    this.props.data.inactivateIcon = this._inActivateNotiIcon.bind(this); // 함수
+    // this.props.data.activateIcon = this._activateNotiIcon.bind(this);
+    // this.props.data.inactivateIcon = this._inActivateNotiIcon.bind(this); // 함수
     this.props.data.token = this.props.token;
     this.props.data.username = this.props.username;
     this.props.data.target = this.props.target;
-    this.props.data.notiState = this.state.notiState;
      
     return(      
       <View style={{ flex: 1, width: "100%"}}>
@@ -84,19 +83,20 @@ const StackNav = StackNavigator({
         </TouchableOpacity>
       ),
       headerRight: (
-        <TouchableOpacity onPress={() => {//screenProps.target.name === props.navigation.state.params.name ? <Ionicons name="ios-close" size={30} />, Expo.Notifications.cancelAllScheduledNotificationsAsync()  : mdperson
+        <TouchableOpacity onPress={() => {
             if(props.screenProps.target.name === props.navigation.state.params.name){
               props.screenProps.reject();
-              props.screenProps.activateIcon();
-              alert(`${props.navigation.state.params.name}의 삶의 추적을 stop합니다`);
+              // props.screenProps.notiState = 'notifications-off';              
+              // props.screenProps.activateIcon();              
+              alert(`${props.navigation.state.params.name}의 삶의 추적을 중지합니다`);
             } else {
               props.screenProps.method2(props.navigation.state.params);
-              props.screenProps.inactivateIcon();
+              // props.screenProps.notiState = 'notifications-active';              
+              // props.screenProps.inactivateIcon();              
               alert(`${props.navigation.state.params.name}의 삶의 추적을 시작합니다`);
             }           
           }}>          
-          <MaterialIcons name={props.screenProps.notiState} size={25} />}
-          {/* <Ionicons name="md-person-add" size={30} /> */}
+          <MaterialIcons name='notifications-active' size={25} />
         </TouchableOpacity>
       ),
       headerStyle: { paddingRight: 10, paddingLeft: 10 }
