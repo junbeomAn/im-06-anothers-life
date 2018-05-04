@@ -56,7 +56,7 @@ export default class Loading extends React.Component {
  
   // DB 자료 펫칭
   _getDb = () => {
-    fetch('http://10.130.109.247:3000/api/people/list')
+    fetch('http://10.130.104.146:3000/api/people/list')
       .then(response => response.json())
       .then(json => this.setState({
         data: json
@@ -172,7 +172,7 @@ export default class Loading extends React.Component {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         {!data ? <View><ActivityIndicator size="large" /></View> : 
-            !fontLoaded ? <View><ActivityIndicator size="large" /></View> :
+          !fontLoaded ? <View><ActivityIndicator size="large" /></View> :
             isAdmin ? <Admin token={token} toggle={this._toggleSight.bind(this)}/> :
               isLogined ? <StackNav target={target} data={data} token={token} reject={this._rejectPerson.bind(this)} pick={this._pickPerson.bind(this)} logOut={this._logOut.bind(this)}/> : 
                 signUp ? <Register register={this._register.bind(this)} /> : 
