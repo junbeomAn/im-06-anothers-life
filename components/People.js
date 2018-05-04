@@ -10,15 +10,15 @@ function People(props) {
           <LinearGradient colors={['transparent', 'rgba(0,0,0,0.6)', 'rgba(0,0,0,1)']} style={styles.gradient}>
             <View style={styles.opacity}>
             <View style={styles.topHalf}/>
-            <View style={styles.description}>
-                  <Text style={styles.desText}>{description}</Text>
-            </View>
+              <View style={styles.description}>
+                <Text style={styles.desText}>{description}</Text>
+              </View>
             </View>
             </LinearGradient>
           </ImageBackground>
           <View style={styles.bottom}>
               <ScrollView style={styles.scroll}>
-                <View style={styles.padding}>
+                <View>
                   {schedule.map((listItem, index) => {
                     var result = `${listItem.time}     ${listItem.task}\n`;
                     return <View style={styles.schedule} key={index}><Text style={styles.schFont}>{result}</Text></View>;

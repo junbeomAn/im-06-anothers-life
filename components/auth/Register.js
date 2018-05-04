@@ -66,7 +66,7 @@ export default class Register extends React.Component {
   }
 
   register = () => {
-    fetch('http://10.130.105.57:3000/api/auth/register', {
+    fetch('http://10.130.104.146:3000/api/auth/register', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -102,6 +102,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#858B9F',
+    width: '100%'
   },
   titleBox: {
     justifyContent: 'center',
@@ -110,6 +112,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
+    color: '#303846',
+    fontFamily: 'BareunBatangB',
   },
   username: {
     padding: 3,
@@ -117,6 +121,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'darkgrey',
     textAlign: 'center',
+    backgroundColor: '#eee',
+    height: 30,
   },
   password: {
     marginTop: 5,
@@ -124,21 +130,27 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'darkgrey',
     textAlign: 'center',
+    backgroundColor: '#eee',
+    height: 30,
   },
   apply: {
     width: 250,
     padding: 5,
+    paddingTop: 8,
+    height: 30,
     textAlign: 'center',
     marginTop: 20,
-    backgroundColor: '#008B8B',
+    backgroundColor: '#2F4661',
     color: 'ghostwhite',
   },
   back : {
     width: 250,
     padding: 5,
+    paddingTop: 8,
+    height: 30,
     marginTop: 5,
     textAlign: 'center',
-    backgroundColor: '#F08080',
+    backgroundColor: '#C89287',
     color: 'ghostwhite',
   }
 });

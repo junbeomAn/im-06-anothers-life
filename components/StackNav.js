@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, TouchableHighlight, AsyncStorage } from 'react-native';
-import { StackNavigator, TabNavigator} from 'react-navigation'
+import { StackNavigator, TabNavigator} from 'react-navigation';
 import { Ionicons } from "@expo/vector-icons";
 import Expo, { Notifications } from 'expo';
 
@@ -97,8 +97,7 @@ const StackNav = StackNavigator({
               alert(`${props.navigation.state.params.name}의 삶의 추적을 시작합니다`);
             }           
           }}>          
-          <Ionicons name={props.screenProps.notiState} size={30} />}
-          {/* <Ionicons name="md-person-add" size={30} /> */}
+          <Ionicons name={props.screenProps.notiState} size={30} />
         </TouchableOpacity>
       ),
       headerStyle: { paddingRight: 10, paddingLeft: 10 }
@@ -176,21 +175,20 @@ const StackNav = StackNavigator({
       headerStyle: { paddingRight: 10, paddingLeft: 10 }
     })
   }
-}, 
-
+},
 {  
-    headerMode: 'float',
-    mode: 'modal',
-    navigationOptions:{
-      headerBackTitle: 'back',
-      gesturesEnabled: true, 
-      gestureResponseDistance: {
-        vertical: 300
-      },
-      headerTitleStyle: {
-        fontFamily: 'DaehanB',
-        fontWeight: undefined
-      }
+  headerMode: 'float',
+  mode: 'modal',
+  navigationOptions:{
+    headerBackTitle: 'back',
+    gesturesEnabled: true, 
+    gestureResponseDistance: {
+      vertical: 300
     },
+    headerTitleStyle: {
+      fontFamily: 'DaehanB',
+      fontWeight: undefined
+    }
+  },
 })
 

@@ -31,11 +31,12 @@ export default class Admin extends React.Component {
       }
     }
 
-    fetch('http://10.130.105.57:3000/api/user/list', option)
+    fetch('http://10.130.104.146:3000/api/user/list', option)
       .then(response => response.json())
       .then(json => this.setState({
         userList: json
-      }));
+      }))
+      .done();
       
   }
 
@@ -48,7 +49,7 @@ export default class Admin extends React.Component {
       }
     }
 
-    fetch(`http://10.130.105.57:3000/api/user/assign-admin/${this.state.username}`, option)
+    fetch(`http://10.130.104.146:3000/api/user/assign-admin/${this.state.username}`, option)
       .then(response => response.json())
       .then(json => {
         if (json.success) alert(this.state.username + "님에게 관리자 권한을 부여 하였습니다");
