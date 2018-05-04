@@ -138,7 +138,7 @@ export default class Login extends React.Component {
           </View>
           <View>
             <TouchableOpacity onPress={this._fingerPrintLogin}>
-              <Text style={styles.register}>지문 인식 [iOS]</Text>
+              <Text style={styles.register}>Touch ID Login for IOS</Text>
             </TouchableOpacity>
           </View>
           <View>

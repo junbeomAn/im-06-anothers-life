@@ -57,7 +57,7 @@ export default class Search extends React.Component {
                 </View>
               </ScrollView>
             </View>
-          </View> : <View style={styles.indicator}><ActivityIndicator size="large" /></View>}
+          </View> : <View></View>}
       </View>
     )
   }
