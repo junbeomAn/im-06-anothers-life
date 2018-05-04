@@ -14,6 +14,8 @@ import Search from "./Search";
 import DrawerNav from "./DrawerNav";
 import Exit from "./mypage/Exit";
 import Update from "./mypage/Update";
+import Developers from "./mypage/Developers";
+
 
 export default class Stack extends React.Component {
   constructor(props) {
@@ -161,8 +163,22 @@ const StackNav = StackNavigator({
       ),
       headerStyle: { paddingRight: 10, paddingLeft: 10 }
     })
+  },
+  Developers: {
+    screen: Developers,
+    navigationOptions: (props) => ({
+      title: "개 발 자 정 보",
+      headerLeft: (
+        <TouchableOpacity onPress={() => props.navigation.goBack()}>
+          <Ionicons name="ios-arrow-down" size={30} />
+        </TouchableOpacity>
+      ),
+      headerStyle: { paddingRight: 10, paddingLeft: 10 }
+    })
   }
-}, {  
+}, 
+
+{  
     headerMode: 'float',
     mode: 'modal',
     navigationOptions:{
