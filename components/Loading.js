@@ -57,7 +57,7 @@ export default class Loading extends React.Component {
  
   // DB 자료 펫칭
   _getDb = () => {
-    fetch('http://10.130.111.79:3000/api/people/list')
+    fetch('http://10.130.104.146:3000/api/people/list')
       .then(response => response.json())
       .then(json => this.setState({
         data: json

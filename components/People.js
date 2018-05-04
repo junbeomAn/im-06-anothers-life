@@ -80,7 +80,8 @@ const styles = StyleSheet.create({
   schedule: {
     borderTopWidth: 1,
     borderColor: '#e5e5e5',
-    padding: 5
+    padding: 5,
+    width: '100%'
   },
   schFont: {
     lineHeight: 20,
@@ -89,7 +90,7 @@ const styles = StyleSheet.create({
   schFontHighLight: {
     lineHeight: 20,
     fontSize: 13,
-    color: 'red'
+    backgroundColor: '#ffff75',
   }
 });
 

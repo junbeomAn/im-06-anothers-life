@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
   containerSearch:{
     flex: 1,
     alignItems: 'center',
+    width: '100%',
   },
   searchBar:{
     padding: 3,

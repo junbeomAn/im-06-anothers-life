@@ -27,8 +27,7 @@ export default class Developers extends React.Component {
           </ImageBackground>
           <View style={styles.info}>
             <Text style={styles.name}>이슬</Text>
-            <Text style={{color: 'white', paddingBottom: 3}}>010-8569-4336</Text>
-            <Text style={{color: 'white'}}>sudaseul@gmail.com</Text>
+            <Text style={{ color: 'white' }}>sudaseul@gmail.com</Text>
           </View>
         </View>
 
@@ -47,8 +46,7 @@ export default class Developers extends React.Component {
         </ImageBackground>
           <View style={styles.info}>
             <Text style={styles.name}>안준범</Text>
-            <Text style={{color: 'white', paddingBottom: 3}}>010-9399-7844</Text>
-            <Text style={{color: 'white'}}>wnsqja8744@gmail.com</Text>
+            <Text style={{ color: 'white' }}>wnsqja8744@gmail.com</Text>
           </View>
         </View>
 
@@ -67,8 +65,7 @@ export default class Developers extends React.Component {
         </ImageBackground>
           <View style={styles.info}>
             <Text style={styles.name}>한영재</Text>
-            <Text style={{color: 'white', paddingBottom: 3}}>010-8008-5018</Text>
-            <Text style={{color: 'white'}}>han6318@naver.com</Text>
+            <Text style={{ color: 'white' }}>han6318@naver.com</Text>
           </View>
         </View>
       </View>
@@ -105,9 +102,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   name: {
-    fontSize: 20,
+    fontSize: 25,
     color: 'white',
-    paddingBottom: 5
+    paddingBottom: 13
   },
   info: {
     display: 'flex',
