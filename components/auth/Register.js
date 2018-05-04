@@ -66,34 +66,38 @@ export default class Register extends React.Component {
   }
 
   register = () => {
-    fetch('http://10.130.104.146:3000/api/auth/register', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password,
-        email: this.state.email
-      })
-    })
-    .then((response) => response.json())
-    .then((res) => {
-      if (res.success === true) {
-        var username = res.id;
-        var password = res.pw;
-      } else {
-        alert(res.message);
-        this.setState({
-          username: '',
-          password: '',
-          email: ''
+    if(this.state.username.length < 4) alert('4자리 이상의 아이디를 입력해 주세요');
+    else if(this.state.password.length < 8) alert('8자리 이상의 비밀번호를 입력해 주세요')
+    else {
+      fetch('http://10.130.104.146:3000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: this.state.username,
+          password: this.state.password,
+          email: this.state.email
         })
-      }
-    })
-    .done();
-    this.props.register();
+      })
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.success === true) {
+          var username = res.id;
+          var password = res.pw;
+        } else {
+          alert(res.message);
+          this.setState({
+            username: '',
+            password: '',
+            email: ''
+          })
+        }
+      })
+      .done();
+      this.props.register();
+    }
   }
 }
 

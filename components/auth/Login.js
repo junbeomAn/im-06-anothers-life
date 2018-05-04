@@ -107,7 +107,6 @@ export default class Login extends React.Component {
         this.setState({ 
           email : res.userInfo.email 
         })
-        this._handleEmail();
       })
       .done();
   }
