@@ -2,8 +2,14 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, ImageBackground } from 'react-native';
 import { LinearGradient } from 'expo';
 
+
+
 function People(props) {
-  var {name, description, img_one, img_two, schedule} = props.navigation.state.params;
+  var { name, description, img_one, img_two, schedule } = props.navigation.state.params;
+  var currTime = new Date().getHours();
+  var isTimeMatch = function(currTime, schedule) {
+    return !!((currTime <= schedule) && (currTime + 1 > schedule));
+  }
     return (
       <View style={styles.container}>
           <ImageBackground style={styles.photo} source={{uri: img_one}}>
@@ -21,7 +27,7 @@ function People(props) {
                 <View>
                   {schedule.map((listItem, index) => {
                     var result = `${listItem.time}     ${listItem.task}\n`;
-                    return <View style={styles.schedule} key={index}><Text style={styles.schFont}>{result}</Text></View>;
+                    return <View style={styles.schedule} key={index}><Text style={isTimeMatch(new Date().getHours(), listItem.time.split('-')[0]) ? styles.schFontHighLight: styles.schFont}>{result}</Text></View>;
                   })}
                 </View>
               </ScrollView>
@@ -79,6 +85,11 @@ const styles = StyleSheet.create({
   schFont: {
     lineHeight: 20,
     fontSize: 13,
+  },
+  schFontHighLight: {
+    lineHeight: 20,
+    fontSize: 13,
+    width: 2
   }
 });
 

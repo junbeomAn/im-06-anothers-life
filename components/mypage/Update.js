@@ -23,7 +23,8 @@ export default class Update extends React.Component {
   }
 
   _updatePassword = () => {
-    fetch('http://10.130.104.146:3000/api/auth/update', {
+
+    fetch('http://10.130.111.79:3000/api/auth/update', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

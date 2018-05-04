@@ -1,8 +1,8 @@
 {
   "expoServerPort": 19000,
-  "packagerPort": 19005,
-  "packagerPid": 66430,
-  "expoServerNgrokUrl": "https://bx-hjc.cicada1992.im-06-1st-prj-younggun.exp.direct",
-  "packagerNgrokUrl": "https://packager.bx-hjc.cicada1992.im-06-1st-prj-younggun.exp.direct",
-  "ngrokPid": 66444
+  "packagerPort": 19001,
+  "packagerPid": 17364,
+  "expoServerNgrokUrl": "https://bd-g9j.charliejunbeom.im-06-1st-prj-younggun.exp.direct",
+  "packagerNgrokUrl": "https://packager.bd-g9j.charliejunbeom.im-06-1st-prj-younggun.exp.direct",
+  "ngrokPid": 20256
 }
