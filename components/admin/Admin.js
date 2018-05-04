@@ -35,7 +35,8 @@ export default class Admin extends React.Component {
       .then(response => response.json())
       .then(json => this.setState({
         userList: json
-      }));
+      }))
+      .done();
       
   }
 

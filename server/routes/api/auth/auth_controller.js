@@ -109,10 +109,27 @@ exports.check = (req, res) => {
 
 exports.remove = (req, res) => {
   var { username } = req.body;
+
   User.findOneAndRemove(username, res)
 }
 
 exports.update = (req, res) => {
   var { username, password } = req.body;
+
   User.updatePassword(username, password, res)
+}
+
+exports.find = (req, res) => {
+  var { username } = req.body;
+
+  // 클라이언트에게 응답
+  var respond = (userInfo) => {
+    res.json({
+      userInfo
+    })
+  };
+
+  User.findOneByUsername(username)
+    .then(respond)
+    .catch(err => {throw err})
 }

@@ -1,19 +1,7 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  AsyncStorage,
-  Navigator,
-  WebView,
-  KeyboardAvoidingView,
-  ImageBackground
-} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, AsyncStorage, Navigator, KeyboardAvoidingView, ImageBackground, Button, Modal } from 'react-native';
 import Expo from 'expo';
-import {iosClientId, androidClientId} from './GoogleAuthKey';
-
+import { iosClientId, androidClientId } from './GoogleAuthKey';
 import Register from "./Register";
 import StackNav from "../StackNav";
 
@@ -21,7 +9,12 @@ export default class Login extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { username: '', password: '' };
+    this.state = { 
+      username: '', 
+      password: '', 
+      email: '',
+      modalVisible: false,
+    };
   }
 
   _login = () => { // 일반 로그인
@@ -52,7 +45,6 @@ export default class Login extends React.Component {
       .done();
   }
 
-
   _onLoginPress = async () => { // 구글 연동 로그인
     const result = await this._signInWithGoogleAsync()
     // if there is no result.error or result.cancelled, the user is logged in
@@ -68,9 +60,7 @@ export default class Login extends React.Component {
         androidClientId: androidClientId,
         scopes: ['profile', 'email'],
       })
-
       console.log(result);
-
       if (result.type === 'success') {
         return result;
       }
@@ -81,6 +71,7 @@ export default class Login extends React.Component {
     }
   }
 
+  // 지문 로그인
    _fingerPrintLogin = async () => {
     if(Expo.Fingerprint.hasHardwareAsync() && Expo.Fingerprint.isEnrolledAsync()){
       var result = await Expo.Fingerprint.authenticateAsync('sign in');
@@ -99,16 +90,37 @@ export default class Login extends React.Component {
     await this._fingerPrintLogin();
   }
 
+  // MODAL
+  _setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+  }
+
+  // 비밀 번호 찾기
+  _findPassword = () => { // 일반 로그인
+    fetch('http://10.130.104.146:3000/api/auth/find', {
+      method: 'POST',
+      headers: {Accept: 'application/json', 'Content-Type': 'application/json'},
+      body: JSON.stringify({ username: this.state.username })
+    })
+      .then(response => response.json())
+      .then(res => {
+        this.setState({ 
+          email : res.userInfo.email 
+        })
+        this._handleEmail();
+      })
+      .done();
+  }
+
+
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
-    
         <View>
           <View style={styles.titleBox}>
               <Text style={styles.title}>L O G I N</Text>
           </View>
           <View>
-         
             <TextInput
               style={styles.username}
               placeholder='아이디를 입력하세요'
@@ -116,7 +128,6 @@ export default class Login extends React.Component {
               value={this.state.username}
               onChangeText={(username) => { this.setState({ username })}}>
             </TextInput>
-
             <TextInput
               style={styles.password}
               placeholder='비밀번호를 입력하세요'
@@ -136,9 +147,50 @@ export default class Login extends React.Component {
             </TouchableOpacity>
           </View>
           <View>
-            <TouchableOpacity>
-              <Text style={styles.forgot}>Forgot your password?</Text>
-            </TouchableOpacity>
+
+            <View>
+              <Modal
+                animationType="slide"
+                transparent={false}
+                visible={this.state.modalVisible}
+                onRequestClose={() => alert('Modal has been closed.')}>
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#858B9F' }}>
+                  <Text style={{
+                    fontSize: 20,
+                    fontFamily: 'BareunBatangB',
+                    color: '#303846',
+                    marginBottom: 20,
+                  }}>비 밀 번 호 찾 기</Text>
+                  <View>
+                    <TextInput
+                      style={styles.username}
+                      placeholder='아이디를 입력하세요'
+                      keyboardType="email-address"
+                      value={this.state.username}
+                      onChangeText={(username) => { this.setState({ username }) }}>
+                    </TextInput>
+
+                    <TouchableOpacity
+                      onPress={() => {
+                        this._findPassword();
+                        alert('등록된 이메일로 임시 비밀번호를 \n 발송 하였습니다.')
+                      }}>
+                      <Text style={styles.sendEmail}>SEND EMAIL</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      onPress={() => this._setModalVisible(!this.state.modalVisible)}>
+                      <Text style={styles.modal_back}>GO BACK</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </Modal>
+
+              <TouchableOpacity
+                onPress={() => this._setModalVisible(true)}>
+                <Text style={styles.forgot}>Forgot your password?</Text>
+              </TouchableOpacity>
+            </View>
           </View>
           <View>
             <ImageBackground style={styles.photo} source={{ uri: 'http://www.kthotelsgate.com/assets/theme_dark/images/sign-in-button.png' }}>
@@ -158,6 +210,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#858B9F',
+    width: "100%"
   },
   titleBox:{
     justifyContent: 'center',
@@ -166,7 +220,8 @@ const styles = StyleSheet.create({
   },
   title:{
     fontSize: 20,
-    fontFamily: 'BareunBatangM'
+    fontFamily: 'BareunBatangB',
+    color: '#303846'
   },
   username: {
     padding: 3,
@@ -174,6 +229,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'darkgrey',
     textAlign: 'center',
+    backgroundColor: '#eee',
+    height: 30,
   },
   password: {
     marginTop: 5,
@@ -181,19 +238,25 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'darkgrey',
     textAlign: 'center',
+    backgroundColor: '#eee',
+    height: 30,
   },
   login:{
     marginTop: 20,
     padding: 5,
-    backgroundColor: '#008B8B',
+    height: 30,
+    paddingTop: 8,
+    backgroundColor: '#2F4661',
     color: 'ghostwhite',
     textAlign: 'center',
   },
   register:{
     padding: 5,
+    paddingTop: 8,
+    height: 30,
     textAlign: 'center',
     marginTop: 5,
-    backgroundColor: '#008B8B',
+    backgroundColor: '#2F4661',
     color: 'ghostwhite',
   },
   google: {
@@ -211,7 +274,36 @@ const styles = StyleSheet.create({
     padding: 5,
     textAlign: 'center',
     marginTop: 5,
-    backgroundColor: '#F08080',
+    backgroundColor: '#C89287',
+    color: 'ghostwhite',
+    height: 30,
+    paddingTop: 8,
+  },
+  modal: {
+    padding: 5,
+    textAlign: 'center',
+    marginTop: 5,
+    backgroundColor: '#C89287',
+    color: 'ghostwhite',
+    height: 30,
+    paddingTop: 8,
+  },
+  sendEmail: {
+    padding: 5,
+    paddingTop: 8,
+    height: 30,
+    textAlign: 'center',
+    marginTop: 5,
+    backgroundColor: '#2F4661',
     color: 'ghostwhite',
   },
+  modal_back: {
+    padding: 5,
+    textAlign: 'center',
+    marginTop: 30,
+    backgroundColor: '#C89287',
+    color: 'ghostwhite',
+    height: 30,
+    paddingTop: 8,
+  }
 })
