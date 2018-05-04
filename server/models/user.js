@@ -92,6 +92,7 @@ User.methods.verify = function(password) {
   return this.password === encrypted;
 }
 
+// 해당유저 어드민 권한 부여
 User.methods.assignAdmin = function() {
   this.admin = true
   return this.save();
