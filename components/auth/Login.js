@@ -18,8 +18,7 @@ export default class Login extends React.Component {
   }
 
   _login = () => { // 일반 로그인
-
-    fetch('http://10.130.111.79:3000/api/auth/login', {
+    fetch('http://10.130.104.146:3000/api/auth/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -75,20 +74,16 @@ export default class Login extends React.Component {
   // 지문 로그인
    _fingerPrintLogin = async () => {
     if(Expo.Fingerprint.hasHardwareAsync() && Expo.Fingerprint.isEnrolledAsync()){
-      var result = await Expo.Fingerprint.authenticateAsync('sign in');
+      var result = await Expo.Fingerprint.authenticateAsync('생체 로그인');
       if(result.success){
         alert('Welcome')
-        this.props.setFingerPrint();        
+        this.props.setFingerPrint();     
       } else {
         if(result.error !== 'user_cancel'){
-          alert(result.error);
+          alert("생체 로그인은 아이폰만 지원합니다");
         }         
       }
     }
-  }
-
-  async componentDidMount() {
-    await this._fingerPrintLogin();
   }
 
   // MODAL
@@ -97,20 +92,20 @@ export default class Login extends React.Component {
   }
 
   // 비밀 번호 찾기
-  _findPassword = () => { // 일반 로그인
-    fetch('http://10.130.104.146:3000/api/auth/find', {
-      method: 'POST',
-      headers: {Accept: 'application/json', 'Content-Type': 'application/json'},
-      body: JSON.stringify({ username: this.state.username })
-    })
-      .then(response => response.json())
-      .then(res => {
-        this.setState({ 
-          email : res.userInfo.email 
-        })
-      })
-      .done();
-  }
+  // _findPassword = () => { // 일반 로그인
+  //   fetch('http://10.130.104.146:3000/api/auth/find', {
+  //     method: 'POST',
+  //     headers: {Accept: 'application/json', 'Content-Type': 'application/json'},
+  //     body: JSON.stringify({ username: this.state.username })
+  //   })
+  //     .then(response => response.json())
+  //     .then(res => {
+  //       this.setState({ 
+  //         email : res.userInfo.email 
+  //       })
+  //     })
+  //     .done();
+  // }
 
 
   render() {
@@ -139,6 +134,11 @@ export default class Login extends React.Component {
           <View>
             <TouchableOpacity onPress={this._login}>
               <Text style={styles.login}>Log in</Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity onPress={this._fingerPrintLogin}>
+              <Text style={styles.register}>Touch ID Login for IOS</Text>
             </TouchableOpacity>
           </View>
           <View>
