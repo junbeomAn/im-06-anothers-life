@@ -24,8 +24,9 @@ export default class Exit extends React.Component {
       throw err
     }
   }
-
+  
   _removeUser = () => {
+
     fetch('http://10.130.111.79:3000/api/auth/remove', {
       method: 'POST',
       headers: {

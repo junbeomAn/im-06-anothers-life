@@ -7,6 +7,7 @@ import Logout from './auth/Logout';
 import MyPage from './mypage/MyPage';
 
 
+
 const styles = StyleSheet.create({
   icon: {
     width: 24,

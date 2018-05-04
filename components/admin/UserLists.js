@@ -8,9 +8,9 @@ function UserLists({ user }) {
   return (
     <View style={styles.eachUserBox}>
       <View style={styles.eachUser}>
-        <Text style={styles.text}>{user.username}</Text>
-        <Text style={styles.text}>{user.email}</Text>
-        <Text style={styles.text}>{(user.admin) ? admin : guest }</Text>
+        <Text style={styles.name}>{user.username}</Text>
+        <Text style={styles.text}>EMAIL : {user.email}</Text>
+        <Text style={styles.auth}>{(user.admin) ? admin : guest }</Text>
       </View>
     </View>
   );
@@ -18,17 +18,31 @@ function UserLists({ user }) {
 
 const styles = StyleSheet.create({
   eachUserBox: {
+    paddingTop: 7,
     marginBottom: 30,
+    backgroundColor: '#EFE6E0',
     borderWidth: 1,
-    borderColor: 'red',
+    borderRadius: 10,
+    borderColor: '#EFE6E0',
   },
   eachUser: {
+    paddingTop: 2,
     alignItems: 'center',
     justifyContent: 'center',
     height: 80,
   },
+  name: {
+    color: '#303846',
+    fontSize: 18,
+    paddingBottom: 8,
+  },
   text: {
-    color: 'ghostwhite',
+    color: '#858B9F',
+    fontSize: 15,
+    paddingBottom: 8,
+  },
+  auth: {
+    color: '#E26E84',
     fontSize: 15,
     paddingBottom: 8,
   },

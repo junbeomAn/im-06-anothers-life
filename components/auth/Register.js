@@ -66,34 +66,38 @@ export default class Register extends React.Component {
   }
 
   register = () => {
-    fetch('http://10.130.111.79:3000/api/auth/register', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password,
-        email: this.state.email
-      })
-    })
-    .then((response) => response.json())
-    .then((res) => {
-      if (res.success === true) {
-        var username = res.id;
-        var password = res.pw;
-      } else {
-        alert(res.message);
-        this.setState({
-          username: '',
-          password: '',
-          email: ''
+    if(this.state.username.length < 4) alert('4자리 이상의 아이디를 입력해 주세요');
+    else if(this.state.password.length < 8) alert('8자리 이상의 비밀번호를 입력해 주세요')
+    else {
+      fetch('http://10.130.111.79:3000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: this.state.username,
+          password: this.state.password,
+          email: this.state.email
         })
-      }
-    })
-    .done();
-    this.props.register();
+      })
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.success === true) {
+          var username = res.id;
+          var password = res.pw;
+        } else {
+          alert(res.message);
+          this.setState({
+            username: '',
+            password: '',
+            email: ''
+          })
+        }
+      })
+      .done();
+      this.props.register();
+    }
   }
 }
 
@@ -102,6 +106,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#858B9F',
+    width: '100%'
   },
   titleBox: {
     justifyContent: 'center',
@@ -110,6 +116,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
+    color: '#303846',
+    fontFamily: 'BareunBatangB',
   },
   username: {
     padding: 3,
@@ -117,6 +125,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'darkgrey',
     textAlign: 'center',
+    backgroundColor: '#eee',
+    height: 30,
   },
   password: {
     marginTop: 5,
@@ -124,21 +134,27 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'darkgrey',
     textAlign: 'center',
+    backgroundColor: '#eee',
+    height: 30,
   },
   apply: {
     width: 250,
     padding: 5,
+    paddingTop: 8,
+    height: 30,
     textAlign: 'center',
     marginTop: 20,
-    backgroundColor: '#008B8B',
+    backgroundColor: '#2F4661',
     color: 'ghostwhite',
   },
   back : {
     width: 250,
     padding: 5,
+    paddingTop: 8,
+    height: 30,
     marginTop: 5,
     textAlign: 'center',
-    backgroundColor: '#F08080',
+    backgroundColor: '#C89287',
     color: 'ghostwhite',
   }
 });

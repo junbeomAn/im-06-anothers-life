@@ -39,6 +39,7 @@ export default class Loading extends React.Component {
     })
     Font.loadAsync({
       BareunBatangM: require('../assets/BareunBatangM.ttf'),
+      BareunBatangB: require('../assets/BareunBatangB.ttf'),
       JungGothic170: require('../assets/JungGothic170.ttf'),
       DaehanB: require('../assets/DaehanB.ttf')
     }).then(() => {
@@ -172,7 +173,7 @@ export default class Loading extends React.Component {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         {!data ? <View><ActivityIndicator size="large" /></View> : 
-            !fontLoaded ? <View><ActivityIndicator size="large" /></View> :
+          !fontLoaded ? <View><ActivityIndicator size="large" /></View> :
             isAdmin ? <Admin token={token} toggle={this._toggleSight.bind(this)}/> :
               isLogined ? <StackNav target={target} data={data} token={token} reject={this._rejectPerson.bind(this)} pick={this._pickPerson.bind(this)} logOut={this._logOut.bind(this)}/> : 
                 signUp ? <Register register={this._register.bind(this)} /> : 
@@ -181,45 +182,3 @@ export default class Loading extends React.Component {
     );
   }
 }
-
-// _setPushSchedule(target) { // worker
-
-  //     var hours = new Date().getHours();
-  //     var minutes = new Date().getMinutes();
-  //     var parsedTime = (hours <= 12 ? '0' : '') + hours + '-' +  (minutes < 10 ? '0' : '') + minutes;
-  //     console.log(parsedTime);
-
-  //     for(var i = 0; i < target.schedule.length; i++){
-  //       if(target.schedule[i]['time'] === parsedTime){
-  //         this.props.notiPush(target.schedule[i].task);
-  //       }
-  //     }
-
-    // setInterval(() => {
-
-    // }, 10000)
-
-  // }
-
-
- // // 노티 토큰
-  // _notiPush= async () => {
-  // const { status: existingStatus } = await Permissions.getAsync(
-  //   Permissions.NOTIFICATIONS
-  // );
-  // var finalStatus = existingStatus;
-
-  // if (existingStatus !== 'granted') {
-  //   const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-  //   finalStatus = status;
-  //   console.log('finalStatus', finalStatus);
-  // }
-
-  // if (finalStatus !== 'granted') {
-  //   console.log('finalStatus', finalStatus);
-  //   return;
-  // }
-
-  // var notiToken = await Expo.Notifications.getExpoPushTokenAsync();
-  // this.setState({ notiToken })
-// }
