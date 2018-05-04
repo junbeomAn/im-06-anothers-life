@@ -2,12 +2,13 @@ const jwt = require('jsonwebtoken');
 const User = require('../../../models/user');
 
 exports.register = (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, email } = req.body;
   var newUser = null;
-  // 동일 아이디 유저가 존재하지않으면 계정 생성
+
+  // 동일 아이디가 존재하지않으면 계정 생성
   var create = (user) => {
-      if(user) throw new Error('동일 아이디 존재');
-      else return User.create(username, password);
+      if(user) throw new Error('중복된 아이디가 존재합니다');
+      else return User.create(username, password, email);
   };
 
   // 유저 숫자 카운팅
@@ -25,7 +26,7 @@ exports.register = (req, res) => {
   // 클라이언트에게 응답
   var respond = (isAdmin) => {
       res.json({
-      message : ' 님의 가입을 환영합니다.',
+      message : '회원님의 가입을 환영합니다.',
       admin: isAdmin ? true : false
       })
   };
@@ -37,7 +38,7 @@ exports.register = (req, res) => {
     })
   }
 
-  // 유저네임 중복 확인
+  // 유저네임 및 이메일 중복 확인
   User.findOneByUsername(username)
   .then(create)
   .then(count)

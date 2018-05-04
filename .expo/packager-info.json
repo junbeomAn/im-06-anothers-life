@@ -1,8 +1,8 @@
 {
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 10156,
-  "expoServerNgrokUrl": "https://s6-dmn.sudaseul.im-06-1st-prj-younggun.exp.direct",
-  "packagerNgrokUrl": "https://packager.s6-dmn.sudaseul.im-06-1st-prj-younggun.exp.direct",
-  "ngrokPid": 24412
+  "packagerPid": 4104,
+  "expoServerNgrokUrl": "https://fe-uve.sudaseul.im-06-1st-prj-younggun.exp.direct",
+  "packagerNgrokUrl": "https://packager.fe-uve.sudaseul.im-06-1st-prj-younggun.exp.direct",
+  "ngrokPid": 4532
 }

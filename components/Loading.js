@@ -7,6 +7,7 @@ import People from "./People";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import MyPage from "./mypage/MyPage";
+import Admin from "./admin/Admin";
 import {setCustomText} from 'react-native-global-props';
 import decode from 'jwt-decode';
 
@@ -23,10 +24,10 @@ export default class Loading extends React.Component {
       data: '', 
       token: '',
       signUp: false,
-      // signedIn: false,
       fontLoaded: false,
       target: '',
       isLogined: false,
+      isAdmin: false,
     };
   }
 
@@ -44,7 +45,7 @@ export default class Loading extends React.Component {
       setCustomText(customTextProps);
       this.setState({fontLoaded: true});
     });
-} 
+  }
 
   // username setting
   _setUsername = (username) => {
@@ -55,7 +56,7 @@ export default class Loading extends React.Component {
  
   // DB 자료 펫칭
   _getDb = () => {
-    fetch('http://10.130.110.214:3000/api/people/list')
+    fetch('http://10.130.105.57:3000/api/people/list')
       .then(response => response.json())
       .then(json => this.setState({
         data: json
@@ -90,6 +91,20 @@ export default class Loading extends React.Component {
       signUp : !this.state.signUp
     })
   }
+  
+  // Admin -> User 화면으로
+  _toggleSight = () => {
+    this.setState({
+      isAdmin: !this.state.isAdmin
+    })
+  
+  }
+  // 지문인식 로그인
+  _fPrintLogin() {
+    this.setState({
+      isLogined: true
+    })
+  }
 
   // 로그 아웃
   _logOut() {
@@ -105,10 +120,24 @@ export default class Loading extends React.Component {
     this.setState({
       target
     });
-    // this._setPushSchedule(target);
+    console.log(target)
+    this._setPushSchedule(target)
   }
 
-  // 토큰 존재 && 토큰 만료 여부 확인
+  _rejectPerson() {
+    this.setState({
+      target: {}
+    })
+    console.log('empty target');
+    Expo.Notifications.cancelAllScheduledNotificationsAsync();
+  }
+
+  _setPushSchedule({ schedule }) { // worker     
+   for(var i = 0; i < schedule.length; i++){
+    this.props.notiPush(schedule[i]);
+    }         
+  }  
+
   _isLogined() {
     // console.log('@@', this.state.token);
     this.setState({
@@ -119,7 +148,9 @@ export default class Loading extends React.Component {
   _isTokenExpired(token) {
     try {
       const decoded = decode(token);
-      // console.log(decoded);
+      if(decoded.admin){
+        this.setState({ isAdmin : true })
+      }
       // console.log(Date.now() / 1000);
       if(decoded.exp < (Date.now() / 1000)) { // Checking if token is expired. N
         alert('토큰이 만료 되었습니다. 다시 로그인 해주세요.');
@@ -137,13 +168,15 @@ export default class Loading extends React.Component {
   }
 
   render() {
-    const {data, fontLoaded, isLogined, token, signUp} = this.state;
+    const {data, fontLoaded, isLogined, token, signUp, fprintSignIn, target, isAdmin} = this.state;
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         {!data ? <View><ActivityIndicator size="large" /></View> : 
-            !fontLoaded ? <View><ActivityIndicator size="large" /></View> :
-              isLogined ? <StackNav data={data} token={token} pick={this._pickPerson.bind(this)} logOut={this._logOut.bind(this)}/> : 
-                signUp ? <Register register={this._register.bind(this)} /> : <Login setToken={this._saveToken.bind(this)} register={this._register.bind(this)} />}
+          !fontLoaded ? <View><ActivityIndicator size="large" /></View> :
+            isAdmin ? <Admin token={token} toggle={this._toggleSight.bind(this)}/> :
+              isLogined ? <StackNav target={target} data={data} token={token} reject={this._rejectPerson.bind(this)} pick={this._pickPerson.bind(this)} logOut={this._logOut.bind(this)}/> : 
+                signUp ? <Register register={this._register.bind(this)} /> : 
+                <Login setFingerPrint={this._fPrintLogin.bind(this)} setToken={this._saveToken.bind(this)} register={this._register.bind(this)} />}
       </View>
     );
   }

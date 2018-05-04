@@ -13,8 +13,8 @@ exports.list = (req, res) => {
 exports.assignAdmin = (req, res) => {
   // 관리자 계정 아닐 시 거절
   if(!req.decoded.admin) return res.status(403).json({ message: '관리자 계정이 아닙니다.' });
-  
+
   User.findOneByUsername(req.params.username)
-  .then(user => user.assignAdmin)
+  .then(user => user.assignAdmin())
   .then(res.json({ success : true }))
 }
