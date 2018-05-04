@@ -27,7 +27,7 @@ export default class Loading extends React.Component {
       fontLoaded: false,
       target: '',
       isLogined: false,
-      isAdmin: false,
+      isAdmin: false,      
     };
   }
 
@@ -121,7 +121,7 @@ export default class Loading extends React.Component {
     this.setState({
       target
     });
-    console.log(target)
+    // console.log(target)
     this._setPushSchedule(target)
   }
 
@@ -129,7 +129,7 @@ export default class Loading extends React.Component {
     this.setState({
       target: {}
     })
-    console.log('empty target');
+    // console.log('empty target');
     Expo.Notifications.cancelAllScheduledNotificationsAsync();
   }
 

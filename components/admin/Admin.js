@@ -87,7 +87,7 @@ export default class Admin extends React.Component {
             <Text style={styles.authorize}>관리자 권한 부여</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.props.toggle}>
-            <Text style={styles.back}>Go Guest Sight</Text>
+            <Text style={styles.back}>User View</Text>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
