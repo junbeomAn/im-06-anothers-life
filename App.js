@@ -31,7 +31,7 @@ export default class App extends React.Component {
       android: {
         sound: true,
         priority: 'high',
-        sticky: true,
+        // sticky: true,
         vibrate: true
       }
     };
@@ -41,15 +41,19 @@ export default class App extends React.Component {
     let time = new Date(); // GMT 시간 === MM/DD/YYYY 형식
 
     // console.log(time); // 대체 왜다른거지????????????????????????????????????????!!!!!!!! 04
-    // console.log(time.getHours()); //13
+     //13
 
-    if(scheduleHours <= time.getHours()){
-      if(scheduleMinutes <= time.getMinutes()){
-        // console.log('schedule cancelled')
-        return ;
-      }      
+    if(scheduleHours < time.getHours()){ // filtering past times      
+        console.log('schedule cancelled');
+        return ;            
+    } else if(scheduleHours === time.getHours()) {
+      if(scheduleMinutes < time.getMinutes()){
+        return;
+      }
     }
-    
+
+    console.log(scheduleHours, scheduleMinutes);
+
     time.setHours(scheduleHours)
     time.setMinutes(scheduleMinutes); // UTC 1520482918 === 1970.01.01 부터의 
 

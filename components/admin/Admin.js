@@ -31,7 +31,7 @@ export default class Admin extends React.Component {
       }
     }
 
-    fetch('http://10.130.104.146:3000/api/user/list', option)
+    fetch('http://10.130.111.79:3000/api/user/list', option)
       .then(response => response.json())
       .then(json => this.setState({
         userList: json

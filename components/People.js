@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, ImageBackground } from 'react-native';
 import { LinearGradient } from 'expo';
 
-
+function isTimeMatch(currTime, schedule) {
+  return !!((currTime <= schedule) && (currTime + 1 > schedule));
+}
 
 function People(props) {
   var { name, description, img_one, img_two, schedule } = props.navigation.state.params;
-  var currTime = new Date().getHours();
-  var isTimeMatch = function(currTime, schedule) {
-    return !!((currTime <= schedule) && (currTime + 1 > schedule));
-  }
+  var currTime = new Date().getHours();  
+  
     return (
       <View style={styles.container}>
           <ImageBackground style={styles.photo} source={{uri: img_one}}>
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   schFontHighLight: {
     lineHeight: 20,
     fontSize: 13,
-    width: 2
+    color: 'red'
   }
 });
 
