@@ -11,19 +11,20 @@ import Selection from "./components/Selection";
 import DrawerNav from "./components/DrawerNav";
 import StackNav from "./components/StackNav";
 import People from "./components/People";
-import Register from "./components/Register";
+import Register from "./components/auth/Register";
 import Main from "./components/Main";
-import Login from './components/Login';
+import Login from './components/auth/Login';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {};
   }
-  _notiPush(task) { // 푸쉬 관련. . . 
+
+  _notiPush(schedule) { // 푸쉬 관련. . . 
     const localNotification = {
-      title: 'Your idol',
-      body: task,
+      title: '타인의 삶',
+      body: schedule.task, // schedule.task
       ios: {
         sound: true
       },
@@ -35,14 +36,34 @@ export default class App extends React.Component {
       }
     };
 
+    let scheduleHours = Number(schedule.time.split('-')[0]);
+    let scheduleMinutes = Number(schedule.time.split('-')[1]);
     let time = new Date(); // GMT 시간 === MM/DD/YYYY 형식
-    time.setSeconds(time.getSeconds() + 2); // UTC 1520482918 === 1970.01.01 부터의 
-    //second로 환산한 시간을 30초 더한 GMT 시간으로 바꿔줌
 
+    // console.log(time); // 대체 왜다른거지????????????????????????????????????????!!!!!!!! 04
+     //13
+
+    if(scheduleHours < time.getHours()){ // filtering past times      
+        console.log('schedule cancelled');
+        return ;            
+    } else if(scheduleHours === time.getHours()) {
+      if(scheduleMinutes < time.getMinutes()){
+        return;
+      }
+    }
+
+    console.log(scheduleHours, scheduleMinutes);
+
+    time.setHours(scheduleHours)
+    time.setMinutes(scheduleMinutes); // UTC 1520482918 === 1970.01.01 부터의 
+
+    // console.log(`${scheduleHours} : ${scheduleMinutes} / ${time}`);
+    //second로 환산한 시간을 30초 더한 GMT 시간으로 바꿔줌
+    // console.log(time, '@@@@@@@@@@@')
     const scheduleOptions = {
       time: time, // time 은 다시 GMT 로 돌아옴
     }
-
+    
     Notifications.scheduleLocalNotificationAsync(localNotification, scheduleOptions);
   }
 
@@ -52,8 +73,8 @@ export default class App extends React.Component {
     if (Constants.lisDevice && result.status === 'granted') {           
       console.log('Notification pemissions granted');
     }
-    // this._notiPush();
   }
+  
   render() {
     return (
         <Loading notiPush={this._notiPush.bind(this)}/>

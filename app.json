@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "project1",
-    "description": "This project is really great.",
-    "slug": "project1",
+    "name": "타인의 삶",
+    "description": "타인의 삶을 추적해 보세요",
+    "slug": "anotherslife",
     "privacy": "public",
     "sdkVersion": "26.0.0",
     "platforms": ["ios", "android"],
